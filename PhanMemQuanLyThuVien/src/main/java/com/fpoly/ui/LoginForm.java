@@ -144,16 +144,17 @@ public class LoginForm extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 // ========================== XỬ LÝ CHỨC NĂNG CÁC NÚT==========================//
-    
-        //=====Nút Kết Thúc=====//
+    //=====Nút Kết Thúc=====//
     public void exit() {
         System.exit(0);
     }
-        //=====Nút Đăng Nhập =====//
-    public void login() {
-    String username = txtUser.getText().trim();
-    String password = new String(txtPassword.getPassword()).trim();
+    //=====Nút Đăng Nhập =====//
 
+    public void login() {
+        String username = txtUser.getText().trim();
+        String password = new String(txtPassword.getPassword()).trim();
+
+<<<<<<< HEAD
     // Kiểm tra nhập liệu
     if (username.isEmpty() || password.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!");
@@ -176,14 +177,36 @@ public class LoginForm extends javax.swing.JFrame {
             new ThuThuForm().setVisible(true); // Form Thủ Thư
         } else {
             new MemberForm().setVisible(true); // Form Member
+=======
+        // Kiểm tra nhập liệu
+        if (username.isEmpty() || password.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!");
+            return;
+>>>>>>> 7c0e97742ebc0486b60ce81b2d0a8cc47990fba3
         }
 
-        this.dispose(); // Đóng LoginForm
-    } else {
-        javax.swing.JOptionPane.showMessageDialog(this, "Sai tên đăng nhập hoặc mật khẩu!");
+        // Dùng XAuth để đăng nhập
+        boolean success = XAuth.login(username, password);
+
+        if (success) {
+            // Đăng nhập thành công
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Đăng nhập thành công! Chào " + XAuth.currentUser.getFullName()
+                    + " (" + XAuth.currentUser.getRole() + ")");
+
+            // Tùy vào Role, mở cửa sổ khác
+            if (XAuth.isAdmin()) {
+                new AdminForm().setVisible(true); // Form quản trị
+            } else if (XAuth.isThuThu()) {
+                new ThuThuForm().setVisible(true); // Form Thủ Thư
+            } else {
+                new MemberForm().setVisible(true); // Form Member
+            }
+
+            this.dispose(); // Đóng LoginForm
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Sai tên đăng nhập hoặc mật khẩu!");
+        }
     }
-}
-
-
 
 }

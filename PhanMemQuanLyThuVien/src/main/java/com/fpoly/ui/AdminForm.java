@@ -28,21 +28,126 @@ public class AdminForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        btnDangXuat = new javax.swing.JButton();
+        btnNguoiDung = new javax.swing.JButton();
+        btnKhoSach = new javax.swing.JButton();
+        btnBaoCaoThongKe1 = new javax.swing.JButton();
+        btnThongBaoQuaHan = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1180, 780));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 38)); // NOI18N
+        jLabel1.setText("Trang Quản Trị Viên");
+
+        btnDangXuat.setText("Đăng Xuất");
+        btnDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangXuatActionPerformed(evt);
+            }
+        });
+
+        btnNguoiDung.setText("Quản Lí Người Dùng");
+        btnNguoiDung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNguoiDungActionPerformed(evt);
+            }
+        });
+
+        btnKhoSach.setText("Quản Lí Kho Sách");
+        btnKhoSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKhoSachActionPerformed(evt);
+            }
+        });
+
+        btnBaoCaoThongKe1.setText("Báo Cáo Thống Kê");
+        btnBaoCaoThongKe1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBaoCaoThongKe1ActionPerformed(evt);
+            }
+        });
+
+        btnThongBaoQuaHan.setText("Thông Báo Quá Hạn");
+        btnThongBaoQuaHan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongBaoQuaHanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1213, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnKhoSach, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBaoCaoThongKe1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnNguoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnThongBaoQuaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 427, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(412, 412, 412))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 817, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel1)
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNguoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThongBaoQuaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(btnKhoSach, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnBaoCaoThongKe1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
+                .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
+        // TODO add your handling code here:
+        this.logout();
+    }//GEN-LAST:event_btnDangXuatActionPerformed
+
+    private void btnNguoiDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNguoiDungActionPerformed
+        // TODO add your handling code here:
+        this.openUser();
+    }//GEN-LAST:event_btnNguoiDungActionPerformed
+
+    private void btnKhoSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoSachActionPerformed
+        // TODO add your handling code here:
+        this.openBookManager();
+    }//GEN-LAST:event_btnKhoSachActionPerformed
+
+    private void btnBaoCaoThongKe1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBaoCaoThongKe1ActionPerformed
+        // TODO add your handling code here:
+        this.openBaoCaoThongKe();
+    }//GEN-LAST:event_btnBaoCaoThongKe1ActionPerformed
+
+    private void btnThongBaoQuaHanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongBaoQuaHanActionPerformed
+        // TODO add your handling code here:
+        this.openThongBaoQuaHan();
+    }//GEN-LAST:event_btnThongBaoQuaHanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,5 +186,59 @@ public class AdminForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBaoCaoThongKe1;
+    private javax.swing.JButton btnDangXuat;
+    private javax.swing.JButton btnKhoSach;
+    private javax.swing.JButton btnNguoiDung;
+    private javax.swing.JButton btnThongBaoQuaHan;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+//======================XỬ LÝ CÁC NÚT CHỨC NĂNG========================//  
+    //=====Nút Đăng Xuất=====//
+    public void logout() {
+        int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+                "Bạn có chắc chắn muốn đăng xuất?",
+                "Xác nhận đăng xuất",
+                javax.swing.JOptionPane.YES_NO_OPTION);
+
+        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+            this.dispose(); // Đóng form Admin hiện tại
+            new LoginForm().setVisible(true); // Mở lại form đăng nhập
+        }
+    }
+
+    //=====Nút Quản Lí Người Dùng=====//
+    public void openUser() {
+        // Mở form Quản Lý Người Dùng mà không đóng AdminForm
+        QuanLyNguoiDungForm userForm = new QuanLyNguoiDungForm();
+        userForm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); // chỉ đóng form này thôi
+        userForm.setVisible(true);
+    }
+    //=====Nút Quản Lí Kho Sách=====//
+
+    public void openBookManager() {
+        //Mở form Quản Lý Kho Sách mà không đóng AdminForm
+        QuanLyKhoSachForm bookForm = new QuanLyKhoSachForm();
+        bookForm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        bookForm.setVisible(true);
+    }
+
+    //=====Nút Quản Lí Báo Cáo Thống Kê=====//
+    public void openBaoCaoThongKe() {
+        //Mở form Quản Lý Báo Cáo Thống Kê mà không đóng AdminForm
+        QuanLyBaoCaoThongKe baocaothongkeForm = new QuanLyBaoCaoThongKe();
+        baocaothongkeForm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        baocaothongkeForm.setVisible(true);
+    }
+    
+    //=====Nút Quản Lí Thông Báo Quá Hạn=====//
+    public void openThongBaoQuaHan() {
+        //Mở form Quản Lý Thông Báo Quá Hạn mà không đóng AdminForm
+        QuanLyThongBaoQuaHan thongbaoquahanForm = new QuanLyThongBaoQuaHan();
+        thongbaoquahanForm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        thongbaoquahanForm.setVisible(true);  
+    }
+
+
 }
