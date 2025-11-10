@@ -166,7 +166,7 @@ public class LoginForm extends javax.swing.JFrame {
     if (success) {
         // Đăng nhập thành công
         javax.swing.JOptionPane.showMessageDialog(this, 
-            "Đăng nhập thành công! Chào " + XAuth.currentUser.getFullName() + 
+            "Login successful! Welcome " + XAuth.currentUser.getFullName() + 
             " (" + XAuth.currentUser.getRole() + ")");
 
         // Tùy vào Role, mở cửa sổ khác
