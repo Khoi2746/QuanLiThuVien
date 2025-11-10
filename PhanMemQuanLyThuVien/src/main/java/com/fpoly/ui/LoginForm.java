@@ -154,7 +154,7 @@ public class LoginForm extends javax.swing.JFrame {
         String username = txtUser.getText().trim();
         String password = new String(txtPassword.getPassword()).trim();
 
-<<<<<<< HEAD
+
     // Kiểm tra nhập liệu
     if (username.isEmpty() || password.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!");
@@ -177,17 +177,13 @@ public class LoginForm extends javax.swing.JFrame {
             new ThuThuForm().setVisible(true); // Form Thủ Thư
         } else {
             new MemberForm().setVisible(true); // Form Member
-=======
+
         // Kiểm tra nhập liệu
         if (username.isEmpty() || password.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!");
             return;
->>>>>>> 7c0e97742ebc0486b60ce81b2d0a8cc47990fba3
+
         }
-
-        // Dùng XAuth để đăng nhập
-        boolean success = XAuth.login(username, password);
-
         if (success) {
             // Đăng nhập thành công
             javax.swing.JOptionPane.showMessageDialog(this,
@@ -210,3 +206,4 @@ public class LoginForm extends javax.swing.JFrame {
     }
 
 }
+    }}
