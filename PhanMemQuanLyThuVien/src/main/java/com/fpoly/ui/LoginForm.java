@@ -154,7 +154,6 @@ public class LoginForm extends javax.swing.JFrame {
         String username = txtUser.getText().trim();
         String password = new String(txtPassword.getPassword()).trim();
 
-
     // Kiểm tra nhập liệu
     if (username.isEmpty() || password.isEmpty()) {
         javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!");
@@ -177,6 +176,7 @@ public class LoginForm extends javax.swing.JFrame {
             new ThuThuForm().setVisible(true); // Form Thủ Thư
         } else {
             new MemberForm().setVisible(true); // Form Member
+
 
         // Kiểm tra nhập liệu
         if (username.isEmpty() || password.isEmpty()) {
