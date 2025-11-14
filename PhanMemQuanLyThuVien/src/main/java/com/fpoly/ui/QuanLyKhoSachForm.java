@@ -3,14 +3,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.fpoly.ui;
-
+// Khai báo biến DAO để dùng chung
+    
 /**
  *
  * @author X1 Carbon
  */
 public class QuanLyKhoSachForm extends javax.swing.JFrame {
-
-    /**
+        private com.fpoly.Dao.BookDAO bookDAO;
+    
+        /**
+     * Creates new form QuanLyKhoSach
+     */
+    public QuanLyKhoSachForm() {
+        initComponents(); // Rất quan trọng: Gọi hàm vẽ giao diện
+        setLocationRelativeTo(null); // Căn giữa cửa sổ
+        
+        // Khởi tạo DAO
+        this.bookDAO = new com.fpoly.Dao.BookDAO(); 
+        
+        // Gọi hàm tải dữ liệu
+        loadDataToTable();
+    }
+    
+    // Hàm mới để tải dữ liệu lên JTable
+    private void loadDataToTable() {
+        bookDAO.loadBooksToTable(tblBooks); // tblBooks là tên JTable của bạn
+    }
+        /**
+     * 
+     * 
      * Creates new form QuanLyKhoSach
      */
 

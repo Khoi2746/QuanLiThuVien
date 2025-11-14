@@ -3,9 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.fpoly.Dao;
+
 import com.fpoly.utils.XJDBC;
-import java.sql.*;
-import javax.swing.*;
+import java.sql.ResultSet; // Thêm import
+import java.sql.SQLException; // Thêm import
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,21 +16,23 @@ import javax.swing.table.DefaultTableModel;
  * @author PC
  */
 public class BookDAO {
-    private Connection conn;
-
-    public BookDAO() {
-        // Gọi trực tiếp XJDBC để lấy kết nối
-        this.conn = XJDBC.getConnection();
-    }
+    
+    // Không cần biến "conn" hay hàm khởi tạo "BookDAO()" nữa
 
     public void loadBooksToTable(JTable tblBooks) {
-        try {
-            String sql = "SELECT * FROM books";
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+        // Đảm bảo tên bảng và tên cột trong SQL khớp với CSDL
+        String sql = "SELECT BookID, Title, Author, Category, Quantity FROM books";
+        
+        DefaultTableModel model = (DefaultTableModel) tblBooks.getModel();
+        model.setRowCount(0); // Xóa dữ liệu cũ trên bảng
 
-            DefaultTableModel model = (DefaultTableModel) tblBooks.getModel();
-            model.setRowCount(0);
+        // Dùng try-with-resources để XJDBC.query() tự đóng kết nối
+        try (ResultSet rs = XJDBC.query(sql)) { 
+            
+            if (rs == null) {
+                 JOptionPane.showMessageDialog(null, "Lỗi: Không thể thực thi truy vấn.");
+                 return;
+            }
 
             while (rs.next()) {
                 Object[] row = {
@@ -39,10 +44,8 @@ public class BookDAO {
                 };
                 model.addRow(row);
             }
-
-            rs.close();
-            stmt.close();
         } catch (SQLException e) {
+            e.printStackTrace(); // In lỗi chi tiết ra console để bạn xem
             JOptionPane.showMessageDialog(null, "Lỗi tải dữ liệu: " + e.getMessage());
         }
     }
