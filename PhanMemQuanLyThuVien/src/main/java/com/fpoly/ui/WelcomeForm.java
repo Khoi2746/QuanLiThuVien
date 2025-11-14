@@ -18,6 +18,8 @@ public class WelcomeForm extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

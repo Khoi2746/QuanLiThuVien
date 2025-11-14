@@ -1,3 +1,4 @@
+com\fpoly\ui\ThongBaoQuanHanFrom$1.class
 com\fpoly\ui\QuanLyNguoiDungForm$1.class
 com\fpoly\entity\User.class
 com\fpoly\ui\QuanLyKhoSachForm$2.class
@@ -40,6 +41,7 @@ com\fpoly\utils\XImage.class
 com\fpoly\ui\BanThemSach$8.class
 com\fpoly\ui\AdminForm$5.class
 com\fpoly\ui\QuanLyThongBaoQuaHan.class
+com\fpoly\ui\ThongBaoQuanHanFrom.class
 com\fpoly\ui\MemberForm$1.class
 com\fpoly\ui\BanThemSach$4.class
 com\fpoly\ui\AdminForm$2.class
