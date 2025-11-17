@@ -18,6 +18,7 @@ com\fpoly\ui\BanThemSach$3.class
 com\fpoly\ui\LoginForm$3.class
 com\fpoly\ui\QuanLyBaoCaoThongKe.class
 com\fpoly\utils\ShareHelper.class
+com\fpoly\ui\QuanLyKhoSachForm$5.class
 com\fpoly\utils\XAuth.class
 com\fpoly\ui\QuanLyBaoCaoThongKe$1.class
 com\fpoly\ui\LoginForm$2.class
@@ -35,6 +36,7 @@ com\fpoly\ui\ThuThuForm$1.class
 TestLombok.class
 com\fpoly\ui\BanThemSach$1.class
 com\fpoly\ui\LoginForm$1.class
+com\fpoly\ui\QuanLyKhoSachForm$6.class
 MasterMainRun\MainRun.class
 com\fpoly\utils\XImage.class
 com\fpoly\ui\BanThemSach$8.class
