@@ -307,24 +307,26 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
 
     private void btnThemSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSachActionPerformed
         // TODO add your handling code here:
-        BanThemSach ban = new BanThemSach();
-        ban.setVisible(true);
+//        BanThemSach ban = new BanThemSach();
+//        ban.setVisible(true);
     }//GEN-LAST:event_btnThemSachActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
+
         // 1. Xóa các ô nhập liệu bên phải
     txtMaSach.setText("");
     txtTenSach.setText("");
     txtTacGia.setText("");
     txtTheLoai.setText("");
     txtSoLuong.setText("");
-    
+   
     // 2. Xóa ô tìm kiếm
     txtTimKiem.setText("");
     
     // 3. Tải lại toàn bộ dữ liệu gốc
     this.loadDataToTable();
+
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
