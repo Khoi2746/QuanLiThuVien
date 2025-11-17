@@ -310,7 +310,7 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
-        
+   
     }//GEN-LAST:event_btnMoiActionPerformed
 
     /**
