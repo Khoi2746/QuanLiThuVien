@@ -4,13 +4,16 @@
  */
 package com.fpoly.ui;
 // Khai báo biến DAO để dùng chung
+
+import com.fpoly.utils.MsgBox;
+
     
 /**
  *
  * @author X1 Carbon
  */
 public class QuanLyKhoSachForm extends javax.swing.JFrame {
-        private com.fpoly.Dao.BookDAO bookDAO;
+       private com.fpoly.Dao.BookDAO bookDAO;
     
         /**
      * Creates new form QuanLyKhoSach
@@ -24,6 +27,14 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
         
         // Gọi hàm tải dữ liệu
         loadDataToTable();
+        // Thêm sự kiện click chuột vào bảng
+        tblBooks.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblBooksMouseClicked(evt);
+            }
+            });
+        txtMaSach.setEditable(false);
     }
     
     // Hàm mới để tải dữ liệu lên JTable
@@ -32,6 +43,41 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
     }
     
     
+    // PHƯƠNG THỨC HỖ TRỢ: Lấy dữ liệu và kiểm tra validation
+private String[] getFormValues() { 
+    String maSach = txtMaSach.getText().trim();
+    String tenSach = txtTenSach.getText().trim();
+    String tacGia = txtTacGia.getText().trim();
+    String theLoai = txtTheLoai.getText().trim();
+    String soLuong = txtSoLuong.getText().trim();
+
+    if (tenSach.isEmpty() || tacGia.isEmpty() || theLoai.isEmpty() || soLuong.isEmpty()) {
+        MsgBox.alert(this, "Vui lòng nhập đầy đủ thông tin (Tên sách, Tác giả, Thể loại, Số lượng).");
+        return null;
+    }
+    
+    try {
+        // Kiểm tra Số lượng phải là số nguyên
+        Integer.parseInt(soLuong);
+    } catch (NumberFormatException e) {
+        MsgBox.alert(this, "Số Lượng phải là một số nguyên hợp lệ.");
+        return null;
+    }
+
+    return new String[]{maSach, tenSach, tacGia, theLoai, soLuong};
+}
+
+// PHƯƠNG THỨC HỖ TRỢ: Làm mới form (gọi khi Thêm/Sửa/Xóa thành công)
+private void clearForm() {
+    txtMaSach.setText("");
+    txtTenSach.setText("");
+    txtTacGia.setText("");
+    txtTheLoai.setText("");
+    txtSoLuong.setText("");
+    txtTimKiem.setText("");
+    this.loadDataToTable();
+}
+
         /**
      * 
         * 
@@ -71,6 +117,8 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
         txtSoLuong = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnMoi = new javax.swing.JButton();
+        btnCapNhat = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -138,7 +186,7 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Mã Sánh :");
+        jLabel3.setText("Mã Sách :");
 
         jLabel4.setText("Tên Sách :");
 
@@ -168,40 +216,61 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
             }
         });
 
+        btnCapNhat.setText("Cập nhật");
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
+
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout btnLamMoiLayout = new javax.swing.GroupLayout(btnLamMoi);
         btnLamMoi.setLayout(btnLamMoiLayout);
         btnLamMoiLayout.setHorizontalGroup(
             btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnLamMoiLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(btnLamMoiLayout.createSequentialGroup()
-                        .addComponent(btnThemSach, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMoi))
-                    .addGroup(btnLamMoiLayout.createSequentialGroup()
-                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaSach)
-                            .addComponent(txtTenSach)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, btnLamMoiLayout.createSequentialGroup()
-                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(23, 23, 23)
+                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(btnLamMoiLayout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnLamMoiLayout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTacGia)
-                            .addComponent(txtTheLoai)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, btnLamMoiLayout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtSoLuong, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
+                                .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtMaSach)
+                                    .addComponent(txtTenSach)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, btnLamMoiLayout.createSequentialGroup()
+                                .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(btnLamMoiLayout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnLamMoiLayout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)))
+                                .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTacGia)
+                                    .addComponent(txtTheLoai)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, btnLamMoiLayout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtSoLuong))))
+                    .addGroup(btnLamMoiLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnThemSach, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(26, 26, 26))
         );
         btnLamMoiLayout.setVerticalGroup(
@@ -227,11 +296,15 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThemSach)
                     .addComponent(btnMoi))
-                .addGap(18, 18, 18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCapNhat)
+                    .addComponent(btnXoa))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnTimKiem.setText("Tìm Kiếm");
@@ -259,8 +332,8 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
                         .addComponent(btnTimKiem))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,6 +382,24 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        BanThemSach ban = new BanThemSach();
 //        ban.setVisible(true);
+// 1. Lấy dữ liệu và kiểm tra validation
+        String[] values = getFormValues();
+        
+        // 2. Nếu dữ liệu hợp lệ (values không phải là null)
+        if (values != null) {
+            // Lấy các giá trị cần thiết để thêm sách (Bỏ qua MaSach - values[0])
+            String tenSach = values[1];
+            String tacGia = values[2];
+            String theLoai = values[3];
+            int soLuong = Integer.parseInt(values[4]);
+            
+            // 3. Gọi DAO để thực hiện thêm sách
+            // bookDAO sẽ tìm AuthorID và CategoryID dựa trên tên, sau đó INSERT.
+            bookDAO.insertBook(tenSach, tacGia, theLoai, soLuong);
+            
+            // 4. Làm mới form và tải lại bảng để thấy kết quả
+            clearForm(); 
+        }
     }//GEN-LAST:event_btnThemSachActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
@@ -338,6 +429,47 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
     this.bookDAO.searchBooks(tblBooks, keyword);
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
+    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+        // TODO add your handling code here:
+        if (txtMaSach.getText().isEmpty()) {
+        MsgBox.alert(this, "Vui lòng chọn một cuốn sách để cập nhật.");
+        return;
+    }
+    
+    // 2. Lấy dữ liệu và kiểm tra validation
+    String[] values = getFormValues();
+    if (values != null) {
+        String maSach = values[0];
+        String tenSach = values[1];
+        String tacGia = values[2];
+        String theLoai = values[3];
+        int soLuong = Integer.parseInt(values[4]);
+        
+        bookDAO.updateBook(maSach, tenSach, tacGia, theLoai, soLuong);
+        clearForm(); // Làm mới form và tải lại bảng
+    }
+    }//GEN-LAST:event_btnCapNhatActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        String maSach = txtMaSach.getText().trim();
+    if (maSach.isEmpty()) {
+        MsgBox.alert(this, "Vui lòng chọn một cuốn sách để xóa.");
+        return;
+    }
+
+    // 2. Yêu cầu xác nhận
+    if (MsgBox.confirm(this, "Bạn có chắc chắn muốn xóa cuốn sách có Mã: " + maSach + "?")) {
+        // 3. Thực hiện xóa
+        bookDAO.deleteBook(maSach);
+        clearForm(); // Làm mới form và tải lại bảng
+    }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    
+   
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -374,10 +506,12 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCapNhat;
     private javax.swing.JPanel btnLamMoi;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThemSach;
     private javax.swing.JButton btnTimKiem;
+    private javax.swing.JButton btnXoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -400,4 +534,37 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtTheLoai;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
+
+// ========================== XỬ LÝ SỰ KIỆN CLICK BẢNG ==========================//
+    /**
+     * Lấy thông tin từ hàng được chọn trong bảng tblBooks và điền vào form bên phải
+     * @param evt 
+     */
+    private void tblBooksMouseClicked(java.awt.event.MouseEvent evt) {
+        if (evt.getClickCount() == 1) { // Chỉ xử lý click đơn
+            int selectedRow = tblBooks.getSelectedRow();
+            if (selectedRow >= 0) {
+                // Lấy model của bảng
+                javax.swing.table.DefaultTableModel model = 
+                    (javax.swing.table.DefaultTableModel) tblBooks.getModel();
+                
+                // Lấy dữ liệu từ hàng được chọn (Lưu ý: Index bắt đầu từ 0)
+                // Cột 0: Mã Sách, Cột 1: Tên Sách, Cột 2: Tên Tác Giả, Cột 3: Thể Loại, Cột 4: Số Lượng
+                String maSach = model.getValueAt(selectedRow, 0).toString();
+                String tenSach = model.getValueAt(selectedRow, 1).toString();
+                String tenTacGia = model.getValueAt(selectedRow, 2).toString();
+                String theLoai = model.getValueAt(selectedRow, 3).toString();
+                // Vì Số Lượng là int, nên lấy là String rồi gán
+                String soLuong = model.getValueAt(selectedRow, 4).toString();
+                
+                // Điền dữ liệu vào các ô nhập liệu bên phải
+                txtMaSach.setText(maSach);
+                txtTenSach.setText(tenSach);
+                txtTacGia.setText(tenTacGia);
+                txtTheLoai.setText(theLoai);
+                txtSoLuong.setText(soLuong);
+            }
+        }
+    }
+
 }

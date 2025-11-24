@@ -11,10 +11,108 @@ import javax.swing.table.DefaultTableModel;
 
 public class BookDAO {
 
+    /**
+     * Helper: Lấy AuthorID từ tên Tác giả
+     */
+    private int getAuthorID(String authorName) throws SQLException {
+        String sql = "SELECT AuthorID FROM Authors WHERE AuthorName = ?";
+        try (ResultSet rs = XJDBC.query(sql, authorName)) {
+            if (rs.next()) {
+                return rs.getInt("AuthorID");
+            }
+        }
+        return -1; // Trả về -1 nếu không tìm thấy
+    }
+
+    /**
+     * Helper: Lấy CategoryID từ tên Thể loại
+     */
+    private int getCategoryID(String categoryName) throws SQLException {
+        String sql = "SELECT CategoryID FROM Categories WHERE CategoryName = ?";
+        try (ResultSet rs = XJDBC.query(sql, categoryName)) {
+            if (rs.next()) {
+                return rs.getInt("CategoryID");
+            }
+        }
+        return -1; // Trả về -1 nếu không tìm thấy
+    }
+
+    /**
+     * THÊM SÁCH MỚI
+     */
+    public void insertBook(String title, String authorName, String categoryName, int quantity) {
+        try {
+            int authorID = getAuthorID(authorName);
+            if (authorID == -1) {
+                JOptionPane.showMessageDialog(null, "Lỗi: Không tìm thấy Tác giả '" + authorName + "'. Vui lòng thêm Tác giả trước.");
+                return;
+            }
+
+            int categoryID = getCategoryID(categoryName);
+            if (categoryID == -1) {
+                JOptionPane.showMessageDialog(null, "Lỗi: Không tìm thấy Thể loại '" + categoryName + "'. Vui lòng thêm Thể loại trước.");
+                return;
+            }
+
+            String sql = "INSERT INTO Books (Title, AuthorID, CategoryID, Quantity) VALUES (?, ?, ?, ?)";
+            if (XJDBC.update(sql, title, authorID, categoryID, quantity) > 0) {
+                JOptionPane.showMessageDialog(null, "Thêm sách thành công!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lỗi thêm sách: " + e.getMessage());
+        }
+    }
+
+    /**
+     * CẬP NHẬT THÔNG TIN SÁCH
+     */
+    public void updateBook(String bookID, String title, String authorName, String categoryName, int quantity) {
+        try {
+            int authorID = getAuthorID(authorName);
+            if (authorID == -1) {
+                JOptionPane.showMessageDialog(null, "Lỗi: Không tìm thấy Tác giả '" + authorName + "'. Cập nhật thất bại.");
+                return;
+            }
+
+            int categoryID = getCategoryID(categoryName);
+            if (categoryID == -1) {
+                JOptionPane.showMessageDialog(null, "Lỗi: Không tìm thấy Thể loại '" + categoryName + "'. Cập nhật thất bại.");
+                return;
+            }
+
+            String sql = "UPDATE Books SET Title=?, AuthorID=?, CategoryID=?, Quantity=? WHERE BookID=?";
+            if (XJDBC.update(sql, title, authorID, categoryID, quantity, bookID) > 0) {
+                JOptionPane.showMessageDialog(null, "Cập nhật sách thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Cập nhật thất bại. (Có thể Mã sách không tồn tại)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lỗi cập nhật sách: " + e.getMessage());
+        }
+    }
+
+    /**
+     * XÓA SÁCH
+     */
+    public void deleteBook(String bookID) {
+        try {
+            String sql = "DELETE FROM Books WHERE BookID=?";
+            if (XJDBC.update(sql, bookID) > 0) {
+                JOptionPane.showMessageDialog(null, "Xóa sách thành công!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Xóa thất bại. Mã sách không tồn tại.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lỗi xóa sách: " + e.getMessage());
+        }
+    }
+
     public void loadBooksToTable(JTable tblBooks) {
         
-        // ✅ CÂU LỆNH SQL ĐÃ SỬA:
-        // Chúng ta JOIN 3 bảng để lấy tên tác giả và tên thể loại
+        // CÂU LỆNH SQL ĐÃ SỬA:
         String sql = """
                      SELECT 
                          b.BookID, 
@@ -30,10 +128,10 @@ public class BookDAO {
         DefaultTableModel model = (DefaultTableModel) tblBooks.getModel();
         model.setRowCount(0); 
 
-        ResultSet rs = null; // Khai báo ResultSet bên ngoài
+        ResultSet rs = null; 
 
         try {
-            rs = XJDBC.query(sql); // Thực thi truy vấn
+            rs = XJDBC.query(sql); 
 
             if (rs == null) {
                  JOptionPane.showMessageDialog(null, "Lỗi: Không thể thực thi truy vấn.");
@@ -44,8 +142,8 @@ public class BookDAO {
                 Object[] row = {
                     rs.getString("BookID"),
                     rs.getString("Title"),
-                    rs.getString("AuthorName"),   // ✅ Đổi tên cột
-                    rs.getString("CategoryName"), // ✅ Đổi tên cột
+                    rs.getString("AuthorName"), 
+                    rs.getString("CategoryName"), 
                     rs.getInt("Quantity")
                 };
                 model.addRow(row);
@@ -54,17 +152,10 @@ public class BookDAO {
             e.printStackTrace(); 
             JOptionPane.showMessageDialog(null, "Lỗi tải dữ liệu: " + e.getMessage());
         } finally {
-            // ✅ Sửa lỗi rò rỉ kết nối
             XJDBC.close(rs); 
         }
     }
-    // File: com/fpoly/Dao/BookDAO.java
 
-    // ... (Hàm loadBooksToTable của bạn ở đây) ...
-
-    /**
-     * HÀM MỚI: Tìm kiếm sách theo từ khóa (tìm theo Tên Sách hoặc Tên Tác Giả)
-     */
     public void searchBooks(JTable tblBooks, String keyword) {
         
         // Câu lệnh SQL JOIN 3 bảng và thêm điều kiện WHERE...LIKE
@@ -87,10 +178,8 @@ public class BookDAO {
         ResultSet rs = null;
 
         try {
-            // Tạo từ khóa tìm kiếm (thêm % để tìm kiếm_bất_kỳ_ở_đâu)
             String searchKeyword = "%" + keyword + "%";
             
-            // Thực thi truy vấn, truyền 2 tham số cho 2 dấu ?
             rs = XJDBC.query(sql, searchKeyword, searchKeyword); 
 
             if (rs == null) {
@@ -112,7 +201,6 @@ public class BookDAO {
             e.printStackTrace(); 
             JOptionPane.showMessageDialog(null, "Lỗi tải dữ liệu tìm kiếm: " + e.getMessage());
         } finally {
-            // Luôn đóng kết nối
             XJDBC.close(rs); 
         }
     }
