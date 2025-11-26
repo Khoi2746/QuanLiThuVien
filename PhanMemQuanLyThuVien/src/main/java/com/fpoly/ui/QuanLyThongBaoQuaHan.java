@@ -6,7 +6,7 @@ package com.fpoly.ui;
 
 /**
  *
- * @author X1 Carbon
+ * @author MSI
  */
 public class QuanLyThongBaoQuaHan extends javax.swing.JFrame {
 
@@ -15,8 +15,6 @@ public class QuanLyThongBaoQuaHan extends javax.swing.JFrame {
      */
     public QuanLyThongBaoQuaHan() {
         initComponents();
-        setResizable(false);
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -34,11 +32,11 @@ public class QuanLyThongBaoQuaHan extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 502, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 303, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();

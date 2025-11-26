@@ -15,10 +15,9 @@ import java.util.List;
 public class XJDBC {
 
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static String url = "jdbc:sqlserver://localhost:1433;databaseName=LibraryDB; encrypt=false";
+    private static String url = "jdbc:sqlserver://localhost:1433;databaseName=Test; encrypt=false";
     private static String user = "sa";
-    private static String pass = "123456";  
-
+    private static String pass = "123";
     static {
         try {
             Class.forName(driver);
@@ -57,8 +56,8 @@ public class XJDBC {
             e.printStackTrace();
         }
     }
+public static Connection getConnection() throws SQLException {
+    return DriverManager.getConnection(url, user, pass);
+}
 
-    public static Connection getConnection() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

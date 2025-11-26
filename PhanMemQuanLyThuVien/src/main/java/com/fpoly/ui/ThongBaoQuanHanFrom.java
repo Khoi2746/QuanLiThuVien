@@ -4,18 +4,57 @@
  */
 package com.fpoly.ui;
 
+import com.fpoly.Dao.OverdueDAO;
+import com.fpoly.utils.MsgBox;
+import com.fpoly.utils.XJDBC;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author MSI
  */
 public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
 
+    OverdueDAO dao = new OverdueDAO();
+    
+
     /**
      * Creates new form ThongBaoQuanHanFrom
      */
     public ThongBaoQuanHanFrom() {
         initComponents();
+        loadOverdue();
+        
+        
     }
+    
+    
+ public void loadOverdue() {
+    try {
+        String keyword = txtSearch.getText();
+        List<Object[]> list = dao.getOverdueList(keyword);
+
+        DefaultTableModel model = (DefaultTableModel) tblQuaHan.getModel();
+        model.setRowCount(0);
+
+        for (Object[] row : list) {
+            model.addRow(row);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Lỗi truy vấn dữ liệu!");
+    }
+}
+
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,14 +67,14 @@ public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        txtSearch = new javax.swing.JTextField();
+        scpQuaHan = new javax.swing.JScrollPane();
+        tblQuaHan = new javax.swing.JTable();
+        btnXemChiTiet = new javax.swing.JButton();
+        btnGuiThongBao = new javax.swing.JButton();
+        txtTenSach = new javax.swing.JLabel();
+        txtThongKe = new javax.swing.JTextField();
+        btnLamMoi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,7 +83,7 @@ public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
 
         jLabel2.setText("Tìm Kiếm/Lọc");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblQuaHan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -57,17 +96,32 @@ public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
                 "Mã lượt mượn", "Mã sinh viên", "Tên sinh viên", "Mã sách", "Tên sách", "Ngày hết hạn"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        scpQuaHan.setViewportView(tblQuaHan);
 
-        jButton1.setText("Xem chi tiết");
+        btnXemChiTiet.setText("Xem chi tiết");
+        btnXemChiTiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXemChiTietActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Gửi thông báo");
+        btnGuiThongBao.setText("Gửi thông báo");
+        btnGuiThongBao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuiThongBaoActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("Tên sách");
+        txtTenSach.setText("Tên sách");
 
-        jTextField2.setText("Thống kê");
+        txtThongKe.setText("Thống kê");
 
-        jButton3.setText("Làm mới");
+        btnLamMoi.setText("Làm mới");
+        btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLamMoiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,23 +134,23 @@ public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+                            .addComponent(scpQuaHan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1)
+                                .addComponent(btnXemChiTiet)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2))
-                            .addComponent(jTextField2)))
+                                .addComponent(btnGuiThongBao))
+                            .addComponent(txtThongKe)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
+                        .addComponent(btnLamMoi)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,25 +161,79 @@ public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(btnXemChiTiet)
+                            .addComponent(btnGuiThongBao))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scpQuaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
-                    .addComponent(jButton3))
+                        .addComponent(txtTenSach))
+                    .addComponent(btnLamMoi))
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnXemChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemChiTietActionPerformed
+        // TODO add your handling code here:
+        int row = tblQuaHan.getSelectedRow();
+    if (row < 0) {
+        MsgBox.alert(this, "Vui lòng chọn một lượt mượn!");
+        return;
+    }
+
+    String tenSach = tblQuaHan.getValueAt(row, 4) + "";
+    txtTenSach.setText(tenSach);
+
+    txtThongKe.setText("Chi tiết lượt mượn:\n"
+            + "ID: " + tblQuaHan.getValueAt(row, 0) + "\n"
+            + "Sinh viên: " + tblQuaHan.getValueAt(row, 2) + "\n"
+            + "Sách: " + tenSach + "\n"
+            + "Hết hạn: " + tblQuaHan.getValueAt(row, 5));
+    }//GEN-LAST:event_btnXemChiTietActionPerformed
+
+    private void btnGuiThongBaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiThongBaoActionPerformed
+        // TODO add your handling code here:
+       
+    int row = tblQuaHan.getSelectedRow();
+    if (row < 0) {
+        MsgBox.alert(this, "Vui lòng chọn một lượt mượn!");
+        return;
+    }
+
+    int borrowID = (int) tblQuaHan.getValueAt(row, 0);
+    int userID = (int) tblQuaHan.getValueAt(row, 1);
+
+    String sql = "INSERT INTO OverdueNotifications (BorrowID, UserID) VALUES (?, ?)";
+
+        try {
+            XJDBC.update(sql, borrowID, userID);
+        } catch (SQLException ex) {
+            Logger.getLogger(ThongBaoQuanHanFrom.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    MsgBox.alert(this, "Đã gửi thông báo thành công!");
+
+
+    }//GEN-LAST:event_btnGuiThongBaoActionPerformed
+
+    private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
+        // TODO add your handling code here:
+        
+    txtSearch.setText("");
+    txtTenSach.setText("");
+    txtThongKe.setText("");
+    loadOverdue();
+
+
+    }//GEN-LAST:event_btnLamMoiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,15 +271,15 @@ public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnGuiThongBao;
+    private javax.swing.JButton btnLamMoi;
+    private javax.swing.JButton btnXemChiTiet;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JScrollPane scpQuaHan;
+    private javax.swing.JTable tblQuaHan;
+    private javax.swing.JTextField txtSearch;
+    private javax.swing.JLabel txtTenSach;
+    private javax.swing.JTextField txtThongKe;
     // End of variables declaration//GEN-END:variables
 }

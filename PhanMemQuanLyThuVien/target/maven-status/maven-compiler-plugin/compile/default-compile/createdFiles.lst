@@ -1,30 +1,62 @@
+<<<<<<< HEAD
+=======
+com\poly\DaoImpl\StatisticalDAOImpl.class
+>>>>>>> 0f20c5edce8fc4ca682efd067c46ef3363f7652b
 com\fpoly\ui\ThongBaoQuanHanFrom$1.class
 com\fpoly\ui\QuanLyNguoiDungForm$1.class
+com\fpoly\ui\ThongBaoQuanHanFrom$4.class
 com\fpoly\entity\User.class
 com\fpoly\ui\QuanLyKhoSachForm$2.class
 com\fpoly\ui\QuanLyNguoiDungForm.class
 com\fpoly\ui\QuanLyKhoSachForm.class
+<<<<<<< HEAD
+=======
+com\fpoly\entity\statistical.class
+com\fpoly\Dao\SoLuotMuonDAO.class
+>>>>>>> 0f20c5edce8fc4ca682efd067c46ef3363f7652b
 com\fpoly\utils\XJDBC.class
 com\fpoly\utils\XDate.class
+com\fpoly\Dao\OverdueDAO.class
+com\fpoly\Dao\StatisticalDAO.class
 com\fpoly\ui\WelcomeForm$1.class
 com\fpoly\ui\LoginForm.class
 com\fpoly\ui\QuanLyKhoSachForm$1.class
+<<<<<<< HEAD
+=======
+com\fpoly\entity\Borrow.class
+com\fpoly\entity\SoLuotMuon.class
+>>>>>>> 0f20c5edce8fc4ca682efd067c46ef3363f7652b
 com\fpoly\ui\AdminForm$6.class
 com\fpoly\ui\QuanLyKhoSachForm$9.class
 com\fpoly\ui\ThuThuForm.class
 com\fpoly\ui\AdminForm$3.class
 com\fpoly\ui\LoginForm$3.class
+<<<<<<< HEAD
 com\fpoly\ui\QuanLyKhoSachForm$8.class
 com\fpoly\ui\QuanLyBaoCaoThongKe.class
 com\fpoly\utils\ShareHelper.class
+=======
+com\fpoly\ui\ThongBaoQuanHanFrom$2.class
+com\fpoly\ui\QuanLyKhoSachForm$8.class
+com\fpoly\ui\QuanLyBaoCaoThongKe.class
+com\fpoly\utils\ShareHelper.class
+com\poly\DaoImpl\BorrowDAOImpl.class
+>>>>>>> 0f20c5edce8fc4ca682efd067c46ef3363f7652b
 com\fpoly\ui\QuanLyKhoSachForm$5.class
 com\fpoly\utils\XAuth.class
 com\fpoly\ui\QuanLyBaoCaoThongKe$1.class
 com\fpoly\ui\LoginForm$2.class
 com\fpoly\ui\AdminForm$4.class
 com\fpoly\ui\QuanLyKhoSachForm$7.class
+<<<<<<< HEAD
 com\fpoly\ui\AdminForm.class
 com\fpoly\ui\AdminForm$1.class
+=======
+com\fpoly\Dao\BorrowDAO.class
+com\fpoly\ui\AdminForm.class
+com\fpoly\ui\AdminForm$1.class
+com\fpoly\ui\ThongBaoQuanHanFrom$3.class
+>>>>>>> 0f20c5edce8fc4ca682efd067c46ef3363f7652b
 com\fpoly\ui\QuanLyKhoSachForm$4.class
 com\fpoly\utils\MsgBox.class
 com\fpoly\Dao\BookDAO.class
@@ -34,7 +66,11 @@ TestLombok.class
 com\fpoly\ui\LoginForm$1.class
 com\fpoly\ui\QuanLyKhoSachForm$6.class
 MasterMainRun\MainRun.class
+<<<<<<< HEAD
 com\fpoly\ui\QuanLyKhoSachForm$10.class
+=======
+com\fpoly\ui\QuanLyBaoCaoThongKe$2.class
+>>>>>>> 0f20c5edce8fc4ca682efd067c46ef3363f7652b
 com\fpoly\utils\XImage.class
 com\fpoly\ui\AdminForm$5.class
 com\fpoly\ui\QuanLyThongBaoQuaHan.class
@@ -43,4 +79,8 @@ com\fpoly\ui\MemberForm$1.class
 com\fpoly\ui\AdminForm$2.class
 com\fpoly\ui\QuanLyKhoSachForm$3.class
 com\fpoly\ui\MemberForm.class
+<<<<<<< HEAD
+=======
+com\poly\DaoImpl\SoLuotMuonDAOImpl.class
+>>>>>>> 0f20c5edce8fc4ca682efd067c46ef3363f7652b
 com\fpoly\ui\QuanLyThongBaoQuaHan$1.class
