@@ -154,15 +154,36 @@ public class LoginForm extends javax.swing.JFrame {
         String username = txtUser.getText().trim();
         String password = new String(txtPassword.getPassword()).trim();
 
+    // Kiểm tra nhập liệu
+    if (username.isEmpty() || password.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!");
+        return;
+    }
+
+    // Dùng XAuth để đăng nhập
+    boolean success = XAuth.login(username, password);
+
+    if (success) {
+        // Đăng nhập thành công
+        javax.swing.JOptionPane.showMessageDialog(this, 
+            "Login successful! Welcome " + XAuth.currentUser.getFullName() + 
+            " (" + XAuth.currentUser.getRole() + ")");
+
+        // Tùy vào Role, mở cửa sổ khác
+        if (XAuth.isAdmin()) {
+            new AdminForm().setVisible(true); // Form quản trị
+        } else if (XAuth.isThuThu()) {
+            new ThuThuForm().setVisible(true); // Form Thủ Thư
+        } else {
+            new MemberForm().setVisible(true); // Form Member
+
+
         // Kiểm tra nhập liệu
         if (username.isEmpty() || password.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!");
             return;
+
         }
-
-        // Dùng XAuth để đăng nhập
-        boolean success = XAuth.login(username, password);
-
         if (success) {
             // Đăng nhập thành công
             javax.swing.JOptionPane.showMessageDialog(this,
@@ -185,3 +206,4 @@ public class LoginForm extends javax.swing.JFrame {
     }
 
 }
+    }}

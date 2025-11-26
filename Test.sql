@@ -29,11 +29,11 @@ CREATE TABLE SoLuotMuon (
 -- Chèn dữ liệu mẫu vào bảng SoLuotMuon
 INSERT INTO SoLuotMuon (NgayThang, SoLuotMuon, GhiChu)
 VALUES 
-('2025-11-01', 15, 'Ngày đầu tháng'),
-('2025-11-02', 20, 'Ngày cao điểm mượn sách'),
+('2025-11-01', 15, N'Ngày đầu tháng'), -- Đã thêm N
+('2025-11-02', 20, N'Ngày cao điểm mượn sách'),
 ('2025-11-03', 12, NULL),
-('2025-11-04', 18, 'Thư viện đông học sinh'),
-('2025-11-05', 10, 'Ngày nghỉ học');
+('2025-11-04', 18, N'Thư viện đông học sinh'), -- Đã thêm N
+('2025-11-05', 10, N'Ngày nghỉ học');
 
 -- Kiểm tra dữ liệu đã chèn
 SELECT * FROM SoLuotMuon;
@@ -58,3 +58,4 @@ INSERT INTO Book (MaSach, TenSach, LuotMuon, TenTacGia, NamXuatBan) VALUES
 ('S009', N'Công nghệ phần mềm', 55, N'Hoàng Anh', 2019),
 ('S010', N'Nhập môn trí tuệ nhân tạo', 98, N'Đỗ Minh', 2021);
 
+TRUNCATE TABLE SoLuotMuon;
