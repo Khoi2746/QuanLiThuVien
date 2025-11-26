@@ -2,10 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
+
+
 package com.fpoly.ui;
 // Khai báo biến DAO để dùng chung
-
+import javax.swing.ImageIcon; // Import lớp ImageIcon
+import java.awt.Image;
 import com.fpoly.utils.MsgBox;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.Timer;
 
     
 /**
@@ -22,6 +32,18 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
         initComponents(); // Rất quan trọng: Gọi hàm vẽ giao diện
         setLocationRelativeTo(null); // Căn giữa cửa sổ
         
+        ImageIcon icon = new ImageIcon(getClass().getResource("/img/books.jpg"));
+        Image image = icon.getImage();
+        setIconImage(image);
+        Timer timer = new Timer(1000, new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        lblClock.setText(new SimpleDateFormat("HH:mm:ss - dd/MM/yyyy").format(new Date()));
+    }
+});
+timer.start();
+
+    
+
         // Khởi tạo DAO
         this.bookDAO = new com.fpoly.Dao.BookDAO(); 
         
@@ -104,7 +126,7 @@ private void clearForm() {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblBooks = new javax.swing.JTable();
-        btnLamMoi = new javax.swing.JPanel();
+        javax.swing.JPanel btnLamMoi = new javax.swing.JPanel();
         txtMaSach = new javax.swing.JTextField();
         txtTenSach = new javax.swing.JTextField();
         txtTacGia = new javax.swing.JTextField();
@@ -120,6 +142,7 @@ private void clearForm() {
         btnCapNhat = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
+        lblClock = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,8 +172,9 @@ private void clearForm() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 255));
         jLabel1.setText("Kho Sách");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -177,8 +201,12 @@ private void clearForm() {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        btnLamMoi.setBackground(new java.awt.Color(204, 204, 204));
 
         txtTheLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,10 +262,10 @@ private void clearForm() {
         btnLamMoi.setLayout(btnLamMoiLayout);
         btnLamMoiLayout.setHorizontalGroup(
             btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnLamMoiLayout.createSequentialGroup()
+            .addGroup(btnLamMoiLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(btnLamMoiLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
                         .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(btnLamMoiLayout.createSequentialGroup()
                                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,30 +276,32 @@ private void clearForm() {
                                     .addComponent(txtMaSach)
                                     .addComponent(txtTenSach)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, btnLamMoiLayout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addComponent(txtSoLuong))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, btnLamMoiLayout.createSequentialGroup()
                                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(btnLamMoiLayout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(1, 1, 1))
+                                        .addGap(2, 2, 2))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btnLamMoiLayout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)))
                                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtTacGia)
-                                    .addComponent(txtTheLoai)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, btnLamMoiLayout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtSoLuong))))
+                                    .addComponent(txtTheLoai, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTacGia))))
+                        .addGap(26, 26, 26))
                     .addGroup(btnLamMoiLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(17, 17, 17)
+                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnThemSach, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                        .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(26, 26, 26))
+                        .addGap(43, 43, 43))))
         );
         btnLamMoiLayout.setVerticalGroup(
             btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,23 +318,23 @@ private void clearForm() {
                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTacGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(btnXoa)
+                    .addComponent(btnMoi))
                 .addGap(18, 18, 18)
                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThemSach)
-                    .addComponent(btnMoi))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCapNhat)
-                    .addComponent(btnXoa))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnThemSach))
+                .addGap(29, 29, 29))
         );
 
         btnTimKiem.setText("Tìm Kiếm");
@@ -321,7 +351,8 @@ private void clearForm() {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
+                        .addComponent(lblClock, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(114, 114, 114)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
@@ -331,15 +362,17 @@ private void clearForm() {
                         .addGap(18, 18, 18)
                         .addComponent(btnTimKiem))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblClock, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,20 +383,20 @@ private void clearForm() {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -507,7 +540,6 @@ private void clearForm() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
-    private javax.swing.JPanel btnLamMoi;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThemSach;
     private javax.swing.JButton btnTimKiem;
@@ -526,6 +558,7 @@ private void clearForm() {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JLabel lblClock;
     private javax.swing.JTable tblBooks;
     private javax.swing.JTextField txtMaSach;
     private javax.swing.JTextField txtSoLuong;
@@ -564,7 +597,7 @@ private void clearForm() {
                 txtTheLoai.setText(theLoai);
                 txtSoLuong.setText(soLuong);
             }
-        }
+        }   
     }
 
 }
