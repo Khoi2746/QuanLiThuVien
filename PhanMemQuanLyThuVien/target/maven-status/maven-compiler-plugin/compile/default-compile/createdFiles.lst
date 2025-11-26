@@ -6,6 +6,7 @@ com\fpoly\ui\AdminForm$4.class
 com\fpoly\ui\QuanLyNguoiDungForm.class
 com\fpoly\ui\QuanLyKhoSachForm.class
 com\fpoly\ui\AdminForm.class
+com\fpoly\entity\statistical.class
 com\fpoly\ui\AdminForm$1.class
 com\fpoly\utils\XJDBC.class
 com\fpoly\utils\XDate.class
@@ -13,6 +14,8 @@ com\fpoly\ui\WelcomeForm$1.class
 com\fpoly\ui\LoginForm.class
 com\fpoly\ui\QuanLyKhoSachForm$1.class
 com\fpoly\utils\MsgBox.class
+com\fpoly\entity\Borrow.class
+com\fpoly\entity\SoLuotMuon.class
 com\fpoly\ui\WelcomeForm.class
 com\fpoly\ui\ThuThuForm$1.class
 TestLombok.class
