@@ -122,7 +122,6 @@ public class WelcomeForm_1 extends javax.swing.JFrame {
 
             String[] txt = {"Đang tải.", "Đang tải..", "Đang tải..."};
             int t = 0;
-
             try {
                 for (int i = 0; i <= 100; i++) {
 
