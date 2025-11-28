@@ -1,4 +1,4 @@
-package com.fpoly.entity; // Đổi package thành com.poly.DaoImpl
+package com.poly.DaoImpl; // Đổi package thành com.poly.DaoImpl
 
 import com.fpoly.Dao.BookDAO; // Import Interface
 import com.fpoly.utils.XJDBC;

@@ -14,7 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
 import com.fpoly.Dao.BookDAO;
-import com.fpoly.entity.BookDAOImpl;
+import com.poly.DaoImpl.BookDAOImpl;
+
 
 /**
  *
