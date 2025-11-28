@@ -6,7 +6,7 @@ package com.fpoly.ui;
 
 import com.fpoly.Dao.OverdueDAO;
 import com.fpoly.utils.MsgBox;
-import com.fpoly.utils.XJDBC;
+import com.poly.DaoImpl.OverdueDAOImpl;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -14,15 +14,13 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author MSI
  */
 public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
 
-    OverdueDAO dao = new OverdueDAO();
-    
+    OverdueDAO dao = new OverdueDAOImpl();
 
     /**
      * Creates new form ThongBaoQuanHanFrom
@@ -30,31 +28,26 @@ public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
     public ThongBaoQuanHanFrom() {
         initComponents();
         loadOverdue();
-        
-        
+
     }
-    
-    
- public void loadOverdue() {
-    try {
-        String keyword = txtSearch.getText();
-        List<Object[]> list = dao.getOverdueList(keyword);
 
-        DefaultTableModel model = (DefaultTableModel) tblQuaHan.getModel();
-        model.setRowCount(0);
+    public void loadOverdue() {
+        try {
+            String keyword = txtSearch.getText();
+            List<Object[]> list = dao.getOverdueList(keyword);
 
-        for (Object[] row : list) {
-            model.addRow(row);
+            DefaultTableModel model = (DefaultTableModel) tblQuaHan.getModel();
+            model.setRowCount(0);
+
+            for (Object[] row : list) {
+                model.addRow(row);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi truy vấn dữ liệu!");
         }
-
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Lỗi truy vấn dữ liệu!");
     }
-}
-
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,56 +176,17 @@ public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
 
     private void btnXemChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemChiTietActionPerformed
         // TODO add your handling code here:
-        int row = tblQuaHan.getSelectedRow();
-    if (row < 0) {
-        MsgBox.alert(this, "Vui lòng chọn một lượt mượn!");
-        return;
-    }
-
-    String tenSach = tblQuaHan.getValueAt(row, 4) + "";
-    txtTenSach.setText(tenSach);
-
-    txtThongKe.setText("Chi tiết lượt mượn:\n"
-            + "ID: " + tblQuaHan.getValueAt(row, 0) + "\n"
-            + "Sinh viên: " + tblQuaHan.getValueAt(row, 2) + "\n"
-            + "Sách: " + tenSach + "\n"
-            + "Hết hạn: " + tblQuaHan.getValueAt(row, 5));
+        Viewdetails();
     }//GEN-LAST:event_btnXemChiTietActionPerformed
 
     private void btnGuiThongBaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiThongBaoActionPerformed
         // TODO add your handling code here:
-       
-    int row = tblQuaHan.getSelectedRow();
-    if (row < 0) {
-        MsgBox.alert(this, "Vui lòng chọn một lượt mượn!");
-        return;
-    }
-
-    int borrowID = (int) tblQuaHan.getValueAt(row, 0);
-    int userID = (int) tblQuaHan.getValueAt(row, 1);
-
-    String sql = "INSERT INTO OverdueNotifications (BorrowID, UserID) VALUES (?, ?)";
-
-        try {
-            XJDBC.update(sql, borrowID, userID);
-        } catch (SQLException ex) {
-            Logger.getLogger(ThongBaoQuanHanFrom.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    MsgBox.alert(this, "Đã gửi thông báo thành công!");
-
-
+        SendNotice();
     }//GEN-LAST:event_btnGuiThongBaoActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         // TODO add your handling code here:
-        
-    txtSearch.setText("");
-    txtTenSach.setText("");
-    txtThongKe.setText("");
-    loadOverdue();
-
-
+        Reset();
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     /**
@@ -282,4 +236,48 @@ public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
     private javax.swing.JLabel txtTenSach;
     private javax.swing.JTextField txtThongKe;
     // End of variables declaration//GEN-END:variables
+//====================XỬ LÝ NÚT SỰ KIỆN============================//
+    public void Viewdetails() {
+        int row = tblQuaHan.getSelectedRow();
+        if (row < 0) {
+            MsgBox.alert(this, "Vui lòng chọn một lượt mượn!");
+            return;
+        }
+
+        String tenSach = tblQuaHan.getValueAt(row, 4) + "";
+        txtTenSach.setText(tenSach);
+
+        txtThongKe.setText("Chi tiết lượt mượn:\n"
+                + "ID: " + tblQuaHan.getValueAt(row, 0) + "\n"
+                + "Sinh viên: " + tblQuaHan.getValueAt(row, 2) + "\n"
+                + "Sách: " + tenSach + "\n"
+                + "Hết hạn: " + tblQuaHan.getValueAt(row, 5));
+    }
+
+    public void Reset() {
+        txtSearch.setText("");
+        txtTenSach.setText("");
+        txtThongKe.setText("");
+        loadOverdue();
+    }
+
+    public void SendNotice() {
+        int row = tblQuaHan.getSelectedRow();
+        if (row < 0) {
+            MsgBox.alert(this, "Vui lòng chọn một lượt mượn!");
+            return;
+        }
+
+        int borrowID = (int) tblQuaHan.getValueAt(row, 0);
+        int userID = (int) tblQuaHan.getValueAt(row, 1);
+
+        try {
+            dao.insertNotification(borrowID, userID);
+            MsgBox.alert(this, "Đã gửi thông báo thành công!");
+        } catch (SQLException ex) {
+            MsgBox.alert(this, "Lỗi khi gửi thông báo!");
+            Logger.getLogger(ThongBaoQuanHanFrom.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
