@@ -1,55 +1,65 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.fpoly.utils;
 
-/**
- *
- * @author X1 Carbon
- */
 import com.fpoly.entity.User;
 import java.sql.*;
 
 public class XAuth {
 
-    public static User currentUser = null; // Lưu người dùng đang đăng nhập
+    public static User currentUser = null;
 
-    // Đăng nhập
     public static boolean login(String username, String password) {
-        String sql = "SELECT * FROM Users WHERE Username=? AND Password=?";
-        try (ResultSet rs = XJDBC.query(sql, username, password)) {
-            if (rs.next()) {
-                currentUser = new User(
-                        rs.getInt("UserID"),
-                        rs.getString("Username"),
-                        rs.getString("FullName"),
-                        rs.getString("Email"),
-                        rs.getString("Role")
-                );
-                return true;
+        String sql = """
+             SELECT u.UserID, u.Username, u.FullName, u.Email, u.RoleID, u.Password,
+                    r.RoleName
+             FROM Users u
+             JOIN UserRoles r ON u.RoleID = r.RoleID
+             WHERE u.Username = ? AND u.Password = ?
+             """;
+
+        try {
+            try (ResultSet rs = XJDBC.query(sql, username, password)) { 
+                if (rs.next()) {
+                    
+                    int roleID = rs.getInt("RoleID");
+                    String roleName = rs.getString("RoleName"); 
+   
+                    currentUser = new User(
+                            rs.getInt("UserID"),
+                            rs.getString("Username"),
+                            rs.getString("FullName"),
+                            rs.getString("Email"),
+                            rs.getString("Password"),
+                            roleID,
+                            roleName 
+                    );
+
+                    return true;
+                }
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
         return false;
     }
 
-    // Kiểm tra role
     public static boolean isAdmin() {
-        return currentUser != null && "Admin".equals(currentUser.getRole());
+        return currentUser != null && "Admin".equalsIgnoreCase(currentUser.getRoleName());
     }
 
     public static boolean isThuThu() {
-        return currentUser != null && "Thủ Thư".equals(currentUser.getRole());
+        return currentUser != null && "Thủ Thư".equalsIgnoreCase(currentUser.getRoleName());
     }
 
     public static boolean isMember() {
-        return currentUser != null && "Member".equals(currentUser.getRole());
+        return currentUser != null && "Member".equalsIgnoreCase(currentUser.getRoleName());
     }
 
-    // Đăng xuất
     public static void logout() {
         currentUser = null;
+    }
+
+    public static boolean isLogin() {
+        return currentUser != null;
     }
 }

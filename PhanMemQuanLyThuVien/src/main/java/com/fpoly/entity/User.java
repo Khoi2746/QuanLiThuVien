@@ -1,38 +1,86 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.fpoly.entity;
 
-/**
- *
- * @author X1 Carbon
- */
 public class User {
+
     private int userID;
     private String username;
+    private String password;
     private String fullName;
     private String email;
-    private String role;
+    private int roleID;
+    private String roleName;
 
-    public User(int userID, String username, String fullName, String email, String role) {
+    // Constructor không tham số (bắt buộc phải có khi dùng new User())
+    public User() {
+    }
+
+    // Constructor đầy đủ tham số
+    public User(int userID, String username, String password, String fullName,
+                String email, int roleID, String roleName) {
+
         this.userID = userID;
         this.username = username;
+        this.password = password;
         this.fullName = fullName;
         this.email = email;
-        this.role = role;
+        this.roleID = roleID;
+        this.roleName = roleName;
     }
 
     // Getter & Setter
-    public int getUserID() { return userID; }
-    public String getUsername() { return username; }
-    public String getFullName() { return fullName; }
-    public String getEmail() { return email; }
-    public String getRole() { return role; }
+    public int getUserID() {
+        return userID;
+    }
 
-    public void setUserID(int userID) { this.userID = userID; }
-    public void setUsername(String username) { this.username = username; }
-    public void setFullName(String fullName) { this.fullName = fullName; }
-    public void setEmail(String email) { this.email = email; }
-    public void setRole(String role) { this.role = role; }
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getRoleID() {
+        return roleID;
+    }
+
+    public void setRoleID(int roleID) {
+        this.roleID = roleID;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
 }

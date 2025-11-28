@@ -1,34 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.fpoly.utils;
 
-/**
- *
- * @author X1 Carbon
- */
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class XJDBC {
 
-    private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static String url = "jdbc:sqlserver://localhost:1433;databaseName=LibraryDB; encrypt=false";
-    private static String user = "sa";
-    private static String pass = "123456";
+    private static final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=LibraryDB;encrypt=false";
+    private static final String USER = "sa";
+    private static final String PASS = "123456";
+
     static {
         try {
-            Class.forName(driver);
+            Class.forName(DRIVER);
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Không load được driver SQL Server!", e);
         }
     }
 
-    // Thực thi SELECT
+    public static Connection getConnection() {
+        try {
+            return DriverManager.getConnection(URL, USER, PASS);
+        } catch (SQLException e) {
+            throw new RuntimeException("Kết nối SQL Server thất bại!", e);
+        }
+    }
+
     public static ResultSet query(String sql, Object... args) throws SQLException {
-        Connection con = DriverManager.getConnection(url, user, pass);
+        Connection con = getConnection();
         PreparedStatement stmt = con.prepareStatement(sql);
         for (int i = 0; i < args.length; i++) {
             stmt.setObject(i + 1, args[i]);
@@ -36,9 +34,8 @@ public class XJDBC {
         return stmt.executeQuery();
     }
 
-    // Thực thi INSERT, UPDATE, DELETE
-    public static int update(String sql, Object... args) throws SQLException {
-        try (Connection con = DriverManager.getConnection(url, user, pass);
+    public static int executeUpdate(String sql, Object... args) throws SQLException {
+        try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
             for (int i = 0; i < args.length; i++) {
                 stmt.setObject(i + 1, args[i]);
@@ -47,17 +44,21 @@ public class XJDBC {
         }
     }
 
-    // Đóng ResultSet và Connection (dùng cho SELECT)
+    public static int update(String sql, Object... args) throws SQLException {
+        return executeUpdate(sql, args);
+    }
+
     public static void close(ResultSet rs) {
-        try {
-            if (rs != null) rs.getStatement().getConnection().close();
-            if (rs != null) rs.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (rs != null) {
+            try {
+                Statement stmt = rs.getStatement();
+                Connection con = stmt.getConnection();
+                rs.close();
+                stmt.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
-public static Connection getConnection() throws SQLException {
-    return DriverManager.getConnection(url, user, pass);
-}
-
 }

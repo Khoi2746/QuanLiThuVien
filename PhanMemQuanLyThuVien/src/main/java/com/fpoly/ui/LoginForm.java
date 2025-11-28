@@ -4,6 +4,8 @@
  */
 package com.fpoly.ui;
 
+import com.fpoly.ui.MainForm;
+import com.fpoly.ui.QuenMatKhauJDialog;
 import com.fpoly.utils.XAuth;
 
 /**
@@ -19,6 +21,17 @@ public class LoginForm extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
+        
+        jLabel6.setText("<html>Quên Mật Khẩu?</html>");
+        jLabel6.setForeground(java.awt.Color.WHITE);
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        
+         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent e) {
+            openQuenMatKhauForm();
+        }
+    });
     }
 
     /**
@@ -30,6 +43,8 @@ public class LoginForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
@@ -37,7 +52,12 @@ public class LoginForm extends javax.swing.JFrame {
         btnEnd = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+
+        jLabel5.setText("jLabel5");
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -47,9 +67,11 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel2.setText("Mật Khẩu:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, -1, -1));
 
+        txtUser.setBackground(new java.awt.Color(255, 255, 255));
         txtUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         getContentPane().add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 470, 40));
 
+        txtPassword.setBackground(new java.awt.Color(255, 255, 255));
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, 470, 40));
 
@@ -58,28 +80,36 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel3.setText("Tên Đăng Nhập:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, -1));
 
+        btnEnd.setBackground(new java.awt.Color(255, 255, 255));
         btnEnd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEnd.setForeground(new java.awt.Color(0, 0, 0));
         btnEnd.setText("Kết Thúc");
         btnEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEndActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 130, 50));
+        getContentPane().add(btnEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 160, 50));
 
+        btnLogin.setBackground(new java.awt.Color(255, 255, 255));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(0, 0, 0));
         btnLogin.setText("Đăng Nhập");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 430, 130, 50));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 160, 50));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Variable", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Đăng Nhập");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 260, 60));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("Quên Mật Khẩu? ");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banner.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 590));
@@ -135,10 +165,13 @@ public class LoginForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnd;
     private javax.swing.JButton btnLogin;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
@@ -146,13 +179,23 @@ public class LoginForm extends javax.swing.JFrame {
 // ========================== XỬ LÝ CHỨC NĂNG CÁC NÚT==========================//
     //=====Nút Kết Thúc=====//
     public void exit() {
-        System.exit(0);
+        int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+                "Bạn có chắc chắn muốn thoát?",
+                "Xác nhận thoát",
+                javax.swing.JOptionPane.YES_NO_OPTION);
+        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
     }
-    //=====Nút Đăng Nhập =====//
+    public void openQuenMatKhauForm() {
+    // Mở form Quên mật khẩu
+    new QuenMatKhauJDialog(this, true).setVisible(true);
+}
 
-    public void login() {
-        String username = txtUser.getText().trim();
-        String password = new String(txtPassword.getPassword()).trim();
+    //=====Nút Đăng Nhập =====//
+public void login() {
+    String username = txtUser.getText().trim();
+    String password = new String(txtPassword.getPassword()).trim();
 
     // Kiểm tra nhập liệu
     if (username.isEmpty() || password.isEmpty()) {
@@ -164,46 +207,41 @@ public class LoginForm extends javax.swing.JFrame {
     boolean success = XAuth.login(username, password);
 
     if (success) {
-        // Đăng nhập thành công
-        javax.swing.JOptionPane.showMessageDialog(this, 
-            "Login successful! Welcome " + XAuth.currentUser.getFullName() + 
-            " (" + XAuth.currentUser.getRole() + ")");
 
-        // Tùy vào Role, mở cửa sổ khác
-        if (XAuth.isAdmin()) {
-            new AdminForm().setVisible(true); // Form quản trị
-        } else if (XAuth.isThuThu()) {
-            new ThuThuForm().setVisible(true); // Form Thủ Thư
-        } else {
-            new MemberForm().setVisible(true); // Form Member
+        // ---- Lấy tên Role ----
+        String roleName = "";
+        int role = XAuth.currentUser.getRoleID();
+        switch (role) {
+    case 1:
+        roleName = "Admin";
+        break;
+    case 2:
+        roleName = "Thủ Thư";   // FIX
+        break;
+    case 3:
+        roleName = "Member";   // FIX
+        break;
+    default:
+        roleName = "Không xác định";
+}
 
 
-        // Kiểm tra nhập liệu
-        if (username.isEmpty() || password.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!");
-            return;
+        // ---- Thông báo đăng nhập ----
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Đăng nhập thành công! Chào "              
+        );
 
-        }
-        if (success) {
-            // Đăng nhập thành công
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Đăng nhập thành công! Chào " + XAuth.currentUser.getFullName()
-                    + " (" + XAuth.currentUser.getRole() + ")");
+        // 👉 Dùng duy nhất 1 form chính
+        MainForm main = new MainForm(XAuth.currentUser);
+        main.setVisible(true);
+        this.dispose();
 
-            // Tùy vào Role, mở cửa sổ khác
-            if (XAuth.isAdmin()) {
-                new AdminForm().setVisible(true); // Form quản trị
-            } else if (XAuth.isThuThu()) {
-                new ThuThuForm().setVisible(true); // Form Thủ Thư
-            } else {
-                new MemberForm().setVisible(true); // Form Member
-            }
 
-            this.dispose(); // Đóng LoginForm
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Sai tên đăng nhập hoặc mật khẩu!");
-        }
+        this.dispose(); // Đóng LoginForm
+
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "Sai tên đăng nhập hoặc mật khẩu!");
     }
+}
 
 }
-    }}
