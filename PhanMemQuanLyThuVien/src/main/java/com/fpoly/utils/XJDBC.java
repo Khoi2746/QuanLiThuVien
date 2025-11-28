@@ -15,9 +15,9 @@ import java.util.List;
 public class XJDBC {
 
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static String url = "jdbc:sqlserver://localhost:1433;databaseName=Test; encrypt=false";
+    private static String url = "jdbc:sqlserver://localhost:1433;databaseName=LibraryDB; encrypt=false";
     private static String user = "sa";
-    private static String pass = "123";
+    private static String pass = "123456";
     static {
         try {
             Class.forName(driver);

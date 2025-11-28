@@ -2,9 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-
-
 package com.fpoly.ui;
 // Khai báo biến DAO để dùng chung
 import javax.swing.ImageIcon; // Import lớp ImageIcon
@@ -16,14 +13,15 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
+import com.fpoly.Dao.BookDAO;
+import com.fpoly.entity.BookDAOImpl;
 
-    
 /**
  *
  * @author X1 Carbon
  */
 public class QuanLyKhoSachForm extends javax.swing.JFrame {
-       private com.fpoly.Dao.BookDAO bookDAO;
+       private BookDAO bookDAO;
     
         /**
      * Creates new form QuanLyKhoSach
@@ -45,7 +43,7 @@ timer.start();
     
 
         // Khởi tạo DAO
-        this.bookDAO = new com.fpoly.Dao.BookDAO(); 
+       this.bookDAO = new BookDAOImpl();
         
         // Gọi hàm tải dữ liệu
         loadDataToTable();
