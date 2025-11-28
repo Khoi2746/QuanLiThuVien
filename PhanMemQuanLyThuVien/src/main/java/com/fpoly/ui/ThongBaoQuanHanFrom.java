@@ -236,6 +236,8 @@ public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
     private javax.swing.JLabel txtTenSach;
     private javax.swing.JTextField txtThongKe;
     // End of variables declaration//GEN-END:variables
+
+
 //====================XỬ LÝ NÚT SỰ KIỆN============================//
     public void Viewdetails() {
         int row = tblQuaHan.getSelectedRow();
