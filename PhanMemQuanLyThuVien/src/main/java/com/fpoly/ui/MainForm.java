@@ -25,6 +25,7 @@ public class MainForm extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         openBaoCaoThongKe();
+        openBookManager();
         phanQuyen();
     }
 
@@ -355,14 +356,6 @@ public class MainForm extends javax.swing.JFrame {
         userForm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); // chỉ đóng form này thôi
         userForm.setVisible(true);
     }
-    //=====Nút Quản Lí Kho Sách=====//
-
-    public void openBookManager() {
-        //Mở form Quản Lý Kho Sách mà không đóng MainForm
-        QuanLyKhoSachForm bookForm = new QuanLyKhoSachForm();
-        bookForm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        bookForm.setVisible(true);
-    }
 
     //=====Nút Quản Lí Báo Cáo Thống Kê=====//
     
@@ -432,4 +425,21 @@ public void openBaoCaoThongKe() {
     tabPanel.repaint();
 }
 
+// Trong MainForm.java
+public void openBookManager() {
+    javax.swing.JPanel tabPanel = jPanel5; // jPanel5 là tab "Quản Lí Kho Sách"
+    
+    // Nếu chưa có, cần thêm 3 dòng này:
+    tabPanel.removeAll(); 
+    tabPanel.setLayout(new java.awt.BorderLayout()); // <--- Dòng RẤT QUAN TRỌNG
+    
+    QuanLyKhoSachForm bookForm = new QuanLyKhoSachForm();
+    
+    // Thêm JInternalFrame vào vị trí CENTER
+    tabPanel.add(bookForm, java.awt.BorderLayout.CENTER); // <--- Dòng RẤT QUAN TRỌNG
+    
+    bookForm.setVisible(true);
+    tabPanel.revalidate();
+    tabPanel.repaint();
+}
 }

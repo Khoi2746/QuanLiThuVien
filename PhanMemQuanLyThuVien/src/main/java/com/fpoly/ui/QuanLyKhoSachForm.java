@@ -21,7 +21,7 @@ import com.poly.DaoImpl.BookDAOImpl;
  *
  * @author X1 Carbon
  */
-public class QuanLyKhoSachForm extends javax.swing.JFrame {
+public class QuanLyKhoSachForm extends javax.swing.JInternalFrame {
        private BookDAO bookDAO;
     
         /**
@@ -29,11 +29,11 @@ public class QuanLyKhoSachForm extends javax.swing.JFrame {
      */
     public QuanLyKhoSachForm() {
         initComponents(); // Rất quan trọng: Gọi hàm vẽ giao diện
-        setLocationRelativeTo(null); // Căn giữa cửa sổ
+      
         
         ImageIcon icon = new ImageIcon(getClass().getResource("/img/books.jpg"));
         Image image = icon.getImage();
-        setIconImage(image);
+       
         Timer timer = new Timer(1000, new ActionListener() {
     public void actionPerformed(ActionEvent e) {
         lblClock.setText(new SimpleDateFormat("HH:mm:ss - dd/MM/yyyy").format(new Date()));
@@ -169,7 +169,8 @@ private void clearForm() {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -389,17 +390,18 @@ private void clearForm() {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 6, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtTheLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTheLoaiActionPerformed
