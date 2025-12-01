@@ -24,6 +24,8 @@ public class MainForm extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
+        openUser();
+        openThongBaoQuaHan();
         openBaoCaoThongKe();
         openBookManager();
         phanQuyen();
@@ -45,11 +47,6 @@ public class MainForm extends javax.swing.JFrame {
         btnLogOut = new javax.swing.JButton();
         tabMain = new javax.swing.JTabbedPane();
         tabUserManager = new javax.swing.JPanel();
-        btnQuanLiNguoiDung = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblUser = new javax.swing.JTable();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
         tabBaoCaoThongKe = new javax.swing.JPanel();
         tabDanhSachQuaHan = new javax.swing.JPanel();
         tabMuonSach = new javax.swing.JPanel();
@@ -75,60 +72,15 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        btnQuanLiNguoiDung.setText("Chỉnh Sửa Tài Khoản");
-        btnQuanLiNguoiDung.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuanLiNguoiDungActionPerformed(evt);
-            }
-        });
-
-        tblUser.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "UserId", "Username", "Password", "Họ Và tên", "Email", "RoleID", "RoleName"
-            }
-        ));
-        jScrollPane1.setViewportView(tblUser);
-
-        jButton1.setText("LỌC");
-
         javax.swing.GroupLayout tabUserManagerLayout = new javax.swing.GroupLayout(tabUserManager);
         tabUserManager.setLayout(tabUserManagerLayout);
         tabUserManagerLayout.setHorizontalGroup(
             tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabUserManagerLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnQuanLiNguoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-            .addGroup(tabUserManagerLayout.createSequentialGroup()
-                .addGroup(tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabUserManagerLayout.createSequentialGroup()
-                        .addGap(336, 336, 336)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addGroup(tabUserManagerLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 994, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(32, Short.MAX_VALUE))
+            .addGap(0, 1244, Short.MAX_VALUE)
         );
         tabUserManagerLayout.setVerticalGroup(
             tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabUserManagerLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnQuanLiNguoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+            .addGap(0, 653, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Trang Quản Lí Tài Khoản", tabUserManager);
@@ -137,7 +89,7 @@ public class MainForm extends javax.swing.JFrame {
         tabBaoCaoThongKe.setLayout(tabBaoCaoThongKeLayout);
         tabBaoCaoThongKeLayout.setHorizontalGroup(
             tabBaoCaoThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1062, Short.MAX_VALUE)
+            .addGap(0, 1244, Short.MAX_VALUE)
         );
         tabBaoCaoThongKeLayout.setVerticalGroup(
             tabBaoCaoThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,20 +102,20 @@ public class MainForm extends javax.swing.JFrame {
         tabDanhSachQuaHan.setLayout(tabDanhSachQuaHanLayout);
         tabDanhSachQuaHanLayout.setHorizontalGroup(
             tabDanhSachQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1062, Short.MAX_VALUE)
+            .addGap(0, 1244, Short.MAX_VALUE)
         );
         tabDanhSachQuaHanLayout.setVerticalGroup(
             tabDanhSachQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 653, Short.MAX_VALUE)
         );
 
-        tabMain.addTab("Danh Sách Quá Hạn", tabDanhSachQuaHan);
+        tabMain.addTab("Danh Sách /Thông BáoQuá Hạn", tabDanhSachQuaHan);
 
         javax.swing.GroupLayout tabMuonSachLayout = new javax.swing.GroupLayout(tabMuonSach);
         tabMuonSach.setLayout(tabMuonSachLayout);
         tabMuonSachLayout.setHorizontalGroup(
             tabMuonSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1062, Short.MAX_VALUE)
+            .addGap(0, 1244, Short.MAX_VALUE)
         );
         tabMuonSachLayout.setVerticalGroup(
             tabMuonSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,7 +128,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1062, Short.MAX_VALUE)
+            .addGap(0, 1244, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +141,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1062, Short.MAX_VALUE)
+            .addGap(0, 1244, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +154,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1062, Short.MAX_VALUE)
+            .addGap(0, 1244, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +167,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1062, Short.MAX_VALUE)
+            .addGap(0, 1244, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,23 +180,23 @@ public class MainForm extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(916, 916, 916)
-                        .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(tabMain, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(336, 336, 336))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(tabMain, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,11 +221,6 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         logout();
     }//GEN-LAST:event_btnLogOutActionPerformed
-
-    private void btnQuanLiNguoiDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuanLiNguoiDungActionPerformed
-        // TODO add your handling code here:
-        openUser();
-    }//GEN-LAST:event_btnQuanLiNguoiDungActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,9 +262,6 @@ public class MainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogOut;
-    private javax.swing.JButton btnQuanLiNguoiDung;
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -325,14 +269,12 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel tabBaoCaoThongKe;
     private javax.swing.JPanel tabDanhSachQuaHan;
     private javax.swing.JTabbedPane tabMain;
     private javax.swing.JPanel tabMuonSach;
     private javax.swing.JPanel tabUserManager;
-    private javax.swing.JTable tblUser;
     // End of variables declaration//GEN-END:variables
 
 //======================XỬ LÝ CÁC NÚT CHỨC NĂNG========================//  
@@ -349,24 +291,37 @@ public class MainForm extends javax.swing.JFrame {
         }
     }
 
-    //=====Nút Quản Lí Người Dùng=====//
-    public void openUser() {
-        // Mở form Quản Lý Người Dùng mà không đóng MainForm
-        QuanLyNguoiDungForm userForm = new QuanLyNguoiDungForm();
-        userForm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE); // chỉ đóng form này thôi
-        userForm.setVisible(true);
+    //=====Load Quản Lí Người Dùng lên panel=====//
+   public void openUser() {
+    // 1. Chỉ định Panel đích trong MainForm
+    javax.swing.JPanel tabPanel = tabUserManager; // Tên biến Panel của tab "Trang Quản Lí Tài Khoản"
+    
+    // 2. Dọn dẹp Panel trước khi nhúng form mới
+    if (tabPanel.getComponentCount() > 0) {
+        tabPanel.removeAll(); 
+    }
+    
+    // 3. Thiết lập Layout cho Panel chứa (QUAN TRỌNG: để JInternalFrame lấp đầy)
+    tabPanel.setLayout(new java.awt.BorderLayout());
+    
+    // 4. Khởi tạo JInternalFrame mới (Sau khi đã đổi QuanLyNguoiDungForm sang JInternalFrame)
+    QuanLyNguoiDungForm userForm = new QuanLyNguoiDungForm();
+    
+    // 5. Thiết lập JInternalFrame ở chế độ tối đa (lấp đầy Panel)
+    try {
+        userForm.setMaximum(true); 
+    } catch (java.beans.PropertyVetoException e) {
+        // Có thể bỏ qua lỗi này
     }
 
-    //=====Nút Quản Lí Báo Cáo Thống Kê=====//
+    // 6. Thêm JInternalFrame vào vị trí CENTER
+    tabPanel.add(userForm, java.awt.BorderLayout.CENTER);
     
-    
-    //=====Nút Quản Lí Thông Báo Quá Hạn=====//
-    public void openThongBaoQuaHan() {
-        //Mở form Quản Lý Thông Báo Quá Hạn mà không đóng MainForm
-        QuanLyThongBaoQuaHan thongbaoquahanForm = new QuanLyThongBaoQuaHan();
-        thongbaoquahanForm.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        thongbaoquahanForm.setVisible(true);
-    }
+    // 7. Hiển thị và cập nhật giao diện
+    userForm.setVisible(true);
+    tabPanel.revalidate();
+    tabPanel.repaint();
+}
 
 private void phanQuyen() {
     int role = currentUser.getRoleID();
@@ -439,6 +394,38 @@ public void openBookManager() {
     tabPanel.add(bookForm, java.awt.BorderLayout.CENTER); // <--- Dòng RẤT QUAN TRỌNG
     
     bookForm.setVisible(true);
+    tabPanel.revalidate();
+    tabPanel.repaint();
+}
+
+public void openThongBaoQuaHan() {
+    // THAY THẾ 'jPanelThongBao' bằng tên biến Panel/Tab trong MainForm
+    // nơi ku em muốn hiển thị form Thông báo Quá hạn.
+    javax.swing.JPanel tabPanel = tabDanhSachQuaHan; // Ví dụ: Có thể là tab Danh Sách Quá Hạn (tabDanhSachQuaHan)
+    
+    // 1. Dọn dẹp Panel trước khi nhúng form mới
+    if (tabPanel.getComponentCount() > 0) {
+        tabPanel.removeAll(); 
+    }
+    
+    // 2. Thiết lập Layout cho Panel chứa (QUAN TRỌNG: để JInternalFrame lấp đầy)
+    tabPanel.setLayout(new java.awt.BorderLayout());
+    
+    // 3. Khởi tạo JInternalFrame với TÊN LỚP CHÍNH XÁC
+    ThongBaoQuanHanFrom thongBaoForm = new ThongBaoQuanHanFrom();
+    
+    // 4. Thiết lập JInternalFrame ở chế độ tối đa (lấp đầy Panel)
+    try {
+        thongBaoForm.setMaximum(true); 
+    } catch (java.beans.PropertyVetoException e) {
+        // Log lỗi hoặc bỏ qua
+    }
+
+    // 5. Thêm JInternalFrame vào vị trí CENTER
+    tabPanel.add(thongBaoForm, java.awt.BorderLayout.CENTER);
+    
+    // 6. Hiển thị và cập nhật giao diện
+    thongBaoForm.setVisible(true);
     tabPanel.revalidate();
     tabPanel.repaint();
 }

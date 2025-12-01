@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MSI
  */
-public class ThongBaoQuanHanFrom extends javax.swing.JFrame {
+public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
 
     OverdueDAO dao = new OverdueDAOImpl();
 

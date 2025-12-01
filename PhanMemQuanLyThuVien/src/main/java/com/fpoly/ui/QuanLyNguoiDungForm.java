@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author X1 Carbon
  */
-public class QuanLyNguoiDungForm extends javax.swing.JFrame {
+public class QuanLyNguoiDungForm extends javax.swing.JInternalFrame {
 
     private ButtonGroup buttonGroupRole;
 
@@ -27,7 +27,6 @@ public class QuanLyNguoiDungForm extends javax.swing.JFrame {
     public QuanLyNguoiDungForm() {
         initComponents();
         setResizable(false);
-        setLocationRelativeTo(null);
         fillTable();
         initButtonGroup();          // Thêm radio vào buttonGroupRole
         buttonGroupRole.clearSelection();
@@ -222,7 +221,7 @@ public class QuanLyNguoiDungForm extends javax.swing.JFrame {
                     .addComponent(rdoMember)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rdoThuThu))
-                .addGap(166, 166, 166)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
