@@ -33,16 +33,19 @@ public class UserDaoImpl implements UserDao {
 
     // Đọc dữ liệu từ ResultSet
     private User readFromResultSet(ResultSet rs) throws SQLException {
-        return new User(
-                rs.getInt("UserID"),
-                rs.getString("Username"),
-                rs.getString("Password"),
-                rs.getString("FullName"),
-                rs.getString("Email"),
-                rs.getInt("RoleID"),
-                rs.getString("RoleName")
-        );
-    }
+    User user = new User(); 
+    
+    // GÁN DỮ LIỆU BẰNG SETTER (Đảm bảo không nhầm lẫn)
+    user.setUserID(rs.getInt("UserID"));
+    user.setUsername(rs.getString("Username"));
+    user.setPassword(rs.getString("Password")); // <-- LẤY TỪ CỘT PASSWORD
+    user.setFullName(rs.getString("FullName")); // <-- LẤY TỪ CỘT FULLNAME
+    user.setEmail(rs.getString("Email"));
+    user.setRoleID(rs.getInt("RoleID"));
+    user.setRoleName(rs.getString("RoleName"));
+    
+    return user;
+}
 
     @Override
     public void create(User entity) {

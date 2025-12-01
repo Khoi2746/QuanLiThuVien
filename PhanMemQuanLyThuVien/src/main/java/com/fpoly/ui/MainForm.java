@@ -16,19 +16,26 @@ import javax.swing.table.DefaultTableModel;
  * @author X1 Carbon
  */
 public class MainForm extends javax.swing.JFrame {
-
+private User loggedInUser;
     /**
      * Creates new form MainPage
      */
     public MainForm(User currentUser) {
-        initComponents();
-        setResizable(false);
-        setLocationRelativeTo(null);
-        openUser();
-        openThongBaoQuaHan();
-        openBaoCaoThongKe();
-        openBookManager();
-        phanQuyen();
+       initComponents();
+    setResizable(false);
+    setLocationRelativeTo(null);
+    
+    // Gán đối tượng User được truyền vào cho biến instance
+    this.loggedInUser = currentUser; 
+    XAuth.currentUser = currentUser; // Cần thiết để các form khác dùng XAuth
+    
+    String roleName = mapRoleIDToName(currentUser.getRoleID());
+    jLabel2.setText("Tài Khoản: " + currentUser.getUsername());
+    jLabel3.setText("Quyền: " + roleName);
+    
+    openUser();
+    // ...
+    phanQuyen();
     }
 
     /**
@@ -54,6 +61,9 @@ public class MainForm extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnChangePass = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -176,6 +186,19 @@ public class MainForm extends javax.swing.JFrame {
 
         tabMain.addTab("Quản Lí Kho Sách", jPanel5);
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Tài Khoản: ");
+
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Quyền:");
+
+        btnChangePass.setText("Đổi Mật Khẩu");
+        btnChangePass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangePassActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -185,18 +208,37 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(336, 336, 336))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(215, 215, 215)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(77, 77, 77))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnChangePass)
+                                .addGap(17, 17, 17))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addComponent(btnChangePass)))
+                .addGap(18, 18, 18)
                 .addComponent(tabMain, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,6 +263,11 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         logout();
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
+        // TODO add your handling code here:
+        openChangePasswordDialog();
+    }//GEN-LAST:event_btnChangePassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -261,8 +308,11 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnChangePass;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -428,5 +478,42 @@ public void openThongBaoQuaHan() {
     thongBaoForm.setVisible(true);
     tabPanel.revalidate();
     tabPanel.repaint();
+}
+
+// Thêm hàm này vào cuối lớp MainForm
+private String mapRoleIDToName(int roleID) {
+    switch (roleID) {
+        case 1:
+            return "Admin";
+        case 2:
+            return "Thủ Thư";
+        case 3:
+            return "Member";
+        default:
+            return "Không rõ";
+    }
+}
+
+
+
+// Thêm hàm này vào phần xử lý chức năng trong lớp MainForm
+// Sửa lại phương thức này:
+private void openChangePasswordDialog() {
+    // Lấy user từ biến instance đã lưu trong constructor (Cách an toàn nhất)
+    User userToChange = this.loggedInUser; 
+    
+    // Nếu ku em không dùng biến instance, dùng XAuth.currentUser
+    if (userToChange == null) {
+        userToChange = XAuth.currentUser;
+    }
+    
+    if (userToChange == null) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin người dùng đang đăng nhập.", "Lỗi", javax.swing.JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    // GỌI CONSTRUCTOR ĐÚNG CÁCH VÀ TRUYỀN USER VÀO:
+    DoiMatKhauForm changePassDialog = new DoiMatKhauForm(userToChange); 
+    changePassDialog.setVisible(true);
 }
 }
