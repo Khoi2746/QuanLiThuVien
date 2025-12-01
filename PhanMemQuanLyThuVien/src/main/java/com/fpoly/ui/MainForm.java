@@ -34,7 +34,9 @@ private User loggedInUser;
     jLabel3.setText("Quyền: " + roleName);
     
     openUser();
-    // ...
+    openBaoCaoThongKe();
+    openBookManager();
+    openThongBaoQuaHan();
     phanQuyen();
     }
 
@@ -393,8 +395,8 @@ private void phanQuyen() {
     if (role == 3) {
         removeTabIfExists("Trang Quản Lí Tài Khoản");
         removeTabIfExists("Báo Cáo Thống Kê");
-        removeTabIfExists("Danh Sách Quá Hạn");
         removeTabIfExists("Duyệt Yêu Cầu Mượn/Trả Sách");
+        removeTabIfExists("Quản Lí Kho Sách");
         // Tab Mượn Sách được giữ lại
     }
 }
