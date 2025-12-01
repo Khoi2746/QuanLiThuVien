@@ -37,6 +37,7 @@ public class MainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jToggleButton1 = new javax.swing.JToggleButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnLogOut = new javax.swing.JButton();
@@ -50,6 +51,10 @@ public class MainForm extends javax.swing.JFrame {
         tabBaoCaoThongKe = new javax.swing.JPanel();
         tabDanhSachQuaHan = new javax.swing.JPanel();
         tabMuonSach = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -165,6 +170,58 @@ public class MainForm extends javax.swing.JFrame {
 
         tabMain.addTab("Mượn Sách", tabMuonSach);
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1062, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 653, Short.MAX_VALUE)
+        );
+
+        tabMain.addTab("Duyệt Yêu Cầu Mượn/Trả Sách", jPanel2);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1062, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 653, Short.MAX_VALUE)
+        );
+
+        tabMain.addTab("Gia Hạn Mượn", jPanel4);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1062, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 653, Short.MAX_VALUE)
+        );
+
+        tabMain.addTab("Trả Sách", jPanel3);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1062, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 653, Short.MAX_VALUE)
+        );
+
+        tabMain.addTab("Quản Lí Kho Sách", jPanel5);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -261,6 +318,11 @@ public class MainForm extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel tabBaoCaoThongKe;
@@ -322,6 +384,10 @@ private void phanQuyen() {
     // Thủ thư = 2 -> Ẩn tab quản lý tài khoản
     if (role == 2) {
         removeTabIfExists("Trang Quản Lí Tài Khoản");
+        removeTabIfExists("Mượn Sách");
+        removeTabIfExists("Trả Sách");
+        removeTabIfExists("Gia Hạn Mượn");
+        
     }
 
     // Member = 3 -> Chỉ giữ lại tab Mượn Sách
@@ -329,6 +395,7 @@ private void phanQuyen() {
         removeTabIfExists("Trang Quản Lí Tài Khoản");
         removeTabIfExists("Báo Cáo Thống Kê");
         removeTabIfExists("Danh Sách Quá Hạn");
+        removeTabIfExists("Duyệt Yêu Cầu Mượn/Trả Sách");
         // Tab Mượn Sách được giữ lại
     }
 }
