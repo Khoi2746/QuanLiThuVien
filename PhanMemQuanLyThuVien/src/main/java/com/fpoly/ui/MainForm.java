@@ -24,6 +24,7 @@ public class MainForm extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
+        openBaoCaoThongKe();
         phanQuyen();
     }
 
@@ -408,4 +409,27 @@ private void removeTabIfExists(String title) {
         }
     }
 }
+
+public void openBaoCaoThongKe() {
+    // 1. Khởi tạo form Thống kê
+    QuanLyBaoCaoThongKe baoCaoInternalFrame = new QuanLyBaoCaoThongKe(); 
+
+    // 2. Lấy JPanel của tab Báo Cáo Thống Kê
+    javax.swing.JPanel tabPanel = tabBaoCaoThongKe; 
+    
+    // 3. Sử dụng BorderLayout để InternalFrame lấp đầy Panel
+    tabPanel.removeAll(); 
+    tabPanel.setLayout(new java.awt.BorderLayout());
+    
+    // 4. Thêm InternalFrame vào Panel
+    tabPanel.add(baoCaoInternalFrame, java.awt.BorderLayout.CENTER); 
+    
+    // 5. Hiển thị InternalFrame (rất quan trọng)
+    baoCaoInternalFrame.setVisible(true);
+    
+    // 6. Cập nhật lại giao diện
+    tabPanel.revalidate();
+    tabPanel.repaint();
+}
+
 }

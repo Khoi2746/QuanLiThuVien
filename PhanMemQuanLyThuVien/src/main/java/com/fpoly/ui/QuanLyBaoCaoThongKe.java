@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author X1 Carbon
  */
-public class QuanLyBaoCaoThongKe extends javax.swing.JFrame {
+public class QuanLyBaoCaoThongKe extends javax.swing.JInternalFrame {
 
 //    List<statistical> stt = new ArrayList<>();
 //    List<Borrow> br = new ArrayList<>();
@@ -49,11 +49,11 @@ public class QuanLyBaoCaoThongKe extends javax.swing.JFrame {
     public QuanLyBaoCaoThongKe() {
         initComponents();
         setResizable(false);
-        setLocationRelativeTo(null);
+     
         fillData();
         fillData3();
         fillData2();
-                setIconImage(new ImageIcon(getClass().getResource("/img/OIP.jpg")).getImage());
+                
 
     }
 public final void fillData() {
