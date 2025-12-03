@@ -14,29 +14,30 @@ public class OverdueDAOImpl implements OverdueDAO {
         List<Object[]> list = new ArrayList<>();
 
         String sql = """
-            SELECT b.BorrowID, sv.StudentID, sv.FullName, s.BookID, s.Title, b.DueDate
+            SELECT b.BorrowID, u.UserID, u.FullName, s.BookID, s.Title, b.DueDate
             FROM Borrow b
-            JOIN Students sv ON b.StudentID = sv.StudentID
+            JOIN Users u ON b.UserID = u.UserID
             JOIN Books s ON b.BookID = s.BookID
-            WHERE b.DueDate < GETDATE()
-              AND (sv.StudentID LIKE ? OR sv.FullName LIKE ? OR s.BookID LIKE ? OR s.Title LIKE ?)
+            WHERE b.DueDate < GETDATE() AND b.Status = 'Borrowed'
+              AND (u.UserID LIKE ? OR u.FullName LIKE ? OR s.BookID LIKE ? OR s.Title LIKE ?)
             ORDER BY b.DueDate ASC
         """;
+        // Bổ sung thêm b.Status = 'Borrowed' để chỉ lấy các phiếu chưa trả và quá hạn.
 
         ResultSet rs = null;
 
         try {
             rs = XJDBC.query(sql,
-                    "%" + keyword + "%", "%" + keyword + "%",
-                    "%" + keyword + "%", "%" + keyword + "%"
+                    "%" + keyword + "%", "%" + keyword + "%", // UserID and FullName
+                    "%" + keyword + "%", "%" + keyword + "%" // BookID and Title
             );
 
             while (rs.next()) {
                 Object[] row = {
                     rs.getInt("BorrowID"),
-                    rs.getInt("StudentID"),
+                    rs.getInt("UserID"), // ĐÃ SỬA: Đổi StudentID thành UserID
                     rs.getString("FullName"),
-                    rs.getString("BookID"),
+                    rs.getInt("BookID"), // Dùng getInt nếu BookID là INT
                     rs.getString("Title"),
                     rs.getDate("DueDate")
                 };

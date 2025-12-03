@@ -193,7 +193,7 @@ public class LoginForm extends javax.swing.JFrame {
 }
 
     //=====Nút Đăng Nhập =====//
-public void login() {
+    public void login() {
     String username = txtUser.getText().trim();
     String password = new String(txtPassword.getPassword()).trim();
 
@@ -203,7 +203,6 @@ public void login() {
         return;
     }
 
-    // Dùng XAuth để đăng nhập
     boolean success = XAuth.login(username, password);
 
     if (success) {
@@ -212,36 +211,33 @@ public void login() {
         String roleName = "";
         int role = XAuth.currentUser.getRoleID();
         switch (role) {
-    case 1:
-        roleName = "Admin";
-        break;
-    case 2:
-        roleName = "Thủ Thư";   // FIX
-        break;
-    case 3:
-        roleName = "Member";   // FIX
-        break;
-    default:
-        roleName = "Không xác định";
-}
+            case 1:
+                roleName = "Admin";
+                break;
+            case 2:
+                roleName = "Thủ Thư"; 
+                break;
+            case 3:
+                roleName = "Member"; 
+                break;
+            default:
+                roleName = "Không xác định";
+        }
 
 
         // ---- Thông báo đăng nhập ----
         javax.swing.JOptionPane.showMessageDialog(this,
-                "Đăng nhập thành công! Chào "              
-        );
+                "Đăng nhập thành công! Chào " + XAuth.currentUser.getFullName() + " (" + roleName + ")"
+        ); 
 
         // 👉 Dùng duy nhất 1 form chính
         MainForm main = new MainForm(XAuth.currentUser);
         main.setVisible(true);
-        this.dispose();
-
-
         this.dispose(); // Đóng LoginForm
 
     } else {
         javax.swing.JOptionPane.showMessageDialog(this, "Sai tên đăng nhập hoặc mật khẩu!");
     }
 }
-
 }
+
