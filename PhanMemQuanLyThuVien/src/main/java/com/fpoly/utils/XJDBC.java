@@ -5,9 +5,9 @@ import java.sql.*;
 public class XJDBC {
 
     private static final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=LibraryDB;encrypt=false";
+    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=LibraryDBBB;encrypt=false";
     private static final String USER = "sa";
-    private static final String PASS = "123456";
+    private static final String PASS = "123";
 
     static {
         try {

@@ -14,6 +14,7 @@ com\fpoly\Dao\SoLuotMuonDAO.class
 com\fpoly\utils\XJDBC.class
 com\fpoly\utils\XDate.class
 com\fpoly\ui\QuenMatKhauJDialog$2.class
+com\fpoly\Dao\OverallStatisticsDAO.class
 com\fpoly\ui\LoginForm$4.class
 com\fpoly\Dao\OverdueDAO.class
 com\fpoly\Dao\StatisticalDAO.class
@@ -47,6 +48,7 @@ com\fpoly\ui\TraCuuSachForm$1$1.class
 com\fpoly\ui\TraCuuSachForm.class
 com\fpoly\ui\QuanLyBaoCaoThongKe$1.class
 com\fpoly\ui\LoginForm$2.class
+com\fpoly\entity\OverallStatistics.class
 com\fpoly\ui\MainForm.class
 com\fpoly\ui\QuanLyKhoSachForm$7.class
 com\fpoly\Dao\BorrowDAO.class
@@ -70,6 +72,7 @@ MasterMainRun\MainRun.class
 com\fpoly\ui\QuanLyBaoCaoThongKe$2.class
 com\fpoly\ui\QuanLyKhoSachForm$10.class
 com\fpoly\utils\XImage.class
+com\poly\DaoImpl\OverallStatisticsDAOImpl.class
 com\fpoly\ui\MainForm$1.class
 com\fpoly\ui\TraCuuSachForm$1.class
 com\fpoly\ui\QuanLyThongBaoQuaHan.class

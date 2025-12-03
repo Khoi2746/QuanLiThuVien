@@ -7,12 +7,15 @@ package com.fpoly.ui;
 //import com.fpoly.entity.Borrow;
 
 import com.fpoly.Dao.BorrowDAO;
+import com.fpoly.Dao.OverallStatisticsDAO;
 import com.fpoly.Dao.SoLuotMuonDAO;
 import com.fpoly.Dao.StatisticalDAO;
 import com.fpoly.entity.Borrow;
+import com.fpoly.entity.OverallStatistics;
 import com.fpoly.entity.SoLuotMuon;
 import com.fpoly.entity.statistical;
 import com.poly.DaoImpl.BorrowDAOImpl;
+import com.poly.DaoImpl.OverallStatisticsDAOImpl;
 import com.poly.DaoImpl.SoLuotMuonDAOImpl;
 import com.poly.DaoImpl.StatisticalDAOImpl;
 import java.util.List;
@@ -42,6 +45,7 @@ public class QuanLyBaoCaoThongKe extends javax.swing.JInternalFrame {
     private final StatisticalDAO statisticalDAO = new StatisticalDAOImpl();
     private final BorrowDAO borrowDAO = new BorrowDAOImpl();
     private final SoLuotMuonDAO soLuotMuonDAO = new SoLuotMuonDAOImpl();
+    private final OverallStatisticsDAO overallStatisticsDAO = new OverallStatisticsDAOImpl();
 
     /**
      * Creates new form QuanLyBaoCaoThongKe
@@ -53,8 +57,9 @@ public class QuanLyBaoCaoThongKe extends javax.swing.JInternalFrame {
         fillData();
         fillData3();
         fillData2();
-                
-
+       fillOverallStatistics(); 
+        
+        this.setVisible(true);
     }
 public final void fillData() {
         // Báo cáo Sách Mượn Nhiều Nhất (Statistical)
@@ -107,163 +112,23 @@ public final void fillData() {
                 b.getNote()
             });
         }
+        
     }
-
+    
+    
+//    --------------------------------------
+private void fillOverallStatistics() {
+        OverallStatistics stats = overallStatisticsDAO.getOverallStatistics();
+        
+//        lblTongSachDauVao.setText(stats.getTongSachDauVao() + " Cuốn");
+//        lblSachDaMuonChuaTra.setText(stats.getSachDaMuonChuaTra() + " Cuốn");
+//        lblSachHienCon.setText(stats.getSachHienCon() + " Cuốn");
+    }
     
     
     
     
-//    public final void fillData() {
-//        stt.clear();
-//
-//        String connectionUrl
-//                = "jdbc:sqlserver://localhost:1433;"
-//                + "databaseName=Test;"
-//                + "user=sa;"
-//                + "password=123;"
-//                + "encrypt=true;"
-//                + "trustServerCertificate=true;";
-//
-//        try {
-//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//            Connection connection = DriverManager.getConnection(connectionUrl);
-//            Statement statement = connection.createStatement();
-//
-//            String sql = "SELECT * FROM Book"; // hoặc "SELECT MaSach, TenSach, LuotMuon, TenTacGia, NamXuatBan FROM Book"
-//            ResultSet rs = statement.executeQuery(sql);
-//
-//            while (rs.next()) {
-//                String ma = rs.getString("MaSach");
-//                String ten = rs.getString("TenSach");
-//                Integer luotMuon = rs.getObject("LuotMuon", Integer.class);
-//                String tenTacGia = rs.getString("TenTacGia");
-//                Integer namXuatBan = rs.getObject("NamXuatBan", Integer.class);
-//
-//                stt.add(new statistical(ma, ten, luotMuon, tenTacGia, namXuatBan));
-//            }
-//
-//            rs.close();
-//            statement.close();
-//            connection.close();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        DefaultTableModel model = (DefaultTableModel) tblTab2.getModel();
-//        model.setRowCount(0);
-//
-//        for (statistical s : stt) {
-//            model.addRow(new Object[]{
-//                s.getMa(),
-//                s.getTen(),
-//                s.getLuotmuon(),
-//                s.getTenTacgia(),
-//                s.getNamXuatban()
-//            });
-//        }
-//    }
-//
-//    public final void fillData3() {
-//        br.clear(); // danh sách Borrow
-//
-//        String connectionUrl
-//                = "jdbc:sqlserver://localhost:1433;"
-//                + "databaseName=Test;"
-//                + "user=sa;"
-//                + "password=123;"
-//                + "encrypt=true;"
-//                + "trustServerCertificate=true;";
-//
-//        try {
-//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//            Connection connection = DriverManager.getConnection(connectionUrl);
-//            Statement statement = connection.createStatement();
-//
-//            String sql = "SELECT * FROM Borrow";
-//            ResultSet rs = statement.executeQuery(sql);
-//
-//            while (rs.next()) {
-//                String maPhieu = rs.getString("MaPhieu");
-//                String maSV = rs.getString("MaSV");
-//                String tenSV = rs.getString("TenSV");
-//                String tenSach = rs.getString("TenSach");
-//                String ngayTra = rs.getString("NgayTra");
-//                String soNgayTre = rs.getString("SoNgayTre"); // lấy trực tiếp từ CSDL
-//
-//                br.add(new Borrow(maPhieu, maSV, tenSV, tenSach, ngayTra, soNgayTre));
-//            }
-//
-//            rs.close();
-//            statement.close();
-//            connection.close();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        DefaultTableModel model = (DefaultTableModel) tbTab3.getModel();
-//        model.setRowCount(0);
-//
-//        for (Borrow b : br) {
-//            model.addRow(new Object[]{
-//                b.getMaPhieu(),
-//                b.getMaSV(),
-//                b.getTenSV(),
-//                b.getTenSach(),
-//                b.getNgayTra(),
-//                b.getSoNgayTre()
-//            });
-//        }
-//    }
-//
-//    public final void fillData2() {
-//        slm.clear(); // danh sách Borrow
-//
-//        String connectionUrl
-//                = "jdbc:sqlserver://localhost:1433;"
-//                + "databaseName=Test;"
-//                + "user=sa;"
-//                + "password=123;"
-//                + "encrypt=true;"
-//                + "trustServerCertificate=true;";
-//
-//        try {
-//            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//            Connection connection = DriverManager.getConnection(connectionUrl);
-//            Statement statement = connection.createStatement();
-//
-//            String sql = "SELECT * FROM SoLuotMuon";
-//            ResultSet rs = statement.executeQuery(sql);
-//
-//            while (rs.next()) {
-//                String ngay = rs.getString("ngayThang");
-//                String soluotMuon = rs.getString("SoLuotMuon");
-//                String Note = rs.getString("Ghichu");
-//
-//                slm.add(new SoLuotMuon(ngay, soluotMuon, Note));
-//            }
-//
-//            rs.close();
-//            statement.close();
-//            connection.close();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        DefaultTableModel model = (DefaultTableModel) tbTab4.getModel();
-//        model.setRowCount(0);
-//
-//        for (SoLuotMuon b : slm) {
-//            model.addRow(new Object[]{
-//                b.getDate(),
-//                b.getSoluotMuon(),
-//                b.getNote()
-//
-//            });
-//        }
-//    }
+//   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -325,7 +190,7 @@ public final void fillData() {
         btnDelete = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 51, 0));
 
