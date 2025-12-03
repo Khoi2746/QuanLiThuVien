@@ -55,7 +55,6 @@ private User loggedInUser;
         jLabel1 = new javax.swing.JLabel();
         btnLogOut = new javax.swing.JButton();
         tabMain = new javax.swing.JTabbedPane();
-        tabUserManager = new javax.swing.JPanel();
         tabBaoCaoThongKe = new javax.swing.JPanel();
         tabDanhSachQuaHan = new javax.swing.JPanel();
         tabMuonSach = new javax.swing.JPanel();
@@ -63,6 +62,7 @@ private User loggedInUser;
         jPanel4 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        tabUserManager = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnChangePass = new javax.swing.JButton();
@@ -84,28 +84,15 @@ private User loggedInUser;
             }
         });
 
-        javax.swing.GroupLayout tabUserManagerLayout = new javax.swing.GroupLayout(tabUserManager);
-        tabUserManager.setLayout(tabUserManagerLayout);
-        tabUserManagerLayout.setHorizontalGroup(
-            tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1244, Short.MAX_VALUE)
-        );
-        tabUserManagerLayout.setVerticalGroup(
-            tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
-        );
-
-        tabMain.addTab("Trang Quản Lí Tài Khoản", tabUserManager);
-
         javax.swing.GroupLayout tabBaoCaoThongKeLayout = new javax.swing.GroupLayout(tabBaoCaoThongKe);
         tabBaoCaoThongKe.setLayout(tabBaoCaoThongKeLayout);
         tabBaoCaoThongKeLayout.setHorizontalGroup(
             tabBaoCaoThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1244, Short.MAX_VALUE)
+            .addGap(0, 1238, Short.MAX_VALUE)
         );
         tabBaoCaoThongKeLayout.setVerticalGroup(
             tabBaoCaoThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Báo Cáo Thống Kê", tabBaoCaoThongKe);
@@ -114,11 +101,11 @@ private User loggedInUser;
         tabDanhSachQuaHan.setLayout(tabDanhSachQuaHanLayout);
         tabDanhSachQuaHanLayout.setHorizontalGroup(
             tabDanhSachQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1244, Short.MAX_VALUE)
+            .addGap(0, 1238, Short.MAX_VALUE)
         );
         tabDanhSachQuaHanLayout.setVerticalGroup(
             tabDanhSachQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Danh Sách /Thông BáoQuá Hạn", tabDanhSachQuaHan);
@@ -127,11 +114,11 @@ private User loggedInUser;
         tabMuonSach.setLayout(tabMuonSachLayout);
         tabMuonSachLayout.setHorizontalGroup(
             tabMuonSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1244, Short.MAX_VALUE)
+            .addGap(0, 1238, Short.MAX_VALUE)
         );
         tabMuonSachLayout.setVerticalGroup(
             tabMuonSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Mượn Sách", tabMuonSach);
@@ -140,11 +127,11 @@ private User loggedInUser;
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1244, Short.MAX_VALUE)
+            .addGap(0, 1238, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Duyệt Yêu Cầu Mượn/Trả Sách", jPanel2);
@@ -153,11 +140,11 @@ private User loggedInUser;
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1244, Short.MAX_VALUE)
+            .addGap(0, 1238, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Gia Hạn Mượn", jPanel4);
@@ -166,11 +153,11 @@ private User loggedInUser;
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1244, Short.MAX_VALUE)
+            .addGap(0, 1238, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Trả Sách", jPanel3);
@@ -179,14 +166,27 @@ private User loggedInUser;
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1244, Short.MAX_VALUE)
+            .addGap(0, 1238, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 653, Short.MAX_VALUE)
+            .addGap(0, 609, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Quản Lí Kho Sách", jPanel5);
+
+        javax.swing.GroupLayout tabUserManagerLayout = new javax.swing.GroupLayout(tabUserManager);
+        tabUserManager.setLayout(tabUserManagerLayout);
+        tabUserManagerLayout.setHorizontalGroup(
+            tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1238, Short.MAX_VALUE)
+        );
+        tabUserManagerLayout.setVerticalGroup(
+            tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 609, Short.MAX_VALUE)
+        );
+
+        tabMain.addTab("Trang Quản Lí Tài Khoản", tabUserManager);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Tài Khoản: ");
@@ -205,13 +205,12 @@ private User loggedInUser;
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabMain, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(tabMain)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,7 +223,10 @@ private User loggedInUser;
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnChangePass)
-                                .addGap(17, 17, 17))))))
+                                .addGap(17, 17, 17))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,13 +240,13 @@ private User loggedInUser;
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnChangePass)))
-                .addGap(18, 18, 18)
-                .addComponent(tabMain, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(40, 40, 40)
+                .addComponent(tabMain, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -255,7 +257,9 @@ private User loggedInUser;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
         pack();
