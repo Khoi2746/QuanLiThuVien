@@ -508,4 +508,5 @@ private void openChangePasswordDialog() {
     DoiMatKhauForm changePassDialog = new DoiMatKhauForm(userToChange); 
     changePassDialog.setVisible(true);
 }
+
 }
