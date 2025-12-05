@@ -8,48 +8,55 @@ import java.util.List;
 
 public class OverdueDAOImpl implements OverdueDAO {
 
-    @Override
-    public List<Object[]> getOverdueList(String keyword) throws SQLException {
+    // Trong OverdueDAOImpl.java
+// Trong OverdueDAOImpl.java
 
-        List<Object[]> list = new ArrayList<>();
+@Override
+public List<Object[]> getOverdueList(String keyword) throws SQLException {
 
-        String sql = """
-            SELECT b.BorrowID, u.UserID, u.FullName, s.BookID, s.Title, b.DueDate
-            FROM Borrow b
-            JOIN Users u ON b.UserID = u.UserID
-            JOIN Books s ON b.BookID = s.BookID
-            WHERE b.DueDate < GETDATE() AND b.Status = 'Borrowed'
-              AND (u.UserID LIKE ? OR u.FullName LIKE ? OR s.BookID LIKE ? OR s.Title LIKE ?)
-            ORDER BY b.DueDate ASC
-        """;
-        // Bổ sung thêm b.Status = 'Borrowed' để chỉ lấy các phiếu chưa trả và quá hạn.
+    List<Object[]> list = new ArrayList<>();
 
-        ResultSet rs = null;
+    // ********* CHỈNH SỬA CÂU LỆNH SQL *********
+    // Chỉ giữ lại điều kiện tìm kiếm theo Mã Sách (s.BookID LIKE ?)
+    String sql = """
+        SELECT b.BorrowID, u.UserID, u.FullName, s.BookID, s.Title, b.DueDate
+        FROM Borrow b
+        JOIN Users u ON b.UserID = u.UserID
+        JOIN Books s ON b.BookID = s.BookID
+        WHERE b.DueDate < GETDATE() AND b.Status = 'Borrowed'
+         AND (s.BookID LIKE ?)
+        ORDER BY b.DueDate ASC
+    """;
+    // *****************************************
 
-        try {
-            rs = XJDBC.query(sql,
-                    "%" + keyword + "%", "%" + keyword + "%", // UserID and FullName
-                    "%" + keyword + "%", "%" + keyword + "%" // BookID and Title
-            );
+    ResultSet rs = null;
 
-            while (rs.next()) {
-                Object[] row = {
-                    rs.getInt("BorrowID"),
-                    rs.getInt("UserID"), // ĐÃ SỬA: Đổi StudentID thành UserID
-                    rs.getString("FullName"),
-                    rs.getInt("BookID"), // Dùng getInt nếu BookID là INT
-                    rs.getString("Title"),
-                    rs.getDate("DueDate")
-                };
-                list.add(row);
-            }
+    try {
+        // ********* CHỈNH SỬA DANH SÁCH THAM SỐ *********
+        // Chỉ truyền duy nhất 1 tham số cho Mã Sách
+        rs = XJDBC.query(sql,
+                "%" + keyword + "%" // Tham số cho Mã Sách (BookID)
+        );
+        // *****************************************
 
-        } finally {
-            XJDBC.close(rs);
+        while (rs.next()) {
+            Object[] row = {
+                rs.getInt("BorrowID"),
+                rs.getInt("UserID"),
+                rs.getString("FullName"),
+                rs.getInt("BookID"),
+                rs.getString("Title"),
+                rs.getDate("DueDate")
+            };
+            list.add(row);
         }
 
-        return list;
+    } finally {
+        XJDBC.close(rs);
     }
+
+    return list;
+}
 
     @Override
     public void insertNotification(int borrowID, int userID) throws SQLException {
