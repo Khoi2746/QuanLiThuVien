@@ -164,29 +164,30 @@ public class BookDAOImpl implements BookDAO {
     public void searchBooks(JTable tblBooks, String keyword) {
         
         // Câu lệnh SQL JOIN 3 bảng và thêm điều kiện WHERE...LIKE
-        String sql = """
-                     SELECT 
-                         b.BookID, 
-                         b.Title, 
-                         a.AuthorName, 
-                         c.CategoryName, 
-                         b.Quantity 
-                     FROM Books b
-                     JOIN Authors a ON b.AuthorID = a.AuthorID
-                     JOIN Categories c ON b.CategoryID = c.CategoryID
-                     WHERE b.Title LIKE ? OR a.AuthorName LIKE ?
-                     """;
+      // Sửa thành 3 điều kiện tìm kiếm
+String sql = """
+             SELECT 
+                 b.BookID, 
+                 b.Title, 
+                 a.AuthorName, 
+                 c.CategoryName, 
+                 b.Quantity 
+             FROM Books b
+             JOIN Authors a ON b.AuthorID = a.AuthorID
+             JOIN Categories c ON b.CategoryID = c.CategoryID
+             WHERE b.BookID LIKE ? OR b.Title LIKE ? OR a.AuthorName LIKE ?
+             """;
         
         DefaultTableModel model = (DefaultTableModel) tblBooks.getModel();
         model.setRowCount(0); 
 
         ResultSet rs = null;
-
-        try {
-            String searchKeyword = "%" + keyword + "%";
+try {
+    String searchKeyword = "%" + keyword + "%";
             
-            rs = XJDBC.query(sql, searchKeyword, searchKeyword); 
-
+    // Phải truyền 3 tham số cho 3 dấu '?'
+    rs = XJDBC.query(sql, searchKeyword, searchKeyword, searchKeyword); 
+   
             if (rs == null) {
                  JOptionPane.showMessageDialog(null, "Lỗi: Không thể thực thi truy vấn tìm kiếm.");
                  return;
