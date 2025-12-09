@@ -87,7 +87,7 @@ private User loggedInUser;
         tabBaoCaoThongKe.setLayout(tabBaoCaoThongKeLayout);
         tabBaoCaoThongKeLayout.setHorizontalGroup(
             tabBaoCaoThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1232, Short.MAX_VALUE)
+            .addGap(0, 1105, Short.MAX_VALUE)
         );
         tabBaoCaoThongKeLayout.setVerticalGroup(
             tabBaoCaoThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +100,7 @@ private User loggedInUser;
         tabDanhSachQuaHan.setLayout(tabDanhSachQuaHanLayout);
         tabDanhSachQuaHanLayout.setHorizontalGroup(
             tabDanhSachQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1232, Short.MAX_VALUE)
+            .addGap(0, 1105, Short.MAX_VALUE)
         );
         tabDanhSachQuaHanLayout.setVerticalGroup(
             tabDanhSachQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +113,7 @@ private User loggedInUser;
         tabMuonSach.setLayout(tabMuonSachLayout);
         tabMuonSachLayout.setHorizontalGroup(
             tabMuonSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1232, Short.MAX_VALUE)
+            .addGap(0, 1105, Short.MAX_VALUE)
         );
         tabMuonSachLayout.setVerticalGroup(
             tabMuonSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +126,7 @@ private User loggedInUser;
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1232, Short.MAX_VALUE)
+            .addGap(0, 1105, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +139,7 @@ private User loggedInUser;
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1232, Short.MAX_VALUE)
+            .addGap(0, 1105, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +152,7 @@ private User loggedInUser;
         tabUserManager.setLayout(tabUserManagerLayout);
         tabUserManagerLayout.setHorizontalGroup(
             tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1232, Short.MAX_VALUE)
+            .addGap(0, 1105, Short.MAX_VALUE)
         );
         tabUserManagerLayout.setVerticalGroup(
             tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +165,7 @@ private User loggedInUser;
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1232, Short.MAX_VALUE)
+            .addGap(0, 1105, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +195,7 @@ private User loggedInUser;
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 381, Short.MAX_VALUE)
+                        .addGap(0, 254, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
@@ -508,5 +508,4 @@ private void openChangePasswordDialog() {
     DoiMatKhauForm changePassDialog = new DoiMatKhauForm(userToChange); 
     changePassDialog.setVisible(true);
 }
-
 }

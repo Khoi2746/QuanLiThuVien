@@ -8,10 +8,10 @@ package com.fpoly.ui;
 import com.fpoly.Dao.QLQuaHanDao;
 import com.poly.DaoImpl.QLQuaHanDAOImpl;
 import com.fpoly.entity.QLQuaHan;
-import java.awt.event.*;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MSI
@@ -85,7 +85,7 @@ public class QuanLyThongBaoQuaHan extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Mã phiếu");
 
-        jLabel4.setText("Khách hàng");
+        jLabel4.setText("Tên Sinh Viên:");
 
         jLabel5.setText("Tên sách");
 
@@ -178,7 +178,7 @@ public class QuanLyThongBaoQuaHan extends javax.swing.JInternalFrame {
                         .addComponent(txtTimKiem)
                         .addGap(18, 18, 18)
                         .addComponent(btnTim))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
                 .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(

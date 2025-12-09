@@ -209,5 +209,55 @@ public class BookDAOImpl implements BookDAO {
             XJDBC.close(rs); 
         }
     }
+      @Override
+    public void filterBooksByCategory(JTable tblBooks, int categoryID) {
 
+        // CÂU LỆNH SQL:
+        // Lấy tất cả sách và thông tin liên quan, có thể thêm điều kiện WHERE
+        String sql = """
+                     SELECT 
+                         b.BookID, 
+                         b.Title, 
+                         a.AuthorName, 
+                         c.CategoryName, 
+                         b.Quantity 
+                     FROM Books b
+                     JOIN Authors a ON b.AuthorID = a.AuthorID
+                     JOIN Categories c ON b.CategoryID = c.CategoryID
+                     WHERE ? = 0 OR b.CategoryID = ? 
+                     ORDER BY b.Title
+                     """;
+        
+        DefaultTableModel model = (DefaultTableModel) tblBooks.getModel();
+        model.setRowCount(0); 
+
+        ResultSet rs = null; 
+
+        try {
+            // LƯU Ý: Phải truyền CategoryID 2 lần cho 2 dấu ? trong câu lệnh SQL
+            rs = XJDBC.query(sql, categoryID, categoryID); 
+
+            if (rs == null) {
+                JOptionPane.showMessageDialog(null, "Lỗi: Không thể thực thi truy vấn lọc sách.");
+                return;
+            }
+
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("BookID"),
+                    rs.getString("Title"),
+                    rs.getString("AuthorName"), 
+                    rs.getString("CategoryName"), 
+                    rs.getInt("Quantity")
+                };
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); 
+            JOptionPane.showMessageDialog(null, "Lỗi tải dữ liệu lọc sách: " + e.getMessage());
+        } finally {
+            XJDBC.close(rs); 
+        }
+    }
 }
+

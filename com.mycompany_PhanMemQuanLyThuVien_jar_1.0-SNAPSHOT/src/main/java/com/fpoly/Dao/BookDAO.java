@@ -1,21 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.fpoly.Dao;
 import javax.swing.JTable;
 
 /**
- *
- * @author PC
+ * Interface cho các thao tác CRUD và truy vấn Sách.
  */
 public interface BookDAO {
-  
-/**
- * Interface cho các thao tác CRUD và truy vấn Sách.
- * Các phương thức helper sẽ được chuyển sang lớp triển khai.
- */
-   
+    
     // Thêm sách mới
     void insertBook(String title, String authorName, String categoryName, int quantity);
     
@@ -25,11 +15,13 @@ public interface BookDAO {
     // Xóa sách
     void deleteBook(String bookID);
     
-    // Tải danh sách sách lên JTable
+    // Tải danh sách sách lên JTable (Tải tất cả)
     void loadBooksToTable(JTable tblBooks);
     
-    // Tìm kiếm sách theo từ khóa
+    // Tìm kiếm sách theo từ khóa (Tên sách hoặc Tác giả)
     void searchBooks(JTable tblBooks, String keyword);
     
+    // BỔ SUNG PHƯƠNG THỨC LỌC THEO THỂ LOẠI
+    void filterBooksByCategory(JTable tblBooks, int categoryID);
 
 }

@@ -9,12 +9,15 @@ import java.awt.Image;
 import com.fpoly.utils.MsgBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URL;
+import com.fpoly.entity.Category;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
 import com.fpoly.Dao.BookDAO;
 import com.poly.DaoImpl.BookDAOImpl;
+import com.poly.DaoImpl.CategoryDAOImpl;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 
 
 /**
@@ -23,12 +26,21 @@ import com.poly.DaoImpl.BookDAOImpl;
  */
 public class QuanLyKhoSachForm extends javax.swing.JInternalFrame {
        private BookDAO bookDAO;
-    
+    private final CategoryDAOImpl CategoryDAO;
         /**
      * Creates new form QuanLyKhoSach
      */
     public QuanLyKhoSachForm() {
-        initComponents(); // Rất quan trọng: Gọi hàm vẽ giao diện
+        initComponents();
+    // ...
+    // Khởi tạo DAO
+    this.bookDAO = new BookDAOImpl();
+    this.CategoryDAO = new com.poly.DaoImpl.CategoryDAOImpl(); // <<< BỔ SUNG KHỞI TẠO NÀY
+
+    // Gọi hàm tải dữ liệu (Phải gọi sau khi CategoryDAO được khởi tạo)
+    loadDataToTable();
+    loadDataToCboTheLoai(); // <<< BỔ SUNG GỌI NÀY
+    // ...
       
         
         ImageIcon icon = new ImageIcon(getClass().getResource("/img/books.jpg"));
@@ -66,36 +78,54 @@ timer.start();
     
     // PHƯƠNG THỨC HỖ TRỢ: Lấy dữ liệu và kiểm tra validation
 private String[] getFormValues() { 
-    String maSach = txtMaSach.getText().trim();
+ String maSach = txtMaSach.getText().trim();
     String tenSach = txtTenSach.getText().trim();
     String tacGia = txtTacGia.getText().trim();
-    String theLoai = txtTheLoai.getText().trim();
     String soLuong = txtSoLuong.getText().trim();
 
-    if (tenSach.isEmpty() || tacGia.isEmpty() || theLoai.isEmpty() || soLuong.isEmpty()) {
+    Object selectedObject = cboTheLoai.getSelectedItem();
+    String theLoaiName = "";
+
+    if (selectedObject != null && selectedObject instanceof Category) {
+        Category selectedCategory = (Category) selectedObject;
+        if (selectedCategory.getCategoryID() > 0) {
+            theLoaiName = selectedCategory.getCategoryName();
+        }
+    }
+
+    if (tenSach.isEmpty() || tacGia.isEmpty() || theLoaiName.isEmpty() || soLuong.isEmpty()) {
         MsgBox.alert(this, "Vui lòng nhập đầy đủ thông tin (Tên sách, Tác giả, Thể loại, Số lượng).");
         return null;
     }
     
     try {
-        // Kiểm tra Số lượng phải là số nguyên
         Integer.parseInt(soLuong);
     } catch (NumberFormatException e) {
         MsgBox.alert(this, "Số Lượng phải là một số nguyên hợp lệ.");
         return null;
     }
 
-    return new String[]{maSach, tenSach, tacGia, theLoai, soLuong};
+    return new String[]{maSach, tenSach, tacGia, theLoaiName, soLuong};
 }
 
 // PHƯƠNG THỨC HỖ TRỢ: Làm mới form (gọi khi Thêm/Sửa/Xóa thành công)
 private void clearForm() {
+        // 1. Xóa các ô nhập liệu bên phải
     txtMaSach.setText("");
     txtTenSach.setText("");
     txtTacGia.setText("");
-    txtTheLoai.setText("");
     txtSoLuong.setText("");
+    
+    cboTheLoai.setSelectedIndex(0); 
+
     txtTimKiem.setText("");
+    
+    this.loadDataToTable();
+   
+    // 2. Xóa ô tìm kiếm
+    txtTimKiem.setText("");
+    
+    // 3. Tải lại toàn bộ dữ liệu gốc
     this.loadDataToTable();
 }
 
@@ -129,7 +159,6 @@ private void clearForm() {
         txtMaSach = new javax.swing.JTextField();
         txtTenSach = new javax.swing.JTextField();
         txtTacGia = new javax.swing.JTextField();
-        txtTheLoai = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -140,6 +169,7 @@ private void clearForm() {
         btnMoi = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
+        cboTheLoai = new javax.swing.JComboBox<>();
         btnTimKiem = new javax.swing.JButton();
         lblClock = new javax.swing.JLabel();
 
@@ -206,12 +236,6 @@ private void clearForm() {
         );
 
         btnLamMoi.setBackground(new java.awt.Color(204, 204, 204));
-
-        txtTheLoai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTheLoaiActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Mã Sách :");
 
@@ -288,8 +312,8 @@ private void clearForm() {
                                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)))
                                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtTheLoai, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtTacGia))))
+                                    .addComponent(txtTacGia)
+                                    .addComponent(cboTheLoai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(26, 26, 26))
                     .addGroup(btnLamMoiLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
@@ -319,8 +343,8 @@ private void clearForm() {
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(cboTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -357,7 +381,7 @@ private void clearForm() {
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
                                 .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -413,10 +437,6 @@ private void clearForm() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtTheLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTheLoaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTheLoaiActionPerformed
-
     private void txtSoLuongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSoLuongActionPerformed
@@ -446,21 +466,7 @@ private void clearForm() {
     }//GEN-LAST:event_btnThemSachActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        // TODO add your handling code here:
-
-        // 1. Xóa các ô nhập liệu bên phải
-    txtMaSach.setText("");
-    txtTenSach.setText("");
-    txtTacGia.setText("");
-    txtTheLoai.setText("");
-    txtSoLuong.setText("");
-   
-    // 2. Xóa ô tìm kiếm
-    txtTimKiem.setText("");
-    
-    // 3. Tải lại toàn bộ dữ liệu gốc
-    this.loadDataToTable();
-
+       clearForm();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
@@ -554,6 +560,7 @@ private void clearForm() {
     private javax.swing.JButton btnThemSach;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JComboBox<Category> cboTheLoai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -574,7 +581,6 @@ private void clearForm() {
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTacGia;
     private javax.swing.JTextField txtTenSach;
-    private javax.swing.JTextField txtTheLoai;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 
@@ -584,30 +590,52 @@ private void clearForm() {
      * @param evt 
      */
     private void tblBooksMouseClicked(java.awt.event.MouseEvent evt) {
-        if (evt.getClickCount() == 1) { // Chỉ xử lý click đơn
-            int selectedRow = tblBooks.getSelectedRow();
-            if (selectedRow >= 0) {
-                // Lấy model của bảng
-                javax.swing.table.DefaultTableModel model = 
-                    (javax.swing.table.DefaultTableModel) tblBooks.getModel();
-                
-                // Lấy dữ liệu từ hàng được chọn (Lưu ý: Index bắt đầu từ 0)
-                // Cột 0: Mã Sách, Cột 1: Tên Sách, Cột 2: Tên Tác Giả, Cột 3: Thể Loại, Cột 4: Số Lượng
-                String maSach = model.getValueAt(selectedRow, 0).toString();
-                String tenSach = model.getValueAt(selectedRow, 1).toString();
-                String tenTacGia = model.getValueAt(selectedRow, 2).toString();
-                String theLoai = model.getValueAt(selectedRow, 3).toString();
-                // Vì Số Lượng là int, nên lấy là String rồi gán
-                String soLuong = model.getValueAt(selectedRow, 4).toString();
-                
-                // Điền dữ liệu vào các ô nhập liệu bên phải
-                txtMaSach.setText(maSach);
-                txtTenSach.setText(tenSach);
-                txtTacGia.setText(tenTacGia);
-                txtTheLoai.setText(theLoai);
-                txtSoLuong.setText(soLuong);
-            }
-        }   
-    }
+    if (evt.getClickCount() == 1) {
+        int selectedRow = tblBooks.getSelectedRow();
+        if (selectedRow >= 0) {
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblBooks.getModel();
+            
+            String maSach = model.getValueAt(selectedRow, 0).toString();
+            String tenSach = model.getValueAt(selectedRow, 1).toString();
+            String tenTacGia = model.getValueAt(selectedRow, 2).toString();
+            String theLoai = model.getValueAt(selectedRow, 3).toString();
+            String soLuong = model.getValueAt(selectedRow, 4).toString();
+            
+            txtMaSach.setText(maSach);
+            txtTenSach.setText(tenSach);
+            txtTacGia.setText(tenTacGia);
+            
+            // Đã sửa: Dùng setSelectedItem() để chọn giá trị trong JComboBox
+            cboTheLoai.setSelectedItem(theLoai); 
+            
+            txtSoLuong.setText(soLuong);
+        }
+    }    
+}
+    private void loadDataToCboTheLoai() {
+    DefaultComboBoxModel<Category> model = new DefaultComboBoxModel<>();
+    
+    try {
+        // 1. Thêm mục mặc định (CategoryID = 0)
+        model.addElement(new Category(0, "--- Tất Cả Thể Loại ---")); 
 
+        // 2. Lấy danh sách thể loại từ DB (ĐÃ SỬA LỖI GỌI DAO)
+        List<Category> categories = CategoryDAO.selectAll();
+        
+        // 3. Thêm các Category vào Model
+        for (Category cat : categories) {
+            model.addElement(cat); 
+        }
+
+        // 4. Đặt Model vào JComboBox
+        cboTheLoai.setModel(model);
+        
+        // 5. Đặt mục chọn mặc định là mục đầu tiên
+        cboTheLoai.setSelectedIndex(0); 
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        MsgBox.alert(this, "Lỗi khi tải dữ liệu Thể loại: " + e.getMessage()); 
+    }
+}
 }

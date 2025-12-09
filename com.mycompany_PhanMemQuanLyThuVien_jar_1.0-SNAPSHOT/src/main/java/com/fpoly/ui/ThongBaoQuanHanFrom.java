@@ -9,8 +9,6 @@ import com.fpoly.utils.MsgBox;
 import com.poly.DaoImpl.OverdueDAOImpl;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,7 +62,6 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
         scpQuaHan = new javax.swing.JScrollPane();
         tblQuaHan = new javax.swing.JTable();
         btnXemChiTiet = new javax.swing.JButton();
-        btnGuiThongBao = new javax.swing.JButton();
         txtTenSach = new javax.swing.JLabel();
         txtThongKe = new javax.swing.JTextField();
         btnLamMoi = new javax.swing.JButton();
@@ -97,13 +94,6 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
         btnXemChiTiet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXemChiTietActionPerformed(evt);
-            }
-        });
-
-        btnGuiThongBao.setText("Gửi thông báo");
-        btnGuiThongBao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuiThongBaoActionPerformed(evt);
             }
         });
 
@@ -144,16 +134,14 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(scpQuaHan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnXemChiTiet)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnGuiThongBao))
                             .addComponent(txtThongKe)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnLamMoi)))))
+                                .addComponent(btnLamMoi))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnXemChiTiet)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -166,20 +154,18 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(btnTimKiem))
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
+                .addComponent(btnXemChiTiet)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnXemChiTiet)
-                            .addComponent(btnGuiThongBao))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scpQuaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txtTenSach))
                     .addComponent(btnLamMoi))
                 .addGap(18, 18, 18)
-                .addComponent(txtThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -189,11 +175,6 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Viewdetails();
     }//GEN-LAST:event_btnXemChiTietActionPerformed
-
-    private void btnGuiThongBaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiThongBaoActionPerformed
-        // TODO add your handling code here:
-        SendNotice();
-    }//GEN-LAST:event_btnGuiThongBaoActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         // TODO add your handling code here:
@@ -241,7 +222,6 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuiThongBao;
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXemChiTiet;
@@ -278,25 +258,5 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
         txtTenSach.setText("");
         txtThongKe.setText("");
         loadOverdue();
-    }
-
-    public void SendNotice() {
-        int row = tblQuaHan.getSelectedRow();
-        if (row < 0) {
-            MsgBox.alert(this, "Vui lòng chọn một lượt mượn!");
-            return;
-        }
-
-        int borrowID = (int) tblQuaHan.getValueAt(row, 0);
-        int userID = (int) tblQuaHan.getValueAt(row, 1);
-
-        try {
-            dao.insertNotification(borrowID, userID);
-            MsgBox.alert(this, "Đã gửi thông báo thành công!");
-        } catch (SQLException ex) {
-            MsgBox.alert(this, "Lỗi khi gửi thông báo!");
-            Logger.getLogger(ThongBaoQuanHanFrom.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 }

@@ -549,6 +549,11 @@ public class QuanLyNguoiDungForm extends javax.swing.JInternalFrame {
             fillTable();            // Load lại bảng
             resetForm();            // Clear form
             JOptionPane.showMessageDialog(this, "Thêm tài khoản thành công!");
+            
+            txtEmail.setText("");
+            txtFullname.setText("");
+            txtPassword.setText("");
+            txtUsername.setText("");
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Thêm tài khoản thất bại!");
