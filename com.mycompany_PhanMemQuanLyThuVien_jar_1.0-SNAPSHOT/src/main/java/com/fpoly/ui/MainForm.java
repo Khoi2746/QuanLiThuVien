@@ -8,8 +8,7 @@ package com.fpoly.ui;
 import com.fpoly.entity.User;
 import com.fpoly.utils.XAuth;
 import static com.fpoly.utils.XAuth.currentUser;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -33,6 +32,7 @@ private User loggedInUser;
     jLabel2.setText("Tài Khoản: " + currentUser.getUsername());
     jLabel3.setText("Quyền: " + roleName);
     
+    openMuonsach();
     openUser();
     openBaoCaoThongKe();
     openBookManager();
@@ -507,5 +507,27 @@ private void openChangePasswordDialog() {
     // GỌI CONSTRUCTOR ĐÚNG CÁCH VÀ TRUYỀN USER VÀO:
     DoiMatKhauForm changePassDialog = new DoiMatKhauForm(userToChange); 
     changePassDialog.setVisible(true);
+}
+public void openMuonsach() {
+    javax.swing.JPanel tabPanel = tabMuonSach;
+    
+    if (tabPanel.getComponentCount() > 0) {
+        tabPanel.removeAll(); 
+    }
+    
+    tabPanel.setLayout(new java.awt.BorderLayout());
+    
+    MuonSachForm muonSachForm = new MuonSachForm();
+    
+    try {
+        muonSachForm.setMaximum(true); 
+    } catch (java.beans.PropertyVetoException e) {
+    }
+
+    tabPanel.add(muonSachForm, java.awt.BorderLayout.CENTER);
+    
+    muonSachForm.setVisible(true);
+    tabPanel.revalidate();
+    tabPanel.repaint();
 }
 }
