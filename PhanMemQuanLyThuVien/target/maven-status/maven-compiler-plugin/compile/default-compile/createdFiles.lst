@@ -54,6 +54,7 @@ com\poly\DaoImpl\SoLuotMuonDAOImpl.class
 com\fpoly\Dao\UserDao.class
 com\poly\DaoImpl\BookDAOImpl.class
 com\poly\DaoImpl\StatisticalDAOImpl.class
+MasterMainRun\MainRun$1.class
 com\fpoly\ui\QuanLyKhoSachForm$2.class
 com\fpoly\ui\QuanLyNguoiDungForm.class
 com\fpoly\ui\MainForm$2.class

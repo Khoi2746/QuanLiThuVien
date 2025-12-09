@@ -33,6 +33,7 @@ public class WelcomeForm_1 extends javax.swing.JFrame {
 
     }
 
+
     private void initUI() {
 
         // nền bo góc
