@@ -31,6 +31,7 @@ com\fpoly\utils\XAuth.class
 com\fpoly\ui\TraCuuSachForm.class
 com\fpoly\ui\QuanLyBaoCaoThongKe$1.class
 com\fpoly\entity\OverallStatistics.class
+com\fpoly\ui\MuonSachForm.class
 com\fpoly\ui\QuanLyKhoSachForm$7.class
 com\fpoly\ui\QuanLyNguoiDungForm$6.class
 com\fpoly\ui\QuenMatKhauJDialog$3.class
@@ -57,11 +58,14 @@ com\fpoly\ui\QuanLyKhoSachForm$2.class
 com\fpoly\ui\QuanLyNguoiDungForm.class
 com\fpoly\ui\MainForm$2.class
 com\fpoly\ui\QuenMatKhauJDialog$2.class
+com\fpoly\ui\MuonSachForm$1.class
 com\fpoly\ui\WelcomeForm_1.class
+com\poly\DaoImpl\CategoryDAOImpl.class
 com\fpoly\ui\DuyetYeuCauMuonTraSachForm.class
 com\fpoly\ui\ThongBaoQuanHanFrom$5.class
 com\fpoly\ui\DoiMatKhauForm$2.class
 com\fpoly\ui\LoginForm$3.class
+com\fpoly\entity\Category.class
 com\poly\DaoImpl\UserDaoImpl.class
 com\fpoly\ui\ThongBaoQuanHanFrom$2.class
 com\fpoly\ui\QuanLyKhoSachForm$8.class
@@ -73,6 +77,7 @@ com\poly\DaoImpl\OverdueDAOImpl.class
 com\fpoly\ui\DuyetYeuCauMuonTraSachForm$1.class
 com\fpoly\ui\QuanLyKhoSachForm$5.class
 com\fpoly\ui\DoiMatKhauForm.class
+com\fpoly\ui\MuonSachForm$3.class
 com\fpoly\ui\QuanLyNguoiDungForm$3.class
 com\fpoly\ui\TraCuuSachForm$1$1.class
 com\fpoly\ui\LoginForm$2.class
@@ -85,12 +90,13 @@ com\fpoly\ui\QuenMatKhauJDialog.class
 TestLombok.class
 com\fpoly\ui\LoginForm$1.class
 MasterMainRun\MainRun.class
-com\fpoly\ui\QuanLyKhoSachForm$10.class
 com\fpoly\utils\XImage.class
 com\fpoly\ui\MainForm$1.class
 com\fpoly\ui\TraCuuSachForm$1.class
 com\fpoly\ui\MemberForm$1.class
+com\fpoly\ui\MuonSachForm$2.class
 com\fpoly\ui\QuanLyNguoiDungForm$2.class
+com\fpoly\Dao\CategoryDAO.class
 com\fpoly\ui\DoiMatKhauForm$3.class
 com\fpoly\ui\QuanLyKhoSachForm$3.class
 com\fpoly\ui\QuanLyNguoiDungForm$8.class
