@@ -12,4 +12,5 @@ import java.util.List;
 public interface StatisticalDAO {
     List<statistical> getAllTopBorrowedBooks();
     List<statistical> getTopBorrowedBooksByFilter(Integer month, Integer year);
+    List<statistical> searchTopBorrowedByBookName(String keyword);
 }

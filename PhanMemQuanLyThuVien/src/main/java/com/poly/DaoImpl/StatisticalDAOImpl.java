@@ -55,7 +55,47 @@ public class StatisticalDAOImpl implements StatisticalDAO{
         }
         return list;
     }
-    
+    @Override
+public List<statistical> searchTopBorrowedByBookName(String keyword) {
+
+    String sql = """
+        SELECT 
+            b.BookID AS MaSach, 
+            b.Title AS TenSach, 
+            COUNT(br.BorrowID) AS LuotMuon,
+            a.AuthorName AS TenTacGia,
+            b.PublishedYear AS NamXuatBan
+        FROM Books b
+        JOIN Authors a ON b.AuthorID = a.AuthorID
+        LEFT JOIN Borrow br ON b.BookID = br.BookID
+        WHERE b.Title LIKE ?
+        GROUP BY 
+            b.BookID, b.Title, a.AuthorName, b.PublishedYear
+        ORDER BY 
+            LuotMuon DESC;
+    """;
+
+    List<statistical> list = new ArrayList<>();
+
+    try (ResultSet rs = XJDBC.query(sql, "%" + keyword + "%")) {
+
+        while (rs.next()) {
+            list.add(new statistical(
+                    rs.getString("MaSach"),
+                    rs.getString("TenSach"),
+                    rs.getInt("LuotMuon"),
+                    rs.getString("TenTacGia"),
+                    rs.getInt("NamXuatBan")
+            ));
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
+
     @Override
     public List<statistical> getTopBorrowedBooksByFilter(Integer month, Integer year) {
         // Ku em sẽ cần sửa phương thức này tương tự, thêm điều kiện WHERE MONTH(br.BorrowDate) = ? AND YEAR(br.BorrowDate) = ?

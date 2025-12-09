@@ -12,4 +12,5 @@ import java.util.List;
 public interface BorrowDAO {
     List<Borrow> getAllOverdueBooks();
     List<Borrow> getOverdueBooksByFilter(Integer month, Integer year);
+    List<Borrow> searchOverdueByBookName(String keyword);
 }

@@ -40,7 +40,34 @@ public class SoLuotMuonDAOImpl implements SoLuotMuonDAO{
         }
         return list;
     }
+@Override
+public List<SoLuotMuon> searchBorrowCountsByDate(String dateKeyword) {
+    String sql = "SELECT ngayThang, SoLuotMuon, Ghichu FROM SoLuotMuon WHERE ngayThang LIKE ?";
 
+    List<SoLuotMuon> list = new ArrayList<>();
+
+    try (Connection connection = XJDBC.getConnection();
+         PreparedStatement ps = connection.prepareStatement(sql)) {
+
+        ps.setString(1, "%" + dateKeyword + "%");
+
+        try (ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                list.add(new SoLuotMuon(
+                        rs.getString("ngayThang"),
+                        rs.getString("SoLuotMuon"),
+                        rs.getString("Ghichu")
+                ));
+            }
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
     @Override
     public List<SoLuotMuon> getBorrowCountsByFilter(Integer month, Integer year) {
         return new ArrayList<>();

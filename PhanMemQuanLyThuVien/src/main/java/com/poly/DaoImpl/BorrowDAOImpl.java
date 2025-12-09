@@ -68,6 +68,43 @@ public class BorrowDAOImpl implements BorrowDAO{
         }
         return list;
     }
+    
+    @Override
+    public List<Borrow> searchOverdueByBookName(String keyword) {
+
+    String sql = """
+        SELECT 
+            b.BorrowID, u.UserID, u.FullName, s.Title, b.DueDate, 
+            DATEDIFF(day, b.DueDate, GETDATE()) AS DaysLate
+        FROM Borrow b
+        JOIN Users u ON b.UserID = u.UserID
+        JOIN Books s ON b.BookID = s.BookID
+        WHERE 
+            b.Status = 'Borrowed'
+            AND b.DueDate < GETDATE()
+            AND s.Title LIKE ?
+        ORDER BY b.DueDate ASC
+    """;
+
+    List<Borrow> list = new ArrayList<>();
+
+    try (ResultSet rs = XJDBC.query(sql, "%" + keyword + "%")) {
+        while (rs.next()) {
+            list.add(new Borrow(
+                String.valueOf(rs.getInt("BorrowID")),
+                String.valueOf(rs.getInt("UserID")),
+                rs.getString("FullName"),
+                rs.getString("Title"),
+                rs.getString("DueDate"),
+                String.valueOf(rs.getInt("DaysLate"))
+            ));
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return list;
+}
 
     @Override
     public List<Borrow> getOverdueBooksByFilter(Integer month, Integer year) {      

@@ -1,5 +1,6 @@
 com\fpoly\ui\DuyetYeuCauMuonTraSachForm$1$1.class
 com\fpoly\ui\DoiMatKhauForm$1.class
+com\fpoly\ui\QuanLyBaoCaoThongKe$3.class
 com\fpoly\ui\ThongBaoQuanHanFrom$1.class
 com\fpoly\ui\QuanLyNguoiDungForm$1.class
 com\fpoly\ui\ThongBaoQuanHanFrom$4.class
@@ -64,6 +65,7 @@ com\fpoly\ui\LoginForm$3.class
 com\poly\DaoImpl\UserDaoImpl.class
 com\fpoly\ui\ThongBaoQuanHanFrom$2.class
 com\fpoly\ui\QuanLyKhoSachForm$8.class
+com\fpoly\ui\QuanLyBaoCaoThongKe$4.class
 com\fpoly\ui\WelcomeForm_1$3.class
 com\fpoly\utils\ShareHelper.class
 com\fpoly\ui\GiaHanMuon$1.class

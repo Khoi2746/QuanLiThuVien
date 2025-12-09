@@ -14,4 +14,6 @@ import java.util.List;
 public interface SoLuotMuonDAO {
     List<SoLuotMuon> getAllBorrowCounts();
     List<SoLuotMuon> getBorrowCountsByFilter(Integer month, Integer year);
+    List<SoLuotMuon> searchBorrowCountsByDate(String dateKeyword);
+
 }
