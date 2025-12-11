@@ -16,9 +16,9 @@ import javax.swing.JButton;
  */
 public class MainForm extends javax.swing.JFrame {
 
-    private User loggedInUser;
-    private final Color DEFAULT_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
-    private final Color HOVER_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
+    private User loggedInUser;// Màu HOVER: NÂU NHẠT
+    private final Color DEFAULT_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
+    private final Color HOVER_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
 
     /**
      * Creates new form MainPage
@@ -73,16 +73,19 @@ public class MainForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnChangePass = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Trang Chính Quản Lí Thư Viện");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 30, -1, -1));
 
         btnLogOut.setText("ĐĂNG XUẤT");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
@@ -90,11 +93,12 @@ public class MainForm extends javax.swing.JFrame {
                 btnLogOutActionPerformed(evt);
             }
         });
+        jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(1099, 756, 129, 35));
 
         tabMain.setBackground(new java.awt.Color(210, 180, 140));
         tabMain.setForeground(new java.awt.Color(0, 0, 0));
 
-        tabBaoCaoThongKe.setBackground(new java.awt.Color(204, 204, 204));
+        tabBaoCaoThongKe.setBackground(new java.awt.Color(153, 112, 76));
 
         javax.swing.GroupLayout tabBaoCaoThongKeLayout = new javax.swing.GroupLayout(tabBaoCaoThongKe);
         tabBaoCaoThongKe.setLayout(tabBaoCaoThongKeLayout);
@@ -109,6 +113,8 @@ public class MainForm extends javax.swing.JFrame {
 
         tabMain.addTab("Báo Cáo Thống Kê", tabBaoCaoThongKe);
 
+        tabDanhSachQuaHan.setBackground(new java.awt.Color(153, 112, 76));
+
         javax.swing.GroupLayout tabDanhSachQuaHanLayout = new javax.swing.GroupLayout(tabDanhSachQuaHan);
         tabDanhSachQuaHan.setLayout(tabDanhSachQuaHanLayout);
         tabDanhSachQuaHanLayout.setHorizontalGroup(
@@ -121,6 +127,8 @@ public class MainForm extends javax.swing.JFrame {
         );
 
         tabMain.addTab("Danh Sách /Thông BáoQuá Hạn", tabDanhSachQuaHan);
+
+        tabMuonSach.setBackground(new java.awt.Color(153, 112, 76));
 
         javax.swing.GroupLayout tabMuonSachLayout = new javax.swing.GroupLayout(tabMuonSach);
         tabMuonSach.setLayout(tabMuonSachLayout);
@@ -135,6 +143,8 @@ public class MainForm extends javax.swing.JFrame {
 
         tabMain.addTab("Mượn Sách", tabMuonSach);
 
+        jPanel3.setBackground(new java.awt.Color(153, 112, 76));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -147,6 +157,8 @@ public class MainForm extends javax.swing.JFrame {
         );
 
         tabMain.addTab("Trả Sách", jPanel3);
+
+        jPanel5.setBackground(new java.awt.Color(153, 112, 76));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -161,6 +173,8 @@ public class MainForm extends javax.swing.JFrame {
 
         tabMain.addTab("Quản Lí Kho Sách", jPanel5);
 
+        tabUserManager.setBackground(new java.awt.Color(153, 112, 76));
+
         javax.swing.GroupLayout tabUserManagerLayout = new javax.swing.GroupLayout(tabUserManager);
         tabUserManager.setLayout(tabUserManagerLayout);
         tabUserManagerLayout.setHorizontalGroup(
@@ -173,6 +187,8 @@ public class MainForm extends javax.swing.JFrame {
         );
 
         tabMain.addTab("Trang Quản Lí Tài Khoản", tabUserManager);
+
+        jPanel6.setBackground(new java.awt.Color(153, 112, 76));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -187,11 +203,15 @@ public class MainForm extends javax.swing.JFrame {
 
         tabMain.addTab("Quản Lí Thông Báo Quá Hạn", jPanel6);
 
+        jPanel1.add(tabMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 106, -1, -1));
+
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Tài Khoản: ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1115, 15, -1, -1));
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Quyền:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1115, 37, -1, -1));
 
         btnChangePass.setText("Đổi Mật Khẩu");
         btnChangePass.addActionListener(new java.awt.event.ActionListener() {
@@ -199,67 +219,26 @@ public class MainForm extends javax.swing.JFrame {
                 btnChangePassActionPerformed(evt);
             }
         });
+        jPanel1.add(btnChangePass, new org.netbeans.lib.awtextra.AbsoluteConstraints(1131, 65, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Screenshot 2025-11-14 130729.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 6, 86, 82));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(tabMain)
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(77, 77, 77))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnChangePass)
-                        .addGap(17, 17, 17))))
+        jPanel2.setBackground(new java.awt.Color(153, 112, 76));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1250, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnChangePass)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addComponent(tabMain, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 800));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -331,6 +310,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
