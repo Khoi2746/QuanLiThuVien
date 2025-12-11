@@ -53,7 +53,7 @@ public class LoginForm extends javax.swing.JFrame {
             @Override
             public void focusGained(java.awt.event.FocusEvent e) {
                 txtUser.setBackground(HOVER_BUTTON_COLOR);
-                txtUser.setForeground(Color.WHITE);
+                txtUser.setForeground(Color.BLACK);
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent e) {
@@ -67,7 +67,7 @@ public class LoginForm extends javax.swing.JFrame {
             @Override
             public void focusGained(java.awt.event.FocusEvent e) {
                 txtPassword.setBackground(HOVER_BUTTON_COLOR);
-                txtPassword.setForeground(Color.WHITE);
+                txtPassword.setForeground(Color.BLACK);
             }
             @Override
             public void focusLost(java.awt.event.FocusEvent e) {
@@ -101,7 +101,7 @@ public class LoginForm extends javax.swing.JFrame {
         
         // (Hiệu ứng đổi màu focus)
         txtPassword.setBackground(HOVER_BUTTON_COLOR);
-        txtPassword.setForeground(Color.WHITE); 
+        txtPassword.setForeground(Color.BLACK); 
     }
 
     @Override
@@ -122,7 +122,6 @@ public class LoginForm extends javax.swing.JFrame {
 //======================= Xử Lý Giao Diện txt Tên Đăng Nhập===============================\\
 txtUser.setText("Nhập Tên Đăng Nhập"); 
 txtUser.setForeground(new Color(150, 150, 150)); // Màu chữ xám cho placeholder
-
 txtUser.addFocusListener(new java.awt.event.FocusAdapter() {
     @Override
     public void focusGained(java.awt.event.FocusEvent e) {
@@ -134,7 +133,7 @@ txtUser.addFocusListener(new java.awt.event.FocusAdapter() {
         
         // (Giữ lại hiệu ứng đổi màu nâu nhạt khi focus)
         txtUser.setBackground(HOVER_BUTTON_COLOR);
-        txtUser.setForeground(Color.WHITE); 
+        txtUser.setForeground(Color.BLACK); 
     }
 
     @Override

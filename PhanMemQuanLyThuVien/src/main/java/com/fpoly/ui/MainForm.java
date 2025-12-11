@@ -9,9 +9,8 @@ import com.fpoly.entity.User;
 import com.fpoly.utils.XAuth;
 import static com.fpoly.utils.XAuth.currentUser;
 import java.awt.Color;
-import java.util.List;
 import javax.swing.JButton;
-import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -19,8 +18,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainForm extends javax.swing.JFrame {
 private User loggedInUser;
-private final Color DEFAULT_BUTTON_COLOR = new Color(70, 130, 180); 
-private final Color HOVER_BUTTON_COLOR = new Color(30, 144, 255);
+private final Color DEFAULT_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
+     private final Color HOVER_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
     /**
      * Creates new form MainPage
      */
@@ -91,6 +90,11 @@ private final Color HOVER_BUTTON_COLOR = new Color(30, 144, 255);
                 btnLogOutActionPerformed(evt);
             }
         });
+
+        tabMain.setBackground(new java.awt.Color(210, 180, 140));
+        tabMain.setForeground(new java.awt.Color(0, 0, 0));
+
+        tabBaoCaoThongKe.setBackground(new java.awt.Color(204, 204, 204));
 
         javax.swing.GroupLayout tabBaoCaoThongKeLayout = new javax.swing.GroupLayout(tabBaoCaoThongKe);
         tabBaoCaoThongKe.setLayout(tabBaoCaoThongKeLayout);
@@ -552,26 +556,25 @@ public void openMuonsach() {
 }
 
 private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
-    // [KHÔNG ĐỂ TRỐNG HOẶC ĐẶT LỆNH NGOÀI KHỐI LỆNH CỦA PHƯƠNG THỨC]
-    // Thiết lập kiểu dáng ban đầu
-    button.setBackground(defaultColor);
-    button.setForeground(Color.WHITE); 
-    button.setFocusPainted(false); 
-    button.setBorderPainted(false); 
-    button.setOpaque(true); 
     
-    // Thêm MouseListener
+    // 🎯 THIẾT LẬP BAN ĐẦU ĐỂ BẬT TÍNH NĂNG VẼ MÀU NỀN
+    button.setBackground(defaultColor);
+    button.setOpaque(true);
+    button.setForeground(Color.BLACK);
+    
     button.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
         public void mouseEntered(java.awt.event.MouseEvent evt) {
-            button.setBackground(hoverColor); 
-            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); 
+            button.setBackground(hoverColor);
+            button.setForeground(Color.BLACK); // Đã sửa: Chữ TRẮNG cho độ tương phản tốt hơn
+            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         }
 
         @Override
         public void mouseExited(java.awt.event.MouseEvent evt) {
-            button.setBackground(defaultColor); 
-            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); 
+            button.setBackground(defaultColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         }
     });
 }

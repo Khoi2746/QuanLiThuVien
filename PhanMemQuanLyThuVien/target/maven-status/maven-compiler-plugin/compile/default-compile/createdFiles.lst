@@ -27,6 +27,7 @@ com\fpoly\ui\QuanLyNguoiDungForm$9.class
 com\fpoly\ui\MainForm$3.class
 com\fpoly\ui\QuanLyThongBaoQuaHan$3.class
 com\fpoly\ui\QuenMatKhauJDialog$1.class
+com\fpoly\ui\MainForm$6.class
 com\fpoly\ui\QuanLyBaoCaoThongKe.class
 com\poly\DaoImpl\BorrowDAOImpl.class
 com\fpoly\Dao\QLQuaHanDao.class
@@ -65,6 +66,7 @@ MasterMainRun\MainRun$1.class
 com\fpoly\ui\QuanLyKhoSachForm$2.class
 com\fpoly\ui\QuanLyNguoiDungForm.class
 com\fpoly\ui\MainForm$2.class
+com\fpoly\ui\MainForm$5.class
 com\fpoly\ui\QuanLyThongBaoQuaHan$2.class
 com\fpoly\ui\QuenMatKhauJDialog$2.class
 com\fpoly\ui\MuonSachForm$1.class
