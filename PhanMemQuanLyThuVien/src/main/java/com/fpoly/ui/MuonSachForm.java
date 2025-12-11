@@ -22,8 +22,8 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
 
     private BookDAO bookDAO;
     private final CategoryDAOImpl CategoryDAO;
-    private final Color DEFAULT_BUTTON_COLOR = new Color(70, 130, 180);
-    private final Color HOVER_BUTTON_COLOR = new Color(30, 144, 255);
+     private final Color DEFAULT_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
+    private final Color HOVER_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
 
     /**
      * Creates new form MuonSachForm
@@ -69,7 +69,8 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 161, 104));
+        setBorder(null);
 
         btnSearch.setText("Tra Cứu Sách");
 
@@ -140,7 +141,7 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
             .addGroup(layout.createSequentialGroup()
@@ -162,7 +163,7 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,11 +201,11 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -305,26 +306,22 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
         bookDAO.loadBooksToTable(tblBooks); // tblBooks là tên JTable của bạn
     }
 
-    private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
-        // [KHÔNG ĐỂ TRỐNG HOẶC ĐẶT LỆNH NGOÀI KHỐI LỆNH CỦA PHƯƠNG THỨC]
-        // Thiết lập kiểu dáng ban đầu
-        button.setBackground(defaultColor);
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setBorderPainted(false);
-        button.setOpaque(true);
+   private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
 
-        // Thêm MouseListener
+        button.setForeground(Color.BLACK);
+
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 button.setBackground(hoverColor);
+                button.setForeground(Color.BLACK);
                 setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 button.setBackground(defaultColor);
+                button.setForeground(Color.BLACK);
                 setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
             }
         });

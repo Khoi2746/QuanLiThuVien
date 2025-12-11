@@ -554,18 +554,15 @@ public class MainForm extends javax.swing.JFrame {
         tabPanel.repaint();
     }
 
-    private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
+     private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
 
-        // 🎯 THIẾT LẬP BAN ĐẦU ĐỂ BẬT TÍNH NĂNG VẼ MÀU NỀN
-        button.setBackground(defaultColor);
-        button.setOpaque(true);
         button.setForeground(Color.BLACK);
 
         button.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 button.setBackground(hoverColor);
-                button.setForeground(Color.BLACK); // Đã sửa: Chữ TRẮNG cho độ tương phản tốt hơn
+                button.setForeground(Color.BLACK);
                 setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
             }
 

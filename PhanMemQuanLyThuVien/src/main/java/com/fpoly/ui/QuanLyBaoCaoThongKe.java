@@ -204,9 +204,10 @@ private void fillOverallStatistics() {
         txttimkiem3 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
 
+        setBorder(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 51, 0));
+        jPanel1.setBackground(new java.awt.Color(153, 112, 76));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -242,13 +243,13 @@ private void fillOverallStatistics() {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(153, 51, 0));
+        jPanel2.setBackground(new java.awt.Color(153, 112, 76));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setForeground(new java.awt.Color(153, 0, 0));
 
         tbTab.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jPanel10.setBackground(new java.awt.Color(153, 51, 0));
+        jPanel10.setBackground(new java.awt.Color(153, 112, 76));
 
         tblTab2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -276,7 +277,7 @@ private void fillOverallStatistics() {
                 .addGap(0, 20, Short.MAX_VALUE))
         );
 
-        jPanel12.setBackground(new java.awt.Color(153, 51, 0));
+        jPanel12.setBackground(new java.awt.Color(153, 112, 76));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -299,32 +300,31 @@ private void fillOverallStatistics() {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(343, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txttimkiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnloc1)
-                .addGap(371, 371, 371))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txttimkiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnloc1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(360, 360, 360))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnloc1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txttimkiem1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txttimkiem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnloc1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(30, 30, 30))
+                        .addGap(65, 65, 65))))
         );
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -366,7 +366,7 @@ private void fillOverallStatistics() {
 
         tbTab.addTab("Sách mượn nhiều nhất", jPanel5);
 
-        jPanel13.setBackground(new java.awt.Color(153, 51, 0));
+        jPanel13.setBackground(new java.awt.Color(153, 112, 76));
         jPanel13.setForeground(new java.awt.Color(153, 51, 0));
 
         tbTab3.setModel(new javax.swing.table.DefaultTableModel(
@@ -382,7 +382,7 @@ private void fillOverallStatistics() {
         ));
         jScrollPane3.setViewportView(tbTab3);
 
-        jPanel14.setBackground(new java.awt.Color(153, 51, 0));
+        jPanel14.setBackground(new java.awt.Color(153, 112, 76));
         jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel14.setForeground(new java.awt.Color(153, 51, 0));
 
@@ -417,7 +417,7 @@ private void fillOverallStatistics() {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jLabel8)))
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addContainerGap(361, Short.MAX_VALUE))
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,7 +473,7 @@ private void fillOverallStatistics() {
 
         tbTab.addTab("Sách quá hạn", jPanel6);
 
-        jPanel15.setBackground(new java.awt.Color(153, 51, 0));
+        jPanel15.setBackground(new java.awt.Color(153, 112, 76));
         jPanel15.setForeground(new java.awt.Color(153, 51, 0));
 
         tbTab4.setModel(new javax.swing.table.DefaultTableModel(
@@ -489,7 +489,7 @@ private void fillOverallStatistics() {
         ));
         jScrollPane4.setViewportView(tbTab4);
 
-        jPanel16.setBackground(new java.awt.Color(153, 51, 0));
+        jPanel16.setBackground(new java.awt.Color(153, 112, 76));
         jPanel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -522,7 +522,7 @@ private void fillOverallStatistics() {
                 .addComponent(txttimkiem3, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addComponent(btnloc3)
-                .addGap(0, 346, Short.MAX_VALUE))
+                .addGap(0, 359, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -602,7 +602,7 @@ private void fillOverallStatistics() {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(44, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
