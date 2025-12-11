@@ -56,6 +56,7 @@ com\poly\DaoImpl\QLQuaHanDAOImpl.class
 com\fpoly\ui\ThongBaoQuanHanFrom.class
 com\fpoly\ui\DoiMatKhauForm$7.class
 com\fpoly\ui\QuenMatKhauJDialog$3$1.class
+com\fpoly\ui\MuonSachForm$5.class
 com\fpoly\ui\QuanLyNguoiDungForm$5.class
 com\fpoly\ui\LichSuMuonForm$1.class
 com\fpoly\ui\MainForm$4.class
