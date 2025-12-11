@@ -4,47 +4,47 @@
  */
 package com.fpoly.ui;
 
-
 import com.fpoly.entity.User;
 import com.fpoly.utils.XAuth;
 import static com.fpoly.utils.XAuth.currentUser;
 import java.awt.Color;
 import javax.swing.JButton;
 
-
 /**
  *
  * @author X1 Carbon
  */
 public class MainForm extends javax.swing.JFrame {
-private User loggedInUser;
-private final Color DEFAULT_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
-     private final Color HOVER_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
+
+    private User loggedInUser;
+    private final Color DEFAULT_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
+    private final Color HOVER_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
+
     /**
      * Creates new form MainPage
      */
     public MainForm(User currentUser) {
-       initComponents();
-    setResizable(false);
-    setLocationRelativeTo(null);
-    
-    // Gán đối tượng User được truyền vào cho biến instance
-    this.loggedInUser = currentUser; 
-    XAuth.currentUser = currentUser; // Cần thiết để các form khác dùng XAuth
-    
-    String roleName = mapRoleIDToName(currentUser.getRoleID());
-    jLabel2.setText("Tài Khoản: " + currentUser.getUsername());
-    jLabel3.setText("Quyền: " + roleName);
-    
+        initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
+
+        // Gán đối tượng User được truyền vào cho biến instance
+        this.loggedInUser = currentUser;
+        XAuth.currentUser = currentUser; // Cần thiết để các form khác dùng XAuth
+
+        String roleName = mapRoleIDToName(currentUser.getRoleID());
+        jLabel2.setText("Tài Khoản: " + currentUser.getUsername());
+        jLabel3.setText("Quyền: " + roleName);
+
         applyHoverEffect(btnChangePass, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
         applyHoverEffect(btnLogOut, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
-    
-    openMuonsach();
-    openUser();
-    openBaoCaoThongKe();
-    openBookManager();
-    openThongBaoQuaHan();
-    phanQuyen();
+
+        openMuonsach();
+        openUser();
+        openBaoCaoThongKe();
+        openBookManager();
+        openThongBaoQuaHan();
+        phanQuyen();
     }
 
     /**
@@ -358,224 +358,223 @@ private final Color DEFAULT_BUTTON_COLOR = new Color(255, 255, 255); // Màu M�
     }
 
     //=====Load Quản Lí Người Dùng lên panel=====//
-   public void openUser() {
-    // 1. Chỉ định Panel đích trong MainForm
-    javax.swing.JPanel tabPanel = tabUserManager; // Tên biến Panel của tab "Trang Quản Lí Tài Khoản"
-    
-    // 2. Dọn dẹp Panel trước khi nhúng form mới
-    if (tabPanel.getComponentCount() > 0) {
-        tabPanel.removeAll(); 
-    }
-    
-    // 3. Thiết lập Layout cho Panel chứa (QUAN TRỌNG: để JInternalFrame lấp đầy)
-    tabPanel.setLayout(new java.awt.BorderLayout());
-    
-    // 4. Khởi tạo JInternalFrame mới (Sau khi đã đổi QuanLyNguoiDungForm sang JInternalFrame)
-    QuanLyNguoiDungForm userForm = new QuanLyNguoiDungForm();
-    
-    // 5. Thiết lập JInternalFrame ở chế độ tối đa (lấp đầy Panel)
-    try {
-        userForm.setMaximum(true); 
-    } catch (java.beans.PropertyVetoException e) {
-        // Có thể bỏ qua lỗi này
-    }
+    public void openUser() {
+        // 1. Chỉ định Panel đích trong MainForm
+        javax.swing.JPanel tabPanel = tabUserManager; // Tên biến Panel của tab "Trang Quản Lí Tài Khoản"
 
-    // 6. Thêm JInternalFrame vào vị trí CENTER
-    tabPanel.add(userForm, java.awt.BorderLayout.CENTER);
-    
-    // 7. Hiển thị và cập nhật giao diện
-    userForm.setVisible(true);
-    tabPanel.revalidate();
-    tabPanel.repaint();
-}
+        // 2. Dọn dẹp Panel trước khi nhúng form mới
+        if (tabPanel.getComponentCount() > 0) {
+            tabPanel.removeAll();
+        }
 
-private void phanQuyen() {
-    int role = currentUser.getRoleID();
-    // Admin = 1 -> Full quyền
-    if (role == 1) {
-        return;
+        // 3. Thiết lập Layout cho Panel chứa (QUAN TRỌNG: để JInternalFrame lấp đầy)
+        tabPanel.setLayout(new java.awt.BorderLayout());
+
+        // 4. Khởi tạo JInternalFrame mới (Sau khi đã đổi QuanLyNguoiDungForm sang JInternalFrame)
+        QuanLyNguoiDungForm userForm = new QuanLyNguoiDungForm();
+
+        // 5. Thiết lập JInternalFrame ở chế độ tối đa (lấp đầy Panel)
+        try {
+            userForm.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e) {
+            // Có thể bỏ qua lỗi này
+        }
+
+        // 6. Thêm JInternalFrame vào vị trí CENTER
+        tabPanel.add(userForm, java.awt.BorderLayout.CENTER);
+
+        // 7. Hiển thị và cập nhật giao diện
+        userForm.setVisible(true);
+        tabPanel.revalidate();
+        tabPanel.repaint();
     }
 
-    // Thủ thư = 2 -> Ẩn tab quản lý tài khoản
-    if (role == 2) {
-        removeTabIfExists("Trang Quản Lí Tài Khoản");
-        removeTabIfExists("Mượn Sách");
-        removeTabIfExists("Trả Sách");
-        removeTabIfExists("Gia Hạn Mượn");
-        
-    }
+    private void phanQuyen() {
+        int role = currentUser.getRoleID();
+        // Admin = 1 -> Full quyền
+        if (role == 1) {
+            return;
+        }
 
-    // Member = 3 -> Chỉ giữ lại tab Mượn Sách
-    if (role == 3) {
-        removeTabIfExists("Trang Quản Lí Tài Khoản");
-        removeTabIfExists("Báo Cáo Thống Kê");
-        removeTabIfExists("Duyệt Yêu Cầu Mượn/Trả Sách");
-        removeTabIfExists("Quản Lí Kho Sách");
-        // Tab Mượn Sách được giữ lại
-    }
-}
+        // Thủ thư = 2 -> Ẩn tab quản lý tài khoản
+        if (role == 2) {
+            removeTabIfExists("Trang Quản Lí Tài Khoản");
+            removeTabIfExists("Mượn Sách");
+            removeTabIfExists("Trả Sách");
+            removeTabIfExists("Gia Hạn Mượn");
 
-private void removeTabIfExists(String title) {
-    for (int i = 0; i < tabMain.getTabCount(); i++) {
-        if (tabMain.getTitleAt(i).equalsIgnoreCase(title)) {
-            tabMain.remove(i);
-            break;
+        }
+
+        // Member = 3 -> Chỉ giữ lại tab Mượn Sách
+        if (role == 3) {
+            removeTabIfExists("Trang Quản Lí Tài Khoản");
+            removeTabIfExists("Báo Cáo Thống Kê");
+            removeTabIfExists("Duyệt Yêu Cầu Mượn/Trả Sách");
+            removeTabIfExists("Quản Lí Kho Sách");
+            // Tab Mượn Sách được giữ lại
         }
     }
-}
 
-public void openBaoCaoThongKe() {
-    // 1. Khởi tạo form Thống kê
-    QuanLyBaoCaoThongKe baoCaoInternalFrame = new QuanLyBaoCaoThongKe(); 
+    private void removeTabIfExists(String title) {
+        for (int i = 0; i < tabMain.getTabCount(); i++) {
+            if (tabMain.getTitleAt(i).equalsIgnoreCase(title)) {
+                tabMain.remove(i);
+                break;
+            }
+        }
+    }
 
-    // 2. Lấy JPanel của tab Báo Cáo Thống Kê
-    javax.swing.JPanel tabPanel = tabBaoCaoThongKe; 
-    
-    // 3. Sử dụng BorderLayout để InternalFrame lấp đầy Panel
-    tabPanel.removeAll(); 
-    tabPanel.setLayout(new java.awt.BorderLayout());
-    
-    // 4. Thêm InternalFrame vào Panel
-    tabPanel.add(baoCaoInternalFrame, java.awt.BorderLayout.CENTER); 
-    
-    // 5. Hiển thị InternalFrame (rất quan trọng)
-    baoCaoInternalFrame.setVisible(true);
-    
-    // 6. Cập nhật lại giao diện
-    tabPanel.revalidate();
-    tabPanel.repaint();
-}
+    public void openBaoCaoThongKe() {
+        // 1. Khởi tạo form Thống kê
+        QuanLyBaoCaoThongKe baoCaoInternalFrame = new QuanLyBaoCaoThongKe();
+
+        // 2. Lấy JPanel của tab Báo Cáo Thống Kê
+        javax.swing.JPanel tabPanel = tabBaoCaoThongKe;
+
+        // 3. Sử dụng BorderLayout để InternalFrame lấp đầy Panel
+        tabPanel.removeAll();
+        tabPanel.setLayout(new java.awt.BorderLayout());
+
+        // 4. Thêm InternalFrame vào Panel
+        tabPanel.add(baoCaoInternalFrame, java.awt.BorderLayout.CENTER);
+
+        // 5. Hiển thị InternalFrame (rất quan trọng)
+        baoCaoInternalFrame.setVisible(true);
+
+        // 6. Cập nhật lại giao diện
+        tabPanel.revalidate();
+        tabPanel.repaint();
+    }
 
 // Trong MainForm.java
-public void openBookManager() {
-    javax.swing.JPanel tabPanel = jPanel5; // jPanel5 là tab "Quản Lí Kho Sách"
-    
-    // Nếu chưa có, cần thêm 3 dòng này:
-    tabPanel.removeAll(); 
-    tabPanel.setLayout(new java.awt.BorderLayout()); // <--- Dòng RẤT QUAN TRỌNG
-    
-    QuanLyKhoSachForm bookForm = new QuanLyKhoSachForm();
-    
-    // Thêm JInternalFrame vào vị trí CENTER
-    tabPanel.add(bookForm, java.awt.BorderLayout.CENTER); // <--- Dòng RẤT QUAN TRỌNG
-    
-    bookForm.setVisible(true);
-    tabPanel.revalidate();
-    tabPanel.repaint();
-}
+    public void openBookManager() {
+        javax.swing.JPanel tabPanel = jPanel5; // jPanel5 là tab "Quản Lí Kho Sách"
 
-public void openThongBaoQuaHan() {
-    // THAY THẾ 'jPanelThongBao' bằng tên biến Panel/Tab trong MainForm
-    // nơi ku em muốn hiển thị form Thông báo Quá hạn.
-    javax.swing.JPanel tabPanel = tabDanhSachQuaHan; // Ví dụ: Có thể là tab Danh Sách Quá Hạn (tabDanhSachQuaHan)
-    
-    // 1. Dọn dẹp Panel trước khi nhúng form mới
-    if (tabPanel.getComponentCount() > 0) {
-        tabPanel.removeAll(); 
-    }
-    
-    // 2. Thiết lập Layout cho Panel chứa (QUAN TRỌNG: để JInternalFrame lấp đầy)
-    tabPanel.setLayout(new java.awt.BorderLayout());
-    
-    // 3. Khởi tạo JInternalFrame với TÊN LỚP CHÍNH XÁC
-    ThongBaoQuanHanFrom thongBaoForm = new ThongBaoQuanHanFrom();
-    
-    // 4. Thiết lập JInternalFrame ở chế độ tối đa (lấp đầy Panel)
-    try {
-        thongBaoForm.setMaximum(true); 
-    } catch (java.beans.PropertyVetoException e) {
-        // Log lỗi hoặc bỏ qua
+        // Nếu chưa có, cần thêm 3 dòng này:
+        tabPanel.removeAll();
+        tabPanel.setLayout(new java.awt.BorderLayout()); // <--- Dòng RẤT QUAN TRỌNG
+
+        QuanLyKhoSachForm bookForm = new QuanLyKhoSachForm();
+
+        // Thêm JInternalFrame vào vị trí CENTER
+        tabPanel.add(bookForm, java.awt.BorderLayout.CENTER); // <--- Dòng RẤT QUAN TRỌNG
+
+        bookForm.setVisible(true);
+        tabPanel.revalidate();
+        tabPanel.repaint();
     }
 
-    // 5. Thêm JInternalFrame vào vị trí CENTER
-    tabPanel.add(thongBaoForm, java.awt.BorderLayout.CENTER);
-    
-    // 6. Hiển thị và cập nhật giao diện
-    thongBaoForm.setVisible(true);
-    tabPanel.revalidate();
-    tabPanel.repaint();
-}
+    public void openThongBaoQuaHan() {
+        // THAY THẾ 'jPanelThongBao' bằng tên biến Panel/Tab trong MainForm
+        // nơi ku em muốn hiển thị form Thông báo Quá hạn.
+        javax.swing.JPanel tabPanel = tabDanhSachQuaHan; // Ví dụ: Có thể là tab Danh Sách Quá Hạn (tabDanhSachQuaHan)
+
+        // 1. Dọn dẹp Panel trước khi nhúng form mới
+        if (tabPanel.getComponentCount() > 0) {
+            tabPanel.removeAll();
+        }
+
+        // 2. Thiết lập Layout cho Panel chứa (QUAN TRỌNG: để JInternalFrame lấp đầy)
+        tabPanel.setLayout(new java.awt.BorderLayout());
+
+        // 3. Khởi tạo JInternalFrame với TÊN LỚP CHÍNH XÁC
+        ThongBaoQuanHanFrom thongBaoForm = new ThongBaoQuanHanFrom();
+
+        // 4. Thiết lập JInternalFrame ở chế độ tối đa (lấp đầy Panel)
+        try {
+            thongBaoForm.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e) {
+            // Log lỗi hoặc bỏ qua
+        }
+
+        // 5. Thêm JInternalFrame vào vị trí CENTER
+        tabPanel.add(thongBaoForm, java.awt.BorderLayout.CENTER);
+
+        // 6. Hiển thị và cập nhật giao diện
+        thongBaoForm.setVisible(true);
+        tabPanel.revalidate();
+        tabPanel.repaint();
+    }
 
 // Thêm hàm này vào cuối lớp MainForm
-private String mapRoleIDToName(int roleID) {
-    switch (roleID) {
-        case 1:
-            return "Admin";
-        case 2:
-            return "Thủ Thư";
-        case 3:
-            return "Member";
-        default:
-            return "Không rõ";
+    private String mapRoleIDToName(int roleID) {
+        switch (roleID) {
+            case 1:
+                return "Admin";
+            case 2:
+                return "Thủ Thư";
+            case 3:
+                return "Member";
+            default:
+                return "Không rõ";
+        }
     }
-}
-
-
 
 // Thêm hàm này vào phần xử lý chức năng trong lớp MainForm
 // Sửa lại phương thức này:
-private void openChangePasswordDialog() {
-    // Lấy user từ biến instance đã lưu trong constructor (Cách an toàn nhất)
-    User userToChange = this.loggedInUser; 
-    
-    // Nếu ku em không dùng biến instance, dùng XAuth.currentUser
-    if (userToChange == null) {
-        userToChange = XAuth.currentUser;
-    }
-    
-    if (userToChange == null) {
-        javax.swing.JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin người dùng đang đăng nhập.", "Lỗi", javax.swing.JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    
-    // GỌI CONSTRUCTOR ĐÚNG CÁCH VÀ TRUYỀN USER VÀO:
-    DoiMatKhauForm changePassDialog = new DoiMatKhauForm(userToChange); 
-    changePassDialog.setVisible(true);
-}
-public void openMuonsach() {
-    javax.swing.JPanel tabPanel = tabMuonSach;
-    
-    if (tabPanel.getComponentCount() > 0) {
-        tabPanel.removeAll(); 
-    }
-    
-    tabPanel.setLayout(new java.awt.BorderLayout());
-    
-    MuonSachForm muonSachForm = new MuonSachForm();
-    
-    try {
-        muonSachForm.setMaximum(true); 
-    } catch (java.beans.PropertyVetoException e) {
-    }
+    private void openChangePasswordDialog() {
+        // Lấy user từ biến instance đã lưu trong constructor (Cách an toàn nhất)
+        User userToChange = this.loggedInUser;
 
-    tabPanel.add(muonSachForm, java.awt.BorderLayout.CENTER);
-    
-    muonSachForm.setVisible(true);
-    tabPanel.revalidate();
-    tabPanel.repaint();
-}
-
-private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
-    
-    // 🎯 THIẾT LẬP BAN ĐẦU ĐỂ BẬT TÍNH NĂNG VẼ MÀU NỀN
-    button.setBackground(defaultColor);
-    button.setOpaque(true);
-    button.setForeground(Color.BLACK);
-    
-    button.addMouseListener(new java.awt.event.MouseAdapter() {
-        @Override
-        public void mouseEntered(java.awt.event.MouseEvent evt) {
-            button.setBackground(hoverColor);
-            button.setForeground(Color.BLACK); // Đã sửa: Chữ TRẮNG cho độ tương phản tốt hơn
-            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        // Nếu ku em không dùng biến instance, dùng XAuth.currentUser
+        if (userToChange == null) {
+            userToChange = XAuth.currentUser;
         }
 
-        @Override
-        public void mouseExited(java.awt.event.MouseEvent evt) {
-            button.setBackground(defaultColor);
-            button.setForeground(Color.BLACK);
-            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        if (userToChange == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Không tìm thấy thông tin người dùng đang đăng nhập.", "Lỗi", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
         }
-    });
-}
+
+        // GỌI CONSTRUCTOR ĐÚNG CÁCH VÀ TRUYỀN USER VÀO:
+        DoiMatKhauForm changePassDialog = new DoiMatKhauForm(userToChange);
+        changePassDialog.setVisible(true);
+    }
+
+    public void openMuonsach() {
+        javax.swing.JPanel tabPanel = tabMuonSach;
+
+        if (tabPanel.getComponentCount() > 0) {
+            tabPanel.removeAll();
+        }
+
+        tabPanel.setLayout(new java.awt.BorderLayout());
+
+        MuonSachForm muonSachForm = new MuonSachForm();
+
+        try {
+            muonSachForm.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e) {
+        }
+
+        tabPanel.add(muonSachForm, java.awt.BorderLayout.CENTER);
+
+        muonSachForm.setVisible(true);
+        tabPanel.revalidate();
+        tabPanel.repaint();
+    }
+
+    private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
+
+        // 🎯 THIẾT LẬP BAN ĐẦU ĐỂ BẬT TÍNH NĂNG VẼ MÀU NỀN
+        button.setBackground(defaultColor);
+        button.setOpaque(true);
+        button.setForeground(Color.BLACK);
+
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(hoverColor);
+                button.setForeground(Color.BLACK); // Đã sửa: Chữ TRẮNG cho độ tương phản tốt hơn
+                setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(defaultColor);
+                button.setForeground(Color.BLACK);
+                setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            }
+        });
+    }
 }

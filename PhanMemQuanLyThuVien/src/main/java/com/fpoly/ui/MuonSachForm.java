@@ -19,26 +19,27 @@ import javax.swing.JButton;
  * @author X1 Carbon
  */
 public class MuonSachForm extends javax.swing.JInternalFrame {
-      private BookDAO bookDAO;
+
+    private BookDAO bookDAO;
     private final CategoryDAOImpl CategoryDAO;
-    private final Color DEFAULT_BUTTON_COLOR = new Color(70, 130, 180); 
+    private final Color DEFAULT_BUTTON_COLOR = new Color(70, 130, 180);
     private final Color HOVER_BUTTON_COLOR = new Color(30, 144, 255);
+
     /**
      * Creates new form MuonSachForm
      */
     public MuonSachForm() {
         initComponents();
         this.bookDAO = new BookDAOImpl();
-    this.CategoryDAO = new com.poly.DaoImpl.CategoryDAOImpl();
+        this.CategoryDAO = new com.poly.DaoImpl.CategoryDAOImpl();
 
-    // Gọi hàm tải dữ liệu (Phải gọi sau khi CategoryDAO được khởi tạo)
-    loadDataToTable();
-    loadDataToCboTheLoai(); // <<< BỔ SUNG GỌI NÀY
+        // Gọi hàm tải dữ liệu (Phải gọi sau khi CategoryDAO được khởi tạo)
+        loadDataToTable();
+        loadDataToCboTheLoai(); // <<< BỔ SUNG GỌI NÀY
         applyHoverEffect(btnSearch, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
         applyHoverEffect(jButton2, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
     }
-    
-       
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -274,59 +275,59 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTheLoai;
     // End of variables declaration//GEN-END:variables
     private void loadDataToCboTheLoai() {
-    DefaultComboBoxModel<Category> model = new DefaultComboBoxModel<>();
-    
-    try {
-        // 1. Thêm mục mặc định (CategoryID = 0)
-        model.addElement(new Category(0, "--- Tất Cả Thể Loại ---")); 
+        DefaultComboBoxModel<Category> model = new DefaultComboBoxModel<>();
 
-        // 2. Lấy danh sách thể loại từ DB (ĐÃ SỬA LỖI GỌI DAO)
-        List<Category> categories = CategoryDAO.selectAll();
-        
-        // 3. Thêm các Category vào Model
-        for (Category cat : categories) {
-            model.addElement(cat); 
+        try {
+            // 1. Thêm mục mặc định (CategoryID = 0)
+            model.addElement(new Category(0, "--- Tất Cả Thể Loại ---"));
+
+            // 2. Lấy danh sách thể loại từ DB (ĐÃ SỬA LỖI GỌI DAO)
+            List<Category> categories = CategoryDAO.selectAll();
+
+            // 3. Thêm các Category vào Model
+            for (Category cat : categories) {
+                model.addElement(cat);
+            }
+
+            // 4. Đặt Model vào JComboBox
+            cboTheLoai.setModel(model);
+
+            // 5. Đặt mục chọn mặc định là mục đầu tiên
+            cboTheLoai.setSelectedIndex(0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi khi tải dữ liệu Thể loại: " + e.getMessage());
         }
-
-        // 4. Đặt Model vào JComboBox
-        cboTheLoai.setModel(model);
-        
-        // 5. Đặt mục chọn mặc định là mục đầu tiên
-        cboTheLoai.setSelectedIndex(0); 
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        MsgBox.alert(this, "Lỗi khi tải dữ liệu Thể loại: " + e.getMessage()); 
     }
-}
-    
+
     private void loadDataToTable() {
         bookDAO.loadBooksToTable(tblBooks); // tblBooks là tên JTable của bạn
     }
-   private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
-    // [KHÔNG ĐỂ TRỐNG HOẶC ĐẶT LỆNH NGOÀI KHỐI LỆNH CỦA PHƯƠNG THỨC]
-    // Thiết lập kiểu dáng ban đầu
-    button.setBackground(defaultColor);
-    button.setForeground(Color.WHITE); 
-    button.setFocusPainted(false); 
-    button.setBorderPainted(false); 
-    button.setOpaque(true); 
-    
-    // Thêm MouseListener
-    button.addMouseListener(new java.awt.event.MouseAdapter() {
-        @Override
-        public void mouseEntered(java.awt.event.MouseEvent evt) {
-            button.setBackground(hoverColor); 
-            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); 
-        }
 
-        @Override
-        public void mouseExited(java.awt.event.MouseEvent evt) {
-            button.setBackground(defaultColor); 
-            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); 
-        }
-    });
-}
+    private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
+        // [KHÔNG ĐỂ TRỐNG HOẶC ĐẶT LỆNH NGOÀI KHỐI LỆNH CỦA PHƯƠNG THỨC]
+        // Thiết lập kiểu dáng ban đầu
+        button.setBackground(defaultColor);
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        button.setBorderPainted(false);
+        button.setOpaque(true);
 
+        // Thêm MouseListener
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(hoverColor);
+                setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(defaultColor);
+                setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            }
+        });
+    }
 
 }
