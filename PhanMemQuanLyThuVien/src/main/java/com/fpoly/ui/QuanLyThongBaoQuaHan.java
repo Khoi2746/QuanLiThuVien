@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MSI
  */
-public class QuanLyThongBaoQuaHan extends javax.swing.JFrame {
+public class QuanLyThongBaoQuaHan extends javax.swing.JInternalFrame {
       QLQuaHanDao dao =  new QLQuaHanDAOImpl();
     /**
      * Creates new form QuanLyThongBaoQuaHan
@@ -26,7 +26,7 @@ public class QuanLyThongBaoQuaHan extends javax.swing.JFrame {
     setTitle("Quản Lý Phiếu Quá Hạn");
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 👈 THÊM DÒNG NÀY
-    setLocationRelativeTo(null);
+    
 }
 
        private void loadTable() {

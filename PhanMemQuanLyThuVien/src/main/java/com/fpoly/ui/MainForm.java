@@ -39,6 +39,7 @@ public class MainForm extends javax.swing.JFrame {
         applyHoverEffect(btnChangePass, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
         applyHoverEffect(btnLogOut, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
 
+        openQLQuaHan();
         openMuonsach();
         openUser();
         openBaoCaoThongKe();
@@ -68,7 +69,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         tabUserManager = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
+        QLQuaHan = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnChangePass = new javax.swing.JButton();
@@ -188,20 +189,20 @@ public class MainForm extends javax.swing.JFrame {
 
         tabMain.addTab("Trang Quản Lí Tài Khoản", tabUserManager);
 
-        jPanel6.setBackground(new java.awt.Color(153, 112, 76));
+        QLQuaHan.setBackground(new java.awt.Color(153, 112, 76));
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout QLQuaHanLayout = new javax.swing.GroupLayout(QLQuaHan);
+        QLQuaHan.setLayout(QLQuaHanLayout);
+        QLQuaHanLayout.setHorizontalGroup(
+            QLQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1238, Short.MAX_VALUE)
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        QLQuaHanLayout.setVerticalGroup(
+            QLQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 609, Short.MAX_VALUE)
         );
 
-        tabMain.addTab("Quản Lí Thông Báo Quá Hạn", jPanel6);
+        tabMain.addTab("Quản Lí Thông Báo Quá Hạn", QLQuaHan);
 
         jPanel1.add(tabMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 106, -1, -1));
 
@@ -303,6 +304,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel QLQuaHan;
     private javax.swing.JButton btnChangePass;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JLabel jLabel1;
@@ -313,7 +315,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel tabBaoCaoThongKe;
@@ -533,6 +534,29 @@ public class MainForm extends javax.swing.JFrame {
         tabPanel.revalidate();
         tabPanel.repaint();
     }
+    public void openQLQuaHan() {
+    javax.swing.JPanel tabPanel = QLQuaHan; 
+
+    if (tabPanel.getComponentCount() > 0) {
+        tabPanel.removeAll();
+    }
+
+    tabPanel.setLayout(new java.awt.BorderLayout());
+
+    QuanLyThongBaoQuaHan quanLyQuaHanForm = new QuanLyThongBaoQuaHan();
+
+    try {
+        quanLyQuaHanForm.setMaximum(true);
+    } catch (java.beans.PropertyVetoException e) {
+        
+    }
+
+    tabPanel.add(quanLyQuaHanForm, java.awt.BorderLayout.CENTER);
+
+    quanLyQuaHanForm.setVisible(true);
+    tabPanel.revalidate();
+    tabPanel.repaint();
+}
 
      private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
 
