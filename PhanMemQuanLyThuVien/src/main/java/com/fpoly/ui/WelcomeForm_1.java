@@ -165,7 +165,7 @@ public class WelcomeForm_1 extends javax.swing.JFrame {
         jProgressBar1.setBackground(new java.awt.Color(153, 153, 153));
         jProgressBar1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jProgressBar1.setForeground(new java.awt.Color(51, 51, 51));
-        getContentPane().add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 660, 30));
+        getContentPane().add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 740, 30));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
