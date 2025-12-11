@@ -50,28 +50,61 @@
 
     <build>
         <plugins>
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-shade-plugin</artifactId>
+    <version>3.5.0</version>
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals>
+                <goal>shade</goal>
+            </goals>
+            <configuration>
+                <!-- Main class của bạn -->
+                <transformers>
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                        <mainClass>com.mycompany.phanmemquanlythuvien.PhanMemQuanLyThuVien</mainClass>
+                    </transformer>
+                </transformers>
+                <!-- Đặt tên jar đầu ra -->
+                <finalName>PhanMemQuanLyThuVien-fat</finalName>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
 
-            <!-- Plugin biên dịch -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
-                <configuration>
-                    <!-- ĐÃ SỬA: Đồng bộ phiên bản release là 17 -->
-                    <release>17</release>
+<plugin>
+    <groupId>com.akathist.maven.plugins.launch4j</groupId>
+    <artifactId>launch4j-maven-plugin</artifactId>
+    <version>2.5.0</version> 
+    <executions>
+        <execution>
+            <id>l4j-cli</id>
+            <phase>package</phase> <goals>
+                <goal>launch4j</goal>
+            </goals>
+            <configuration>
+                <headerType>gui</headerType>
+                <jar>target/PhanMemQuanLyThuVien-fat.jar</jar> 
+                <outfile>target/PhanMemQuanLyThuVien.exe</outfile>
+                
+                <jre>
+                    <minVersion>17.0.0</minVersion>
+                    <opts>
+                        <opt>-Xmx1024m</opt> </opts>
+                </jre>
+                
+                <version>1.0.0.0</version>
+                <internalName>PhanMemQuanLyThuVien</internalName>
+                <fileDescription>Ứng dụng Quản lý Thư viện</fileDescription>
+                <copyright>Copyright © 2025</copyright>
+                <companyName>MyCompany</companyName>
+                
                 </configuration>
-            </plugin>
-
-            <!-- Plugin chạy chương trình từ dòng lệnh -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <mainClass>${exec.mainClass}</mainClass>
-                </configuration>
-            </plugin>
-
+        </execution>
+    </executions>
+</plugin>
         </plugins>
     </build>
     <name>PhanMemQuanLiThuVien</name>

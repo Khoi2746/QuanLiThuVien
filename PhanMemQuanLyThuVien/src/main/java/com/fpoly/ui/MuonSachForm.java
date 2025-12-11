@@ -9,8 +9,10 @@ import com.fpoly.entity.Category;
 import com.fpoly.utils.MsgBox;
 import com.poly.DaoImpl.BookDAOImpl;
 import com.poly.DaoImpl.CategoryDAOImpl;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 
 /**
  *
@@ -19,6 +21,8 @@ import javax.swing.DefaultComboBoxModel;
 public class MuonSachForm extends javax.swing.JInternalFrame {
       private BookDAO bookDAO;
     private final CategoryDAOImpl CategoryDAO;
+    private final Color DEFAULT_BUTTON_COLOR = new Color(70, 130, 180); 
+    private final Color HOVER_BUTTON_COLOR = new Color(30, 144, 255);
     /**
      * Creates new form MuonSachForm
      */
@@ -30,8 +34,11 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
     // Gọi hàm tải dữ liệu (Phải gọi sau khi CategoryDAO được khởi tạo)
     loadDataToTable();
     loadDataToCboTheLoai(); // <<< BỔ SUNG GỌI NÀY
+        applyHoverEffect(btnSearch, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(jButton2, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
     }
-
+    
+       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,13 +63,12 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
         cboTheLoai = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnSearch.setText("Tra Cứu Sách");
 
@@ -100,8 +106,6 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
         jLabel3.setText("Thể Loại:");
 
         jButton2.setText("Tạo Phiếu Mượn");
-
-        jButton1.setText("Lịch Sử Mượn");
 
         jLabel4.setText("Tên Sách:");
 
@@ -156,9 +160,7 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
                 .addGap(190, 190, 190))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
@@ -200,9 +202,7 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
 
@@ -255,7 +255,6 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<Category> cboTheLoai;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -304,7 +303,30 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
     private void loadDataToTable() {
         bookDAO.loadBooksToTable(tblBooks); // tblBooks là tên JTable của bạn
     }
+   private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
+    // [KHÔNG ĐỂ TRỐNG HOẶC ĐẶT LỆNH NGOÀI KHỐI LỆNH CỦA PHƯƠNG THỨC]
+    // Thiết lập kiểu dáng ban đầu
+    button.setBackground(defaultColor);
+    button.setForeground(Color.WHITE); 
+    button.setFocusPainted(false); 
+    button.setBorderPainted(false); 
+    button.setOpaque(true); 
+    
+    // Thêm MouseListener
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hoverColor); 
+            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); 
+        }
 
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(defaultColor); 
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); 
+        }
+    });
+}
 
 
 }

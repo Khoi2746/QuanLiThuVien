@@ -28,7 +28,7 @@ public class QuanLyNguoiDungForm extends javax.swing.JInternalFrame {
         initComponents();
         setResizable(false);
         fillTable();
-        initButtonGroup();          // Thêm radio vào buttonGroupRole
+        initButtonGroup(); 
         buttonGroupRole.clearSelection();
     }
 

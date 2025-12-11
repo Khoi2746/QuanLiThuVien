@@ -64,7 +64,6 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
         scpQuaHan = new javax.swing.JScrollPane();
         tblQuaHan = new javax.swing.JTable();
         btnXemChiTiet = new javax.swing.JButton();
-        btnGuiThongBao = new javax.swing.JButton();
         txtTenSach = new javax.swing.JLabel();
         txtThongKe = new javax.swing.JTextField();
         btnLamMoi = new javax.swing.JButton();
@@ -97,13 +96,6 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
         btnXemChiTiet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXemChiTietActionPerformed(evt);
-            }
-        });
-
-        btnGuiThongBao.setText("Gửi thông báo");
-        btnGuiThongBao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuiThongBaoActionPerformed(evt);
             }
         });
 
@@ -144,16 +136,14 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(scpQuaHan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnXemChiTiet)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnGuiThongBao))
                             .addComponent(txtThongKe)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnLamMoi)))))
+                                .addComponent(btnLamMoi))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnXemChiTiet)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,12 +157,10 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(btnTimKiem))
                 .addGap(18, 18, 18)
+                .addComponent(btnXemChiTiet)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnXemChiTiet)
-                            .addComponent(btnGuiThongBao))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scpQuaHan, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txtTenSach))
@@ -189,11 +177,6 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Viewdetails();
     }//GEN-LAST:event_btnXemChiTietActionPerformed
-
-    private void btnGuiThongBaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiThongBaoActionPerformed
-        // TODO add your handling code here:
-        SendNotice();
-    }//GEN-LAST:event_btnGuiThongBaoActionPerformed
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         // TODO add your handling code here:
@@ -241,7 +224,6 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuiThongBao;
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXemChiTiet;
