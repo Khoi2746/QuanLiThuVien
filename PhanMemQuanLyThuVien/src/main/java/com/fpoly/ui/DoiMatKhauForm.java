@@ -7,7 +7,6 @@ package com.fpoly.ui;
 import com.fpoly.dao.UserDao;
 import com.fpoly.entity.User;
 import com.fpoly.utils.MsgBox;
-import static com.fpoly.utils.XAuth.currentUser;
 import com.poly.DaoImpl.UserDaoImpl;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -33,7 +32,7 @@ public class DoiMatKhauForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         applyHoverEffect(btnXacNhan, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
         applyHoverEffect(btnCancel, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
-        
+
         //================================ Hiệu ứng Effect========================\\
         // 1. HOVER EFFECT TXT Mật Khẩu Cũ
         txtOldPassword.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -207,7 +206,7 @@ public class DoiMatKhauForm extends javax.swing.JFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-      Cancel();
+        Cancel();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     /**
@@ -260,82 +259,81 @@ public class DoiMatKhauForm extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // TRONG DoiMatKhauForm.java
+    public void ChangePass() {
+        if (this.user == null) {
+            MsgBox.alert(this, "Lỗi hệ thống: Không xác định được người dùng đang đăng nhập.");
+            this.dispose();
+            return;
+        }
 
-public void ChangePass() {
-    if (this.user == null) {
-        MsgBox.alert(this, "Lỗi hệ thống: Không xác định được người dùng đang đăng nhập.");
-        this.dispose();
-        return;
+        // 1. Lấy dữ liệu và loại bỏ khoảng trắng dư thừa
+        String oldPassword = new String(txtOldPassword.getPassword()).trim();
+        String newPassword = new String(txtNewPassword.getPassword()).trim();
+        String confirmPassword = new String(txtXacNhanPassword.getPassword()).trim();
+
+        String currentPassword = user.getPassword() != null ? user.getPassword().trim() : "NULL_OR_EMPTY";
+
+        // ===============================================
+        // <<< DEBUG START - DÙNG ĐỂ TÌM LỖI >>>
+        System.out.println("================= DEBUG MAT KHAU =================");
+        System.out.println("1. Mật khẩu cũ nhập vào (oldPassword): [" + oldPassword + "]");
+        System.out.println("2. Mật khẩu cũ lưu trong User object (currentPassword): [" + currentPassword + "]");
+        System.out.println("3. Độ dài (Nhập vào / Lưu trữ): " + oldPassword.length() + " / " + currentPassword.length());
+        System.out.println("==================================================");
+        // <<< DEBUG END >>>
+        // ===============================================
+
+        // 2.1. Kiểm tra trường rỗng
+        if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
+            MsgBox.alert(this, "Vui lòng nhập đầy đủ Mật khẩu cũ, Mật khẩu mới và Xác nhận mật khẩu!");
+            return;
+        }
+
+        // 2.2. Kiểm tra Mật khẩu cũ (CHỈ CÓ MỘT LẦN KIỂM TRA)
+        if (!oldPassword.equals(currentPassword)) {
+            MsgBox.alert(this, "Mật khẩu cũ không đúng. Vui lòng kiểm tra lại!");
+            return;
+        }
+
+        // 2.3. Kiểm tra Mật khẩu mới và Xác nhận mật khẩu
+        if (!newPassword.equals(confirmPassword)) {
+            MsgBox.alert(this, "Xác nhận mật khẩu mới không khớp. Vui lòng nhập lại!");
+            return;
+        }
+
+        // 2.4. Kiểm tra Mật khẩu mới có trùng Mật khẩu cũ không
+        if (newPassword.equals(oldPassword)) {
+            MsgBox.alert(this, "Mật khẩu mới phải khác Mật khẩu cũ.");
+            return;
+        }
+
+        // 2.5. (Tùy chọn) Kiểm tra độ dài/phức tạp
+        if (newPassword.length() < 6) {
+            MsgBox.alert(this, "Mật khẩu mới phải có ít nhất 6 ký tự.");
+            return;
+        }
+
+        // 3. Cập nhật mật khẩu mới vào cơ sở dữ liệu
+        try {
+            user.setPassword(newPassword);
+            dao.update(user);
+
+            MsgBox.alert(this, "Đổi mật khẩu thành công!");
+            this.dispose();
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi cập nhật mật khẩu: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
-
-    // 1. Lấy dữ liệu và loại bỏ khoảng trắng dư thừa
-    String oldPassword = new String(txtOldPassword.getPassword()).trim(); 
-    String newPassword = new String(txtNewPassword.getPassword()).trim(); 
-    String confirmPassword = new String(txtXacNhanPassword.getPassword()).trim(); 
-
-    String currentPassword = user.getPassword() != null ? user.getPassword().trim() : "NULL_OR_EMPTY"; 
-    
-    // ===============================================
-    // <<< DEBUG START - DÙNG ĐỂ TÌM LỖI >>>
-    System.out.println("================= DEBUG MAT KHAU =================");
-    System.out.println("1. Mật khẩu cũ nhập vào (oldPassword): [" + oldPassword + "]");
-    System.out.println("2. Mật khẩu cũ lưu trong User object (currentPassword): [" + currentPassword + "]");
-    System.out.println("3. Độ dài (Nhập vào / Lưu trữ): " + oldPassword.length() + " / " + currentPassword.length());
-    System.out.println("==================================================");
-    // <<< DEBUG END >>>
-    // ===============================================
-
-    // 2.1. Kiểm tra trường rỗng
-    if (oldPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-        MsgBox.alert(this, "Vui lòng nhập đầy đủ Mật khẩu cũ, Mật khẩu mới và Xác nhận mật khẩu!");
-        return;
-    }
-
-    // 2.2. Kiểm tra Mật khẩu cũ (CHỈ CÓ MỘT LẦN KIỂM TRA)
-    if (!oldPassword.equals(currentPassword)) {
-        MsgBox.alert(this, "Mật khẩu cũ không đúng. Vui lòng kiểm tra lại!");
-        return;
-    }
-    
-    // 2.3. Kiểm tra Mật khẩu mới và Xác nhận mật khẩu
-    if (!newPassword.equals(confirmPassword)) {
-        MsgBox.alert(this, "Xác nhận mật khẩu mới không khớp. Vui lòng nhập lại!");
-        return;
-    }
-
-    // 2.4. Kiểm tra Mật khẩu mới có trùng Mật khẩu cũ không
-    if (newPassword.equals(oldPassword)) {
-        MsgBox.alert(this, "Mật khẩu mới phải khác Mật khẩu cũ.");
-        return;
-    }
-
-    // 2.5. (Tùy chọn) Kiểm tra độ dài/phức tạp
-    if (newPassword.length() < 6) {
-        MsgBox.alert(this, "Mật khẩu mới phải có ít nhất 6 ký tự.");
-        return;
-    }
-
-    // 3. Cập nhật mật khẩu mới vào cơ sở dữ liệu
-    try {
-        user.setPassword(newPassword); 
-        dao.update(user); 
-
-        MsgBox.alert(this, "Đổi mật khẩu thành công!");
-        this.dispose();
-    } catch (Exception e) {
-        MsgBox.alert(this, "Lỗi cập nhật mật khẩu: " + e.getMessage());
-        e.printStackTrace();
-    }
-}
 
     public void Cancel() {
         // Thêm hộp thoại xác nhận
         if (MsgBox.confirm(this, "Bạn có muốn Hủy thao tác Đổi Mật Khẩu không?")) {
-             this.dispose();
+            this.dispose();
         }
     }
-    
-     private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
+
+    private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
 
         button.setForeground(Color.BLACK);
 
