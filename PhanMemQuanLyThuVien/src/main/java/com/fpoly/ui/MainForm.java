@@ -105,7 +105,7 @@ public class MainForm extends javax.swing.JFrame {
         tabBaoCaoThongKe.setLayout(tabBaoCaoThongKeLayout);
         tabBaoCaoThongKeLayout.setHorizontalGroup(
             tabBaoCaoThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1238, Short.MAX_VALUE)
+            .addGap(0, 1250, Short.MAX_VALUE)
         );
         tabBaoCaoThongKeLayout.setVerticalGroup(
             tabBaoCaoThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,7 +120,7 @@ public class MainForm extends javax.swing.JFrame {
         tabDanhSachQuaHan.setLayout(tabDanhSachQuaHanLayout);
         tabDanhSachQuaHanLayout.setHorizontalGroup(
             tabDanhSachQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1238, Short.MAX_VALUE)
+            .addGap(0, 1250, Short.MAX_VALUE)
         );
         tabDanhSachQuaHanLayout.setVerticalGroup(
             tabDanhSachQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +135,7 @@ public class MainForm extends javax.swing.JFrame {
         tabMuonSach.setLayout(tabMuonSachLayout);
         tabMuonSachLayout.setHorizontalGroup(
             tabMuonSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1238, Short.MAX_VALUE)
+            .addGap(0, 1250, Short.MAX_VALUE)
         );
         tabMuonSachLayout.setVerticalGroup(
             tabMuonSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,7 +150,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1238, Short.MAX_VALUE)
+            .addGap(0, 1250, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +165,7 @@ public class MainForm extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1238, Short.MAX_VALUE)
+            .addGap(0, 1250, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +180,7 @@ public class MainForm extends javax.swing.JFrame {
         tabUserManager.setLayout(tabUserManagerLayout);
         tabUserManagerLayout.setHorizontalGroup(
             tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1238, Short.MAX_VALUE)
+            .addGap(0, 1250, Short.MAX_VALUE)
         );
         tabUserManagerLayout.setVerticalGroup(
             tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +195,7 @@ public class MainForm extends javax.swing.JFrame {
         QLQuaHan.setLayout(QLQuaHanLayout);
         QLQuaHanLayout.setHorizontalGroup(
             QLQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1238, Short.MAX_VALUE)
+            .addGap(0, 1250, Short.MAX_VALUE)
         );
         QLQuaHanLayout.setVerticalGroup(
             QLQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,7 +204,7 @@ public class MainForm extends javax.swing.JFrame {
 
         tabMain.addTab("Quản Lí Thông Báo Quá Hạn", QLQuaHan);
 
-        jPanel1.add(tabMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 106, -1, -1));
+        jPanel1.add(tabMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 106, 1250, -1));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Tài Khoản: ");
