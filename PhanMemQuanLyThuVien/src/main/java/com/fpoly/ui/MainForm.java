@@ -61,7 +61,6 @@ public class MainForm extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnLogOut = new javax.swing.JButton();
         tabMain = new javax.swing.JTabbedPane();
         tabBaoCaoThongKe = new javax.swing.JPanel();
         tabDanhSachQuaHan = new javax.swing.JPanel();
@@ -75,6 +74,7 @@ public class MainForm extends javax.swing.JFrame {
         btnChangePass = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        btnLogOut = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -87,14 +87,6 @@ public class MainForm extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Trang Chính Quản Lí Thư Viện");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 30, -1, -1));
-
-        btnLogOut.setText("ĐĂNG XUẤT");
-        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogOutActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnLogOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(1099, 756, 129, 35));
 
         tabMain.setBackground(new java.awt.Color(210, 180, 140));
         tabMain.setForeground(new java.awt.Color(0, 0, 0));
@@ -109,7 +101,7 @@ public class MainForm extends javax.swing.JFrame {
         );
         tabBaoCaoThongKeLayout.setVerticalGroup(
             tabBaoCaoThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Báo Cáo Thống Kê", tabBaoCaoThongKe);
@@ -124,7 +116,7 @@ public class MainForm extends javax.swing.JFrame {
         );
         tabDanhSachQuaHanLayout.setVerticalGroup(
             tabDanhSachQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Danh Sách /Thông BáoQuá Hạn", tabDanhSachQuaHan);
@@ -139,7 +131,7 @@ public class MainForm extends javax.swing.JFrame {
         );
         tabMuonSachLayout.setVerticalGroup(
             tabMuonSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Mượn Sách", tabMuonSach);
@@ -154,7 +146,7 @@ public class MainForm extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Trả Sách", jPanel3);
@@ -169,7 +161,7 @@ public class MainForm extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Quản Lí Kho Sách", jPanel5);
@@ -184,7 +176,7 @@ public class MainForm extends javax.swing.JFrame {
         );
         tabUserManagerLayout.setVerticalGroup(
             tabUserManagerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Trang Quản Lí Tài Khoản", tabUserManager);
@@ -199,12 +191,12 @@ public class MainForm extends javax.swing.JFrame {
         );
         QLQuaHanLayout.setVerticalGroup(
             QLQuaHanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 609, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Quản Lí Thông Báo Quá Hạn", QLQuaHan);
 
-        jPanel1.add(tabMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 106, 1250, -1));
+        jPanel1.add(tabMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, 106, 1250, 610));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Tài Khoản: ");
@@ -228,15 +220,28 @@ public class MainForm extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(153, 112, 76));
 
+        btnLogOut.setText("ĐĂNG XUẤT");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1250, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(1100, Short.MAX_VALUE)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(744, Short.MAX_VALUE)
+                .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, 800));
@@ -557,25 +562,27 @@ public class MainForm extends javax.swing.JFrame {
     tabPanel.revalidate();
     tabPanel.repaint();
 }
+private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
 
-     private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
+    button.setForeground(Color.BLACK);
+    // THÊM DÒNG NÀY: Đặt màu nền ban đầu
+    button.setBackground(defaultColor); 
 
-        button.setForeground(Color.BLACK);
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hoverColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        }
 
-        button.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                button.setBackground(hoverColor);
-                button.setForeground(Color.BLACK);
-                setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            }
-
-            @Override
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                button.setBackground(defaultColor);
-                button.setForeground(Color.BLACK);
-                setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-            }
-        });
-    }
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(defaultColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        }
+    });
+}
+     
 }

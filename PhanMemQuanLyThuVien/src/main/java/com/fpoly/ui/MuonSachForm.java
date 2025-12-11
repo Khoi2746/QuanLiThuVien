@@ -35,9 +35,9 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
 
         // Gọi hàm tải dữ liệu (Phải gọi sau khi CategoryDAO được khởi tạo)
         loadDataToTable();
-        loadDataToCboTheLoai(); // <<< BỔ SUNG GỌI NÀY
+        loadDataToCboTheLoai(); 
         applyHoverEffect(btnSearch, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
-        applyHoverEffect(jButton2, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnTaoPhieu, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
     }
 
     /**
@@ -67,7 +67,7 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnTaoPhieu = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(204, 161, 104));
@@ -144,10 +144,10 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 112, 76));
 
-        jButton2.setText("Tạo Phiếu Mượn");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnTaoPhieu.setText("Tạo Phiếu Mượn");
+        btnTaoPhieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnTaoPhieuActionPerformed(evt);
             }
         });
 
@@ -158,7 +158,7 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
             .addComponent(jSeparator2)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(1047, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTaoPhieu, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
@@ -167,7 +167,7 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
                 .addContainerGap(501, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTaoPhieu, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
 
@@ -184,9 +184,10 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSoLuongActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnTaoPhieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaoPhieuActionPerformed
+        // TODO add your handling code here
+        openTaoPhieuForm();
+    }//GEN-LAST:event_btnTaoPhieuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,8 +226,8 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnTaoPhieu;
     private javax.swing.JComboBox<Category> cboTheLoai;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -296,6 +297,21 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
             }
         });
     }
-   
+   public void openTaoPhieuForm() {
+    try {
+        // 1. Khởi tạo form Tạo Phiếu (JFrame)
+        TaoPhieuForm taoPhieuForm = new TaoPhieuForm(); 
+        
+        // 2. Hiển thị form mới
+        taoPhieuForm.setVisible(true);
+
+        // 3. KHÔNG ẩn JInternalFrame hiện tại (MuonSachForm)
+        // Bỏ dòng này đi: // this.setVisible(false); 
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        MsgBox.alert(this, "Lỗi khi mở form Tạo Phiếu Mượn: " + e.getMessage());
+    }
+}
 
 }

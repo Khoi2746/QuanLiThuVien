@@ -15,6 +15,9 @@ public class TaoPhieuForm extends javax.swing.JFrame {
      */
     public TaoPhieuForm() {
         initComponents();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
