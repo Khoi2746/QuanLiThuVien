@@ -9,15 +9,39 @@ package com.fpoly.ui;
  * @author X1 Carbon
  */
 public class TaoPhieuForm extends javax.swing.JFrame {
+    private int maSach;
+private String tenSach;
+private String tacGia;
+private String theLoai;
+private int soLuong;
+
 
     /**
      * Creates new form TaoPhieuForm
      */
-    public TaoPhieuForm() {
+    public TaoPhieuForm(int maSach, String tenSach, String tacGia, String theLoai, int soLuong) {
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
+        
+           this.maSach = maSach;
+    this.tenSach = tenSach;
+    this.tacGia = tacGia;
+    this.theLoai = theLoai;
+    this.soLuong = soLuong;
+
+    // Gán giá trị vào các trường UI
+    txtBookName.setText(tenSach);
+    txtAuthor.setText(tacGia);
+    txtCategory.setText(theLoai);
+    txtSoLuong.setText(String.valueOf(soLuong));
+
+    // Không cho sửa thông tin sách
+    txtBookName.setEditable(false);
+    txtAuthor.setEditable(false);
+    txtCategory.setEditable(false);
+    txtSoLuong.setEditable(false);
     }
 
     /**
@@ -180,9 +204,9 @@ public class TaoPhieuForm extends javax.swing.JFrame {
                         .addGap(82, 82, 82))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(120, 120, 120)
+                        .addGap(110, 110, 110)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 124, 124))))
+                        .addGap(134, 134, 134))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,37 +276,7 @@ public class TaoPhieuForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TaoPhieuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TaoPhieuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TaoPhieuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TaoPhieuForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TaoPhieuForm().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

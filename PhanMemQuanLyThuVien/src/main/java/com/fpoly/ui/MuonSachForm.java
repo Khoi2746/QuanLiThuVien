@@ -10,6 +10,7 @@ import com.fpoly.utils.MsgBox;
 import com.poly.DaoImpl.BookDAOImpl;
 import com.poly.DaoImpl.CategoryDAOImpl;
 import java.awt.Color;
+import java.awt.print.Book;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -30,6 +31,12 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
      */
     public MuonSachForm() {
         initComponents();
+        tblBooks.getSelectionModel().addListSelectionListener(e -> {
+    if (!e.getValueIsAdjusting()) {
+        fillFormFromTable();
+    }
+});
+
         this.bookDAO = new BookDAOImpl();
         this.CategoryDAO = new com.poly.DaoImpl.CategoryDAOImpl();
 
@@ -297,21 +304,33 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
             }
         });
     }
-   public void openTaoPhieuForm() {
-    try {
-        // 1. Khởi tạo form Tạo Phiếu (JFrame)
-        TaoPhieuForm taoPhieuForm = new TaoPhieuForm(); 
-        
-        // 2. Hiển thị form mới
-        taoPhieuForm.setVisible(true);
+   private void fillFormFromTable() {
+    int row = tblBooks.getSelectedRow();
+    if (row < 0) return;
 
-        // 3. KHÔNG ẩn JInternalFrame hiện tại (MuonSachForm)
-        // Bỏ dòng này đi: // this.setVisible(false); 
-
-    } catch (Exception e) {
-        e.printStackTrace();
-        MsgBox.alert(this, "Lỗi khi mở form Tạo Phiếu Mượn: " + e.getMessage());
+    txtTensach.setText(tblBooks.getValueAt(row, 1).toString());
+    txtTenTacGia.setText(tblBooks.getValueAt(row, 2).toString());
+    txtTheLoai.setText(tblBooks.getValueAt(row, 3).toString());
+    txtSoLuong.setText(tblBooks.getValueAt(row, 4).toString());
+}
+public void openTaoPhieuForm() {
+    int row = tblBooks.getSelectedRow();
+    if (row < 0) {
+        MsgBox.alert(this, "Vui lòng chọn một sách trước khi tạo phiếu!");
+        return;
     }
+
+    // Lấy thông tin từ bảng
+    int maSach = Integer.parseInt(tblBooks.getValueAt(row, 0).toString());
+    String tenSach = tblBooks.getValueAt(row, 1).toString();
+    String tacGia = tblBooks.getValueAt(row, 2).toString();
+    String theLoai = tblBooks.getValueAt(row, 3).toString();
+    int soLuong = Integer.parseInt(tblBooks.getValueAt(row, 4).toString());
+
+    // Truyền dữ liệu sang form tạo phiếu
+    TaoPhieuForm taoPhieu = new TaoPhieuForm(maSach, tenSach, tacGia, theLoai, soLuong);
+    taoPhieu.setVisible(true);
 }
 
+   
 }
