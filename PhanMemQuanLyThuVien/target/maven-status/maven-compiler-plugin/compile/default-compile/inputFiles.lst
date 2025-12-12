@@ -1,6 +1,6 @@
 C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\fpoly\Dao\BookDAO.java
 C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\fpoly\Dao\BorrowDAO.java
-C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\fpoly\Dao\BorrowRequestDAO.java
+C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\fpoly\Dao\BorrowRequestDao.java
 C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\fpoly\Dao\CategoryDAO.java
 C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\fpoly\Dao\OverallStatisticsDAO.java
 C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\fpoly\Dao\OverdueDAO.java
@@ -39,7 +39,7 @@ C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVi
 C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\fpoly\utils\XJDBC.java
 C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\poly\DaoImpl\BookDAOImpl.java
 C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\poly\DaoImpl\BorrowDAOImpl.java
-C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\poly\DaoImpl\BorrowRequestDAOImpl.java
+C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\poly\DaoImpl\BorrowRequestDaoImpl.java
 C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\poly\DaoImpl\CategoryDAOImpl.java
 C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\poly\DaoImpl\OverallStatisticsDAOImpl.java
 C:\Users\X1 Carbon\OneDrive\Máy tính\QLTV GIT\QuanLiThuVien\PhanMemQuanLyThuVien\src\main\java\com\poly\DaoImpl\OverdueDAOImpl.java

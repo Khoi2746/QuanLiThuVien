@@ -4,11 +4,17 @@
  */
 package com.fpoly.ui;
 
+import com.fpoly.DaoImpl.BorrowRequestDaoImpl;
+import com.fpoly.entity.BorrowRequest;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author X1 Carbon
  */
-public class LichSuMuonForm extends javax.swing.JFrame {
+public class LichSuMuonForm extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form LichSuMuonForm
@@ -16,7 +22,7 @@ public class LichSuMuonForm extends javax.swing.JFrame {
     public LichSuMuonForm() {
         initComponents();
         setResizable(false);
-        setLocationRelativeTo(null);
+        loadTable();
     }
 
     /**
@@ -31,8 +37,10 @@ public class LichSuMuonForm extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblYeuCauMuon = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,51 +51,60 @@ public class LichSuMuonForm extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Lịch Sử Mượn");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblYeuCauMuon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Yêu Cầu", "Mã Sinh Viên", "Mã Sách", "Tên Sách", "Ngày Mượn", "Trạng Thái"
+                "Mã Yêu Cầu", "Mã Sinh Viên", "Mã Sách", "Tên Sách", "Ngày Mượn", "Trạng Thái", "Họ Và Tên", "MSSV", "Email", "SĐT"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblYeuCauMuon);
 
         jButton1.setText("Trả Sách");
+
+        jButton2.setText("Xem Chi Tiết ");
+
+        jButton3.setText("Reload bảng");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(344, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 375, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(369, 369, 369))))))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton3)
+                        .addGap(325, 325, 325))))
+            .addComponent(jScrollPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,9 +158,53 @@ public class LichSuMuonForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable tblYeuCauMuon;
     // End of variables declaration//GEN-END:variables
+
+public void loadTable() {
+    try {
+        BorrowRequestDaoImpl dao = new BorrowRequestDaoImpl();
+        List<BorrowRequest> list = dao.selectAll();
+
+        // Khởi tạo model và đặt tiêu đề cột
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{
+            "RequestID", "UserID", "Họ và Tên", "MSSV", "Email", "SĐT", "Mã Sách", "Số Lượng", "Ngày Mượn", "Trạng Thái", "Ghi Chú"
+        });
+
+        // Thêm dữ liệu vào bảng
+        for (BorrowRequest br : list) {
+            model.addRow(new Object[]{
+                br.getRequestID(),
+                br.getUserID(),
+                br.getHoTen(),
+                br.getMSSV(),
+                br.getEmail(),
+                br.getPhoneNumber(),
+                br.getMaSach(),
+                br.getSoLuong(),
+                br.getRequestDate(),
+                br.getStatus(),
+                br.getNote()
+            });
+        }
+
+        // Gán model cho JTable
+        tblYeuCauMuon.setModel(model);
+
+        // Tùy chọn: chỉnh lại độ rộng cột, căn giữa, ... nếu muốn
+        // tblYeuCauMuon.getColumnModel().getColumn(0).setPreferredWidth(50);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Lỗi khi load dữ liệu BorrowRequest!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+
 }

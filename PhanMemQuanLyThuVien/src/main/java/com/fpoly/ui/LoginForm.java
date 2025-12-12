@@ -312,7 +312,7 @@ public class LoginForm extends javax.swing.JFrame {
         int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
                 "Bạn có chắc chắn muốn thoát?",
                 "Xác nhận thoát",
-                javax.swing.JOptionPane.YES_NO_OPTION);
+                javax.swing.JOptionPane.YES_NO_OPTION); 
         if (confirm == javax.swing.JOptionPane.YES_OPTION) {
             System.exit(0);
         }

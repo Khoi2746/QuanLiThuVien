@@ -128,7 +128,7 @@ public class DoiMatKhauForm extends javax.swing.JFrame {
         getContentPane().add(txtNewPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 186, 388, 30));
         getContentPane().add(txtXacNhanPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 250, 388, 30));
 
-        jPanel2.setBackground(new java.awt.Color(153, 112, 76));
+        jPanel2.setBackground(new java.awt.Color(153, 137, 123));
 
         btnXacNhan.setText("Xác Nhận");
         btnXacNhan.addActionListener(new java.awt.event.ActionListener() {

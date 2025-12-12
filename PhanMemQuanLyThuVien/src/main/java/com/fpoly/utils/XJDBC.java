@@ -131,4 +131,31 @@ public class XJDBC {
     public interface SQLConsumer<T> {
         void accept(T t) throws Exception;
     }
+    public static ResultSet querySingle(String sql, Object... args) throws SQLException {
+        ResultSet rs = query(sql, args);
+        if (rs.next()) {
+            return rs;
+        }
+        close(rs);
+        return null;
+    }
+
+    /** Kiểm tra bản ghi có tồn tại hay không */
+    public static boolean exists(String sql, Object... args) throws SQLException {
+        Object value = executeScalar(sql, args);
+        return value != null;
+    }
+
+    /** Insert & trả về ID sinh tự động */
+    public static int executeInsertReturnId(String sql, Object... args) throws SQLException {
+        String generatedSql = sql + "; SELECT SCOPE_IDENTITY()";
+        Object key = executeScalar(generatedSql, args);
+        return key == null ? -1 : ((Number) key).intValue();
+    }
+
+    /** Tạo PreparedStatement lấy Generated Keys */
+    public static PreparedStatement prepareStatementWithKeys(String sql) throws SQLException {
+        Connection con = getConnection();
+        return con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+    }
 }

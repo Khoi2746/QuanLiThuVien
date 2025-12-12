@@ -4,6 +4,11 @@
  */
 package com.fpoly.ui;
 
+import com.fpoly.DaoImpl.BorrowRequestDaoImpl;
+import com.fpoly.entity.BorrowRequest;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author X1 Carbon
@@ -14,6 +19,7 @@ private String tenSach;
 private String tacGia;
 private String theLoai;
 private int soLuong;
+private LichSuMuonForm lichSuMuonForm;
 
 
     /**
@@ -25,7 +31,7 @@ private int soLuong;
         setResizable(false);
         setLocationRelativeTo(null);
         
-           this.maSach = maSach;
+    this.maSach = maSach;
     this.tenSach = tenSach;
     this.tacGia = tacGia;
     this.theLoai = theLoai;
@@ -69,16 +75,16 @@ private int soLuong;
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtBookName1 = new javax.swing.JTextField();
+        txtHoTen = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtBookName2 = new javax.swing.JTextField();
+        txtMSSV = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtBookName3 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtBookName4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtPhoneNumber = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
+        btnXacNhan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -164,9 +170,19 @@ private int soLuong;
 
         jLabel12.setText("Số Điện Thoại:");
 
-        jButton1.setText("Reset");
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Xác Nhận");
+        btnXacNhan.setText("Xác Nhận");
+        btnXacNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXacNhanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -193,19 +209,19 @@ private int soLuong;
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtBookName4, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBookName3, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBookName2, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMSSV, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)
-                            .addComponent(txtBookName1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
                             .addComponent(jLabel12))
                         .addGap(82, 82, 82))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(110, 110, 110)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(134, 134, 134))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -220,25 +236,25 @@ private int soLuong;
                 .addGap(22, 22, 22)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBookName1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBookName2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMSSV, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBookName3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBookName4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -273,14 +289,24 @@ private int soLuong;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        resetForm();
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
+        // TODO add your handling code here:
+        createBorrowRequest();
+    }//GEN-LAST:event_btnXacNhanActionPerformed
+
     /**
      * @param args the command line arguments
      */
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnXacNhan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -299,11 +325,78 @@ private int soLuong;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtAuthor;
     private javax.swing.JTextField txtBookName;
-    private javax.swing.JTextField txtBookName1;
-    private javax.swing.JTextField txtBookName2;
-    private javax.swing.JTextField txtBookName3;
-    private javax.swing.JTextField txtBookName4;
     private javax.swing.JTextField txtCategory;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtHoTen;
+    private javax.swing.JTextField txtMSSV;
+    private javax.swing.JTextField txtPhoneNumber;
     private javax.swing.JTextField txtSoLuong;
     // End of variables declaration//GEN-END:variables
+public void resetForm() {
+    txtHoTen.setText("");
+    txtMSSV.setText("");
+    txtEmail.setText("");
+    txtPhoneNumber.setText("");
+}
+
+private void createBorrowRequest() {
+    try {
+        String hoTen = txtHoTen.getText().trim();
+        String mssv = txtMSSV.getText().trim();
+        String email = txtEmail.getText().trim();
+        String phone = txtPhoneNumber.getText().trim();
+
+        if(hoTen.isEmpty() || mssv.isEmpty() || email.isEmpty() || phone.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin sinh viên!");
+            return;
+        }
+
+        // Tạo ghi chú
+        String note = String.format("Họ tên: %s | MSSV: %s | Email: %s | SDT: %s", hoTen, mssv, email, phone);
+
+        // Tạo đối tượng BorrowRequest
+        BorrowRequest br = new BorrowRequest();
+        br.setUserID(0); // nếu bạn không dùng bảng Users
+        br.setHoTen(hoTen);
+        br.setMSSV(mssv);
+        br.setEmail(email);
+        br.setPhoneNumber(phone);
+        br.setMaSach(maSach);
+        br.setSoLuong(soLuong);
+        br.setStatus("Pending");
+        br.setNote(note);
+
+        // Thêm vào DB
+        BorrowRequestDaoImpl dao = new BorrowRequestDaoImpl();
+        dao.insert(br);
+
+        // Cập nhật JTable LichSuMuonForm
+        if (lichSuMuonForm != null) {
+            DefaultTableModel model;
+            model = (DefaultTableModel) lichSuMuonForm.tblYeuCauMuon.getModel();
+            model.addRow(new Object[]{
+                br.getRequestID(),
+                br.getUserID(),
+                br.getHoTen(),
+                br.getMSSV(),
+                br.getEmail(),
+                br.getPhoneNumber(),
+                br.getMaSach(),
+                br.getSoLuong(),
+                br.getStatus(),
+                br.getNote()
+            });
+        }
+
+        JOptionPane.showMessageDialog(this, "Tạo phiếu mượn thành công! Vui lòng chờ thủ thư duyệt.");
+        this.dispose();
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Lỗi khi tạo phiếu mượn!");
+    }
+}
+
+
+
 }

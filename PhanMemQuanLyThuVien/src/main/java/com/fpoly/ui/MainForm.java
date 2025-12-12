@@ -39,6 +39,7 @@ public class MainForm extends javax.swing.JFrame {
         applyHoverEffect(btnChangePass, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
         applyHoverEffect(btnLogOut, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
 
+        openTraSach();
         openQLQuaHan();
         openMuonsach();
         openUser();
@@ -64,7 +65,7 @@ public class MainForm extends javax.swing.JFrame {
         tabBaoCaoThongKe = new javax.swing.JPanel();
         tabDanhSachQuaHan = new javax.swing.JPanel();
         tabMuonSach = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        tabTraSach = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         tabUserManager = new javax.swing.JPanel();
         QLQuaHan = new javax.swing.JPanel();
@@ -131,20 +132,20 @@ public class MainForm extends javax.swing.JFrame {
 
         tabMain.addTab("Mượn Sách", tabMuonSach);
 
-        jPanel3.setBackground(new java.awt.Color(153, 112, 76));
+        tabTraSach.setBackground(new java.awt.Color(153, 112, 76));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout tabTraSachLayout = new javax.swing.GroupLayout(tabTraSach);
+        tabTraSach.setLayout(tabTraSachLayout);
+        tabTraSachLayout.setHorizontalGroup(
+            tabTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1250, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        tabTraSachLayout.setVerticalGroup(
+            tabTraSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 575, Short.MAX_VALUE)
         );
 
-        tabMain.addTab("Trả Sách", jPanel3);
+        tabMain.addTab("Trả Sách", tabTraSach);
 
         jPanel5.setBackground(new java.awt.Color(153, 112, 76));
 
@@ -338,7 +339,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JToggleButton jToggleButton1;
@@ -346,6 +346,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JPanel tabDanhSachQuaHan;
     private javax.swing.JTabbedPane tabMain;
     private javax.swing.JPanel tabMuonSach;
+    private javax.swing.JPanel tabTraSach;
     private javax.swing.JPanel tabUserManager;
     // End of variables declaration//GEN-END:variables
 
@@ -579,6 +580,36 @@ public class MainForm extends javax.swing.JFrame {
     tabPanel.add(quanLyQuaHanForm, java.awt.BorderLayout.CENTER);
 
     quanLyQuaHanForm.setVisible(true);
+    tabPanel.revalidate();
+    tabPanel.repaint();
+}
+    public void openTraSach() {
+    // 1. Lấy JPanel của tab "Mượn Sách"
+    javax.swing.JPanel tabPanel = tabTraSach;
+
+    // 2. Dọn dẹp panel trước khi nhúng form mới
+    if (tabPanel.getComponentCount() > 0) {
+        tabPanel.removeAll();
+    }
+
+    // 3. Thiết lập layout cho panel chứa (quan trọng)
+    tabPanel.setLayout(new java.awt.BorderLayout());
+
+    // 4. Khởi tạo JInternalFrame mới (Lịch Sử Mượn)
+    LichSuMuonForm lichSuMuonForm = new LichSuMuonForm();
+
+    // 5. Thiết lập JInternalFrame ở chế độ tối đa (lấp đầy panel)
+    try {
+        lichSuMuonForm.setMaximum(true);
+    } catch (java.beans.PropertyVetoException e) {
+        // Log lỗi hoặc bỏ qua
+    }
+
+    // 6. Thêm JInternalFrame vào vị trí CENTER
+    tabPanel.add(lichSuMuonForm, java.awt.BorderLayout.CENTER);
+
+    // 7. Hiển thị và cập nhật giao diện
+    lichSuMuonForm.setVisible(true);
     tabPanel.revalidate();
     tabPanel.repaint();
 }
