@@ -351,12 +351,14 @@ private void createBorrowRequest() {
             return;
         }
 
-        // Tạo ghi chú
+        int loggedInUserID = 1; 
+
         String note = String.format("Họ tên: %s | MSSV: %s | Email: %s | SDT: %s", hoTen, mssv, email, phone);
 
-        // Tạo đối tượng BorrowRequest
         BorrowRequest br = new BorrowRequest();
-        br.setUserID(0); // nếu bạn không dùng bảng Users
+        
+        br.setUserID(loggedInUserID); 
+        
         br.setHoTen(hoTen);
         br.setMSSV(mssv);
         br.setEmail(email);
@@ -366,34 +368,31 @@ private void createBorrowRequest() {
         br.setStatus("Pending");
         br.setNote(note);
 
-        // Thêm vào DB
         BorrowRequestDaoImpl dao = new BorrowRequestDaoImpl();
         dao.insert(br);
 
-        // Cập nhật JTable LichSuMuonForm
         if (lichSuMuonForm != null) {
             DefaultTableModel model;
             model = (DefaultTableModel) lichSuMuonForm.tblYeuCauMuon.getModel();
             model.addRow(new Object[]{
-                br.getRequestID(),
-                br.getUserID(),
-                br.getHoTen(),
-                br.getMSSV(),
-                br.getEmail(),
-                br.getPhoneNumber(),
-                br.getMaSach(),
-                br.getSoLuong(),
-                br.getStatus(),
+                br.getRequestID(), 
+                br.getUserID(), 
+                br.getHoTen(), 
+                br.getMSSV(), 
+                br.getEmail(), 
+                br.getPhoneNumber(), 
+                br.getMaSach(), 
+                br.getSoLuong(), 
+                br.getStatus(), 
                 br.getNote()
             });
         }
-
+        
         JOptionPane.showMessageDialog(this, "Tạo phiếu mượn thành công! Vui lòng chờ thủ thư duyệt.");
         this.dispose();
-
     } catch (Exception e) {
         e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Lỗi khi tạo phiếu mượn!");
+        JOptionPane.showMessageDialog(this, "Lỗi khi tạo phiếu mượn: " + e.getMessage());
     }
 }
 
