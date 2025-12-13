@@ -6,7 +6,9 @@ package com.fpoly.ui;
 
 import com.fpoly.DaoImpl.BorrowRequestDaoImpl;
 import com.fpoly.entity.BorrowRequest;
+import java.awt.Color;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,13 +17,17 @@ import javax.swing.table.DefaultTableModel;
  * @author X1 Carbon
  */
 public class LichSuMuonForm extends javax.swing.JInternalFrame {
-
+     private final Color DEFAULT_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
+    private final Color HOVER_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
     /**
      * Creates new form LichSuMuonForm
      */
     public LichSuMuonForm() {
         initComponents();
         setResizable(false);
+        applyHoverEffect(btnReloadBang, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnTrasach, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnXemChiTiet, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
         loadTable();
     }
 
@@ -38,13 +44,13 @@ public class LichSuMuonForm extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblYeuCauMuon = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnTrasach = new javax.swing.JButton();
+        btnXemChiTiet = new javax.swing.JButton();
         btnReloadBang = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(153, 112, 76));
         jPanel1.setForeground(new java.awt.Color(204, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -64,9 +70,9 @@ public class LichSuMuonForm extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblYeuCauMuon);
 
-        jButton1.setText("Trả Sách");
+        btnTrasach.setText("Trả Sách");
 
-        jButton2.setText("Xem Chi Tiết ");
+        btnXemChiTiet.setText("Xem Chi Tiết ");
 
         btnReloadBang.setText("Reload bảng");
         btnReloadBang.addActionListener(new java.awt.event.ActionListener() {
@@ -83,9 +89,9 @@ public class LichSuMuonForm extends javax.swing.JInternalFrame {
                 .addContainerGap(344, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnXemChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTrasach, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -107,8 +113,8 @@ public class LichSuMuonForm extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTrasach, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXemChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14))
         );
 
@@ -168,8 +174,8 @@ public class LichSuMuonForm extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReloadBang;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnTrasach;
+    private javax.swing.JButton btnXemChiTiet;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -214,6 +220,29 @@ public void loadTable() {
         e.printStackTrace();
         JOptionPane.showMessageDialog(this, "Lỗi khi load dữ liệu BorrowRequest!", "Lỗi", JOptionPane.ERROR_MESSAGE);
     }
+}
+
+private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
+
+    button.setForeground(Color.BLACK);
+    // THÊM DÒNG NÀY: Đặt màu nền ban đầu
+    button.setBackground(defaultColor); 
+
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hoverColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        }
+
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(defaultColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        }
+    });
 }
 
 

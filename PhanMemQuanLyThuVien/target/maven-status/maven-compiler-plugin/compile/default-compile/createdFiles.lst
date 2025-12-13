@@ -1,6 +1,7 @@
 com\fpoly\ui\DuyetYeuCauMuonTraSachForm$1$1.class
 com\fpoly\ui\LoginForm$7.class
 com\fpoly\ui\DoiMatKhauForm$1.class
+com\fpoly\ui\LichSuMuonForm$3.class
 com\fpoly\entity\QLQuaHan.class
 com\fpoly\ui\QuanLyBaoCaoThongKe$3.class
 com\fpoly\ui\ThongBaoQuanHanFrom$1.class
@@ -47,7 +48,6 @@ com\fpoly\ui\MuonSachForm$6.class
 com\fpoly\ui\QuanLyNguoiDungForm$10.class
 com\fpoly\ui\ThongBaoQuanHanFrom$3.class
 com\fpoly\ui\LoginForm$6.class
-com\fpoly\ui\GiaHanMuon.class
 com\fpoly\utils\MsgBox.class
 com\fpoly\Dao\BookDAO.class
 com\fpoly\ui\WelcomeForm_1$1.class
@@ -75,6 +75,7 @@ com\fpoly\ui\DoiMatKhauForm$8.class
 com\fpoly\ui\QuanLyKhoSachForm$2.class
 com\fpoly\ui\QuanLyNguoiDungForm.class
 com\fpoly\ui\MainForm$2.class
+com\fpoly\ui\QuanLyNguoiDungForm$11.class
 com\fpoly\ui\QuanLyThongBaoQuaHan$2.class
 com\fpoly\ui\QuenMatKhauJDialog$2.class
 com\fpoly\ui\MuonSachForm$1.class
@@ -98,7 +99,6 @@ com\fpoly\ui\QuanLyBaoCaoThongKe$4.class
 com\fpoly\ui\WelcomeForm_1$3.class
 com\fpoly\utils\ShareHelper.class
 com\fpoly\ui\DoiMatKhauForm$5.class
-com\fpoly\ui\GiaHanMuon$1.class
 com\poly\DaoImpl\OverdueDAOImpl.class
 com\fpoly\ui\LoginForm$10.class
 com\fpoly\ui\DuyetYeuCauMuonTraSachForm$1.class
@@ -109,10 +109,10 @@ com\fpoly\ui\QuanLyNguoiDungForm$3.class
 com\fpoly\ui\LoginForm$2.class
 com\fpoly\ui\MainForm.class
 com\fpoly\Dao\BorrowDAO.class
-com\fpoly\ui\GiaHanMuon$1$1.class
 com\fpoly\ui\QuanLyNguoiDungForm$7.class
 com\fpoly\ui\LoginForm$9.class
 com\fpoly\ui\QuanLyKhoSachForm$4.class
+com\fpoly\ui\QuanLyBaoCaoThongKe$5.class
 com\fpoly\ui\QuenMatKhauJDialog.class
 TestLombok.class
 com\fpoly\ui\LoginForm$1.class

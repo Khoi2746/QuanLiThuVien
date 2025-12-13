@@ -159,10 +159,10 @@ public class BookDAOImpl implements BookDAO {
             XJDBC.close(rs); 
         }
     }
+@Override
+public void searchBooks(JTable tblBooks, String keyword, int categoryID) { // Cần 3 tham số này!
 
-
-public void searchBooks(javax.swing.JTable tblBooks, String keyword, int categoryID) {
-    // 1. CÂU LỆNH SQL: Lọc theo Keyword VÀ CategoryID
+    // CÂU LỆNH SQL:
     String sql = """
                  SELECT 
                       b.BookID, 
@@ -177,23 +177,23 @@ public void searchBooks(javax.swing.JTable tblBooks, String keyword, int categor
                  AND (b.CategoryID = ? OR ? = 0)
                  """;
 
-    DefaultTableModel model = (DefaultTableModel) tblBooks.getModel();
+    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblBooks.getModel();
     model.setRowCount(0);
 
-    ResultSet rs = null;
+    java.sql.ResultSet rs = null;
     try {
         String searchKeyword = "%" + keyword + "%";
 
-        // 2. Thực thi truy vấn với 5 tham số
-        rs = XJDBC.query(sql, 
+        // Thực thi truy vấn với 5 tham số:
+        rs = com.fpoly.utils.XJDBC.query(sql, 
                 searchKeyword, 
                 searchKeyword, 
                 searchKeyword, 
                 categoryID, 
                 categoryID
         );
-
-        // 3. Đổ dữ liệu vào bảng
+        
+        // Logic đổ dữ liệu vào bảng
         if (rs != null) {
             while (rs.next()) {
                 Object[] row = {
@@ -206,11 +206,14 @@ public void searchBooks(javax.swing.JTable tblBooks, String keyword, int categor
                 model.addRow(row);
             }
         }
-    } catch (SQLException e) {
+    } catch (java.sql.SQLException e) {
         e.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Lỗi tải dữ liệu tìm kiếm: " + e.getMessage());
+        javax.swing.JOptionPane.showMessageDialog(null, "Lỗi tải dữ liệu tìm kiếm: " + e.getMessage());
     } finally {
-        XJDBC.close(rs);
+        // Đóng ResultSet
+        com.fpoly.utils.XJDBC.close(rs); 
     }
 }
+
+
 }

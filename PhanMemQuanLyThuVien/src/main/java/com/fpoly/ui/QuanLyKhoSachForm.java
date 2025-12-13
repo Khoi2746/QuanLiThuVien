@@ -203,12 +203,14 @@ private void clearForm() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(153, 112, 76));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Kho Sách");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Tìm Kiếm :");
 
         tblBooks.setModel(new javax.swing.table.DefaultTableModel(
@@ -387,7 +389,7 @@ private void clearForm() {
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                                 .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -397,7 +399,7 @@ private void clearForm() {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblClock, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(236, 236, 236)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
@@ -609,15 +611,16 @@ private void clearForm() {
             String maSach = model.getValueAt(selectedRow, 0).toString();
             String tenSach = model.getValueAt(selectedRow, 1).toString();
             String tenTacGia = model.getValueAt(selectedRow, 2).toString();
-            String theLoai = model.getValueAt(selectedRow, 3).toString();
+            String theLoaiName = model.getValueAt(selectedRow, 3).toString(); // Tên thể loại
             String soLuong = model.getValueAt(selectedRow, 4).toString();
             
             txtMaSach.setText(maSach);
             txtTenSach.setText(tenSach);
             txtTacGia.setText(tenTacGia);
             
-            // Đã sửa: Dùng setSelectedItem() để chọn giá trị trong JComboBox
-            cboTheLoai.setSelectedItem(theLoai); 
+            // --- LOGIC CHỌN ĐỐI TƯỢNG TRONG COMBOBOX ---
+            selectCategoryByName(theLoaiName); 
+            // ------------------------------------------
             
             txtSoLuong.setText(soLuong);
         }
@@ -649,4 +652,24 @@ private void clearForm() {
         MsgBox.alert(this, "Lỗi khi tải dữ liệu Thể loại: " + e.getMessage()); 
     }
 }
+
+private void selectCategoryByName(String categoryName) {
+    // Ép kiểu model của ComboBox về DefaultComboBoxModel<Category>
+    javax.swing.DefaultComboBoxModel<Category> model = (javax.swing.DefaultComboBoxModel<Category>) cboTheLoai.getModel();
+    
+    // Duyệt qua tất cả các phần tử trong ComboBox
+    for (int i = 0; i < model.getSize(); i++) {
+        Category cat = model.getElementAt(i);
+        
+        // So sánh Tên thể loại (Sử dụng equalsIgnoreCase để đảm bảo độ chính xác)
+        if (cat.getCategoryName().equalsIgnoreCase(categoryName)) {
+            cboTheLoai.setSelectedIndex(i);
+            return; // Thoát ngay sau khi tìm thấy và chọn
+        }
+    }
+    
+    // Tùy chọn: Nếu không tìm thấy tên thể loại khớp, chọn mục mặc định (index 0)
+    // cboTheLoai.setSelectedIndex(0); 
+}
+
 }

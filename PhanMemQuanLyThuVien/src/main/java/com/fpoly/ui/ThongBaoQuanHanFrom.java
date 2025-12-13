@@ -69,6 +69,7 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
         btnLamMoi = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 112, 76));
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N

@@ -18,9 +18,11 @@ import com.poly.DaoImpl.BorrowDAOImpl;
 import com.poly.DaoImpl.OverallStatisticsDAOImpl;
 import com.poly.DaoImpl.SoLuotMuonDAOImpl;
 import com.poly.DaoImpl.StatisticalDAOImpl;
+import java.awt.Color;
 import java.io.FileOutputStream;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,13 +35,17 @@ public class QuanLyBaoCaoThongKe extends javax.swing.JInternalFrame {
     private final BorrowDAO borrowDAO = new BorrowDAOImpl();
     private final SoLuotMuonDAO soLuotMuonDAO = new SoLuotMuonDAOImpl();
     private final OverallStatisticsDAO overallStatisticsDAO = new OverallStatisticsDAOImpl();
-
+    private final Color DEFAULT_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
+    private final Color HOVER_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
     /**
      * Creates new form QuanLyBaoCaoThongKe
      */
     public QuanLyBaoCaoThongKe() {
         initComponents();
         setResizable(false);
+        applyHoverEffect(btnloc, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnloc1, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnloc3, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
      
         fillData();
         fillData3();
@@ -209,13 +215,13 @@ private void fillOverallStatistics() {
 
         jPanel1.setBackground(new java.awt.Color(153, 112, 76));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(210, 180, 140));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setBackground(new java.awt.Color(255, 0, 51));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Báo cáo thống kê");
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Screenshot 2025-11-14 130729.png"))); // NOI18N
@@ -226,7 +232,7 @@ private void fillOverallStatistics() {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(334, 334, 334)
+                .addGap(353, 353, 353)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -247,7 +253,9 @@ private void fillOverallStatistics() {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setForeground(new java.awt.Color(153, 0, 0));
 
+        tbTab.setBackground(new java.awt.Color(210, 180, 140));
         tbTab.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tbTab.setForeground(new java.awt.Color(0, 0, 0));
 
         jPanel10.setBackground(new java.awt.Color(153, 112, 76));
 
@@ -733,4 +741,28 @@ if (keyword.isEmpty()) {
     private javax.swing.JTextField txttimkiem1;
     private javax.swing.JTextField txttimkiem3;
     // End of variables declaration//GEN-END:variables
+
+private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
+
+    button.setForeground(Color.BLACK);
+    // THÊM DÒNG NÀY: Đặt màu nền ban đầu
+    button.setBackground(defaultColor); 
+
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hoverColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        }
+
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(defaultColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        }
+    });
+}
+
 }

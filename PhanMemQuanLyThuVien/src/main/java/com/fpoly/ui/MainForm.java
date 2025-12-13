@@ -115,7 +115,7 @@ public class MainForm extends javax.swing.JFrame {
             .addGap(0, 575, Short.MAX_VALUE)
         );
 
-        tabMain.addTab("Danh Sách /Thông BáoQuá Hạn", tabDanhSachQuaHan);
+        tabMain.addTab("Danh Sách /Thông Báo Quá Hạn", tabDanhSachQuaHan);
 
         tabMuonSach.setBackground(new java.awt.Color(153, 112, 76));
 
@@ -408,7 +408,7 @@ public class MainForm extends javax.swing.JFrame {
             removeTabIfExists("Trang Quản Lí Tài Khoản");
             removeTabIfExists("Mượn Sách");
             removeTabIfExists("Trả Sách");
-            removeTabIfExists("Gia Hạn Mượn");
+            removeTabIfExists("Danh Sách/Thông Báo Quá Hạn");
 
         }
 
@@ -418,6 +418,7 @@ public class MainForm extends javax.swing.JFrame {
             removeTabIfExists("Báo Cáo Thống Kê");
             removeTabIfExists("Duyệt Yêu Cầu Mượn/Trả Sách");
             removeTabIfExists("Quản Lí Kho Sách");
+            removeTabIfExists("Quản Lí Thông Báo Quá Hạn");
             // Tab Mượn Sách được giữ lại
         }
     }

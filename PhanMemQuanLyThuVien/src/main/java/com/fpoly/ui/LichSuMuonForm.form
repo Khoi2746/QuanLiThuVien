@@ -35,7 +35,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="99" green="99" red="99" type="rgb"/>
+          <Color blue="4c" green="70" red="99" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
@@ -49,9 +49,9 @@
                   <EmptySpace pref="344" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButton2" min="-2" pref="135" max="-2" attributes="0"/>
+                          <Component id="btnXemChiTiet" min="-2" pref="135" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="135" max="-2" attributes="0"/>
+                          <Component id="btnTrasach" min="-2" pref="135" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -80,8 +80,8 @@
                   <Component id="jScrollPane1" pref="435" max="32767" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="btnTrasach" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="btnXemChiTiet" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               </Group>
@@ -187,12 +187,12 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnTrasach">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tr&#x1ea3; S&#xe1;ch"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnXemChiTiet">
           <Properties>
             <Property name="text" type="java.lang.String" value="Xem Chi Ti&#x1ebf;t "/>
           </Properties>
