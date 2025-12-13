@@ -16,8 +16,10 @@ import javax.swing.Timer;
 import com.fpoly.Dao.BookDAO;
 import com.poly.DaoImpl.BookDAOImpl;
 import com.poly.DaoImpl.CategoryDAOImpl;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 
 
 /**
@@ -28,11 +30,19 @@ public class QuanLyKhoSachForm extends javax.swing.JInternalFrame {
        private BookDAO bookDAO;
     private final CategoryDAOImpl CategoryDAO;
     private int categoryID;
+    private final Color DEFAULT_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
+    private final Color HOVER_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
         /**
      * Creates new form QuanLyKhoSach
      */
     public QuanLyKhoSachForm() {
         initComponents();
+         applyHoverEffect(btnCapNhat, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnMoi, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnThemSach, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnTimKiem, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnXoa, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+       
     // ...
     // Khởi tạo DAO
     this.bookDAO = new BookDAOImpl();
@@ -206,13 +216,14 @@ private void clearForm() {
         jPanel1.setBackground(new java.awt.Color(153, 112, 76));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Kho Sách");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Tìm Kiếm :");
 
+        tblBooks.setBackground(new java.awt.Color(210, 180, 140));
         tblBooks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -239,14 +250,19 @@ private void clearForm() {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        btnLamMoi.setBackground(new java.awt.Color(204, 204, 204));
+        btnLamMoi.setBackground(new java.awt.Color(153, 112, 76));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Mã Sách :");
 
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Tên Sách :");
 
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Tên Tác Giả :");
 
+        jLabel6.setBackground(new java.awt.Color(153, 112, 76));
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Thể Loại :");
 
         btnThemSach.setText("Thêm Sách");
@@ -262,6 +278,7 @@ private void clearForm() {
             }
         });
 
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Số Lượng :");
 
         btnMoi.setText("Làm mới");
@@ -670,6 +687,29 @@ private void selectCategoryByName(String categoryName) {
     
     // Tùy chọn: Nếu không tìm thấy tên thể loại khớp, chọn mục mặc định (index 0)
     // cboTheLoai.setSelectedIndex(0); 
+}
+
+private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
+
+    button.setForeground(Color.BLACK);
+    // THÊM DÒNG NÀY: Đặt màu nền ban đầu
+    button.setBackground(defaultColor); 
+
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hoverColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        }
+
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(defaultColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        }
+    });
 }
 
 }

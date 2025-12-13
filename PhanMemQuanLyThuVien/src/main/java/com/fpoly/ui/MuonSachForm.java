@@ -89,6 +89,7 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
         });
         getContentPane().add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(818, 32, 112, 31));
 
+        tblBooks.setBackground(new java.awt.Color(210, 180, 140));
         tblBooks.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},

@@ -7,10 +7,12 @@ package com.fpoly.ui;
 import com.fpoly.Dao.OverdueDAO;
 import com.fpoly.utils.MsgBox;
 import com.poly.DaoImpl.OverdueDAOImpl;
+import java.awt.Color;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,7 +21,8 @@ import javax.swing.table.DefaultTableModel;
  * @author MSI
  */
 public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
-
+   private final Color DEFAULT_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
+    private final Color HOVER_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
     OverdueDAO dao = new OverdueDAOImpl();
 
     /**
@@ -27,7 +30,39 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
      */
     public ThongBaoQuanHanFrom() {
         initComponents();
+        applyHoverEffect(btnLamMoi, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnTimKiem, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnXemChiTiet, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
         loadOverdue();
+//        ====================================Hiệu Ứng txt Search========================================//
+         txtSearch.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+                txtSearch.setBackground(HOVER_BUTTON_COLOR);
+                txtSearch.setForeground(Color.BLACK);
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+                txtSearch.setBackground(Color.WHITE);
+                txtSearch.setForeground(Color.BLACK);
+            }
+        });
+//=======================================Hiệu ứng txt Chi Tiết=============================//
+          txtThongKe.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+                txtThongKe.setBackground(HOVER_BUTTON_COLOR);
+                txtThongKe.setForeground(Color.BLACK);
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+                txtThongKe.setBackground(Color.WHITE);
+                txtThongKe.setForeground(Color.BLACK);
+            }
+        });
+//=================================================================================================================//        
 
     }
 
@@ -72,12 +107,15 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(153, 112, 76));
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Thông Báo quá Hạn");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Thông Báo Quá Hạn");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Tìm Kiếm:");
 
+        tblQuaHan.setBackground(new java.awt.Color(210, 180, 140));
         tblQuaHan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -123,20 +161,9 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTimKiem)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scpQuaHan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+                            .addComponent(scpQuaHan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1016, Short.MAX_VALUE)
                             .addComponent(txtThongKe)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtTenSach, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,20 +171,33 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
                                 .addComponent(btnLamMoi))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnXemChiTiet)))
+                        .addComponent(btnXemChiTiet))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(303, 303, 303)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTimKiem))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(331, 331, 331)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(btnTimKiem))
-                .addGap(18, 18, 18)
+                .addGap(5, 5, 5)
                 .addComponent(btnXemChiTiet)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -168,7 +208,7 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
                     .addComponent(btnLamMoi))
                 .addGap(18, 18, 18)
                 .addComponent(txtThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -282,4 +322,27 @@ public class ThongBaoQuanHanFrom extends javax.swing.JInternalFrame {
         }
 
     }
+    
+    private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
+
+    button.setForeground(Color.BLACK);
+    // THÊM DÒNG NÀY: Đặt màu nền ban đầu
+    button.setBackground(defaultColor); 
+
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hoverColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        }
+
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(defaultColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        }
+    });
+}
 }

@@ -16,8 +16,8 @@ import javax.swing.JButton;
  */
 public class LoginForm extends javax.swing.JFrame {
 
-    private final Color DEFAULT_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
     private final Color HOVER_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
+    private final Color DEFAULT_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
 
     /**
      * Creates new form LoginForm

@@ -8,6 +8,7 @@ package com.fpoly.ui;
 import com.fpoly.Dao.QLQuaHanDao;
 import com.poly.DaoImpl.QLQuaHanDAOImpl;
 import com.fpoly.entity.QLQuaHan;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -17,11 +18,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QuanLyThongBaoQuaHan extends javax.swing.JInternalFrame {
       QLQuaHanDao dao =  new QLQuaHanDAOImpl();
+      private final Color DEFAULT_BUTTON_COLOR = new Color(210, 180, 140); // Màu HOVER: NÂU NHẠT
+    private final Color HOVER_BUTTON_COLOR = new Color(255, 255, 255); // Màu Mặc định: TRẮNG
     /**
      * Creates new form QuanLyThongBaoQuaHan
      */
     public QuanLyThongBaoQuaHan() {
     initComponents();
+    applyHoverEffect(btnCapNhat, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnThem, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnGuiThongBao, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnTim, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
+        applyHoverEffect(btnXoa, DEFAULT_BUTTON_COLOR, HOVER_BUTTON_COLOR);
     loadTable();
     setTitle("Quản Lý Phiếu Quá Hạn");
 
@@ -81,7 +89,7 @@ public class QuanLyThongBaoQuaHan extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Quản Lý Thông Báo Phiếu Mượn Quá Hạn");
 
         jLabel3.setText("Mã phiếu");
@@ -105,6 +113,7 @@ public class QuanLyThongBaoQuaHan extends javax.swing.JInternalFrame {
             }
         });
 
+        tblQuaHan.setBackground(new java.awt.Color(210, 180, 140));
         tblQuaHan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -445,4 +454,27 @@ public class QuanLyThongBaoQuaHan extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTimKiem;
     private javax.swing.JTextField txtTrangThai;
     // End of variables declaration//GEN-END:variables
+private void applyHoverEffect(JButton button, Color defaultColor, Color hoverColor) {
+
+    button.setForeground(Color.BLACK);
+    // THÊM DÒNG NÀY: Đặt màu nền ban đầu
+    button.setBackground(defaultColor); 
+
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hoverColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        }
+
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(defaultColor);
+            button.setForeground(Color.BLACK);
+            setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        }
+    });
+}
+
 }

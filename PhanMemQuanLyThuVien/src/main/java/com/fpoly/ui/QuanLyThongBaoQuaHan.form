@@ -143,7 +143,7 @@
           <Font name="Segoe UI Black" size="18" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Th&#xf4;ng B&#xe1;o Phi&#x1ebf;u M&#x1b0;&#x1ee3;n Qu&#xe1; H&#x1ea1;n"/>
       </Properties>
@@ -214,6 +214,9 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="tblQuaHan">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="8c" green="b4" red="d2" type="rgb"/>
+            </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="6" rowCount="4">
                 <Column editable="true" title="M&#xe3; phi&#x1ebf;u" type="java.lang.Object"/>
