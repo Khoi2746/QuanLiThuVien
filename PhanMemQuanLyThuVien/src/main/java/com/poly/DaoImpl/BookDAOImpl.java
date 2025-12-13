@@ -160,39 +160,41 @@ public class BookDAOImpl implements BookDAO {
         }
     }
 
-    @Override
-    public void searchBooks(JTable tblBooks, String keyword) {
-        
-        // Câu lệnh SQL JOIN 3 bảng và thêm điều kiện WHERE...LIKE
-      // Sửa thành 3 điều kiện tìm kiếm
-String sql = """
-             SELECT 
-                 b.BookID, 
-                 b.Title, 
-                 a.AuthorName, 
-                 c.CategoryName, 
-                 b.Quantity 
-             FROM Books b
-             JOIN Authors a ON b.AuthorID = a.AuthorID
-             JOIN Categories c ON b.CategoryID = c.CategoryID
-             WHERE b.BookID LIKE ? OR b.Title LIKE ? OR a.AuthorName LIKE ?
-             """;
-        
-        DefaultTableModel model = (DefaultTableModel) tblBooks.getModel();
-        model.setRowCount(0); 
 
-        ResultSet rs = null;
-try {
-    String searchKeyword = "%" + keyword + "%";
-            
-    // Phải truyền 3 tham số cho 3 dấu '?'
-    rs = XJDBC.query(sql, searchKeyword, searchKeyword, searchKeyword); 
-   
-            if (rs == null) {
-                 JOptionPane.showMessageDialog(null, "Lỗi: Không thể thực thi truy vấn tìm kiếm.");
-                 return;
-            }
+public void searchBooks(javax.swing.JTable tblBooks, String keyword, int categoryID) {
+    // 1. CÂU LỆNH SQL: Lọc theo Keyword VÀ CategoryID
+    String sql = """
+                 SELECT 
+                      b.BookID, 
+                      b.Title, 
+                      a.AuthorName, 
+                      c.CategoryName, 
+                      b.Quantity 
+                 FROM Books b
+                 JOIN Authors a ON b.AuthorID = a.AuthorID
+                 JOIN Categories c ON b.CategoryID = c.CategoryID
+                 WHERE (b.BookID LIKE ? OR b.Title LIKE ? OR a.AuthorName LIKE ?)
+                 AND (b.CategoryID = ? OR ? = 0)
+                 """;
 
+    DefaultTableModel model = (DefaultTableModel) tblBooks.getModel();
+    model.setRowCount(0);
+
+    ResultSet rs = null;
+    try {
+        String searchKeyword = "%" + keyword + "%";
+
+        // 2. Thực thi truy vấn với 5 tham số
+        rs = XJDBC.query(sql, 
+                searchKeyword, 
+                searchKeyword, 
+                searchKeyword, 
+                categoryID, 
+                categoryID
+        );
+
+        // 3. Đổ dữ liệu vào bảng
+        if (rs != null) {
             while (rs.next()) {
                 Object[] row = {
                     rs.getString("BookID"),
@@ -203,12 +205,12 @@ try {
                 };
                 model.addRow(row);
             }
-        } catch (SQLException e) {
-            e.printStackTrace(); 
-            JOptionPane.showMessageDialog(null, "Lỗi tải dữ liệu tìm kiếm: " + e.getMessage());
-        } finally {
-            XJDBC.close(rs); 
         }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Lỗi tải dữ liệu tìm kiếm: " + e.getMessage());
+    } finally {
+        XJDBC.close(rs);
     }
-
+}
 }

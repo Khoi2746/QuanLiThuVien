@@ -29,7 +29,8 @@ public interface BookDAO {
     void loadBooksToTable(JTable tblBooks);
     
     // Tìm kiếm sách theo từ khóa
-    void searchBooks(JTable tblBooks, String keyword);
+    // Trong com.fpoly.Dao.BookDAO
+void searchBooks(JTable tblBooks, String keyword, int categoryID); // PHẢI SỬA THÀNH 3 THAM SỐ
     
 
 }

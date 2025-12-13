@@ -10,7 +10,6 @@ import com.fpoly.utils.MsgBox;
 import com.poly.DaoImpl.BookDAOImpl;
 import com.poly.DaoImpl.CategoryDAOImpl;
 import java.awt.Color;
-import java.awt.print.Book;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -37,7 +36,7 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
     }
 });
 
-        this.bookDAO = new BookDAOImpl();
+        this.bookDAO = new BookDAOImpl() {};
         this.CategoryDAO = new com.poly.DaoImpl.CategoryDAOImpl();
 
         // Gọi hàm tải dữ liệu (Phải gọi sau khi CategoryDAO được khởi tạo)
@@ -83,6 +82,11 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
         getContentPane().add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(322, 32, 478, 32));
 
         btnSearch.setText("Tra Cứu Sách");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(818, 32, 112, 31));
 
         tblBooks.setModel(new javax.swing.table.DefaultTableModel(
@@ -195,6 +199,11 @@ public class MuonSachForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here
         openTaoPhieuForm();
     }//GEN-LAST:event_btnTaoPhieuActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        searchBook();
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -331,6 +340,24 @@ public void openTaoPhieuForm() {
     TaoPhieuForm taoPhieu = new TaoPhieuForm(maSach, tenSach, tacGia, theLoai, soLuong);
     taoPhieu.setVisible(true);
 }
+public void searchBook() {
+        try {
+            String keyword = txtSearch.getText().trim();
+            Category selectedCategory = (Category) cboTheLoai.getSelectedItem();
+            int categoryID = selectedCategory.getCategoryID();
 
+            // Gọi DAO để tìm kiếm và đổ dữ liệu lên JTable
+            // Ku em cần đảm bảo hàm searchBooks(JTable, String, int) tồn tại trong BookDAOImpl
+            bookDAO.searchBooks(tblBooks, keyword, categoryID);
+
+            if (tblBooks.getRowCount() == 0) {
+                MsgBox.alert(this, "Không tìm thấy sách nào khớp với từ khóa/thể loại đã chọn.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Lỗi trong quá trình tìm kiếm sách: " + e.getMessage());
+        }
+    }
    
 }

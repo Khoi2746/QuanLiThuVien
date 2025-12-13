@@ -43,6 +43,7 @@ com\fpoly\ui\TaoPhieuForm.class
 com\fpoly\ui\QuanLyKhoSachForm$7.class
 com\fpoly\ui\QuanLyNguoiDungForm$6.class
 com\fpoly\ui\QuenMatKhauJDialog$3.class
+com\fpoly\ui\MuonSachForm$6.class
 com\fpoly\ui\QuanLyNguoiDungForm$10.class
 com\fpoly\ui\ThongBaoQuanHanFrom$3.class
 com\fpoly\ui\LoginForm$6.class
@@ -83,7 +84,10 @@ com\fpoly\ui\MuonSachForm$4.class
 com\poly\DaoImpl\CategoryDAOImpl.class
 com\fpoly\ui\QuanLyThongBaoQuaHan$5.class
 com\fpoly\ui\DuyetYeuCauMuonTraSachForm.class
+com\fpoly\entity\Book.class
 com\fpoly\ui\TaoPhieuForm$1.class
+com\fpoly\ui\LichSuMuonForm$2.class
+com\fpoly\ui\MuonSachForm$7.class
 com\fpoly\ui\DoiMatKhauForm$2.class
 com\fpoly\ui\LoginForm$3.class
 com\fpoly\entity\Category.class

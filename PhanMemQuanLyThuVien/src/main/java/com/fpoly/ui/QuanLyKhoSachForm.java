@@ -27,6 +27,7 @@ import javax.swing.DefaultComboBoxModel;
 public class QuanLyKhoSachForm extends javax.swing.JInternalFrame {
        private BookDAO bookDAO;
     private final CategoryDAOImpl CategoryDAO;
+    private int categoryID;
         /**
      * Creates new form QuanLyKhoSach
      */
@@ -476,11 +477,15 @@ private void clearForm() {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
-        // 1. Lấy từ khóa từ ô txtTimKiem
-    String keyword = txtTimKiem.getText();
+   String keyword = txtTimKiem.getText().trim(); // Dùng trim() để loại bỏ khoảng trắng thừa
     
-    // 2. Gọi hàm tìm kiếm trong BookDAO
-    this.bookDAO.searchBooks(tblBooks, keyword);
+    // 2. Gọi hàm tìm kiếm trong BookDAO và truyền JTable cùng keyword
+    bookDAO.searchBooks(tblBooks, keyword, categoryID);
+    
+    // Tùy chọn: Thông báo nếu không tìm thấy
+    if (tblBooks.getRowCount() == 0) {
+        MsgBox.alert(this, "Không tìm thấy sách nào khớp với từ khóa: " + keyword);
+    }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed

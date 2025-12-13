@@ -387,7 +387,6 @@ private void createBorrowRequest() {
                 br.getNote()
             });
         }
-        
         JOptionPane.showMessageDialog(this, "Tạo phiếu mượn thành công! Vui lòng chờ thủ thư duyệt.");
         this.dispose();
     } catch (Exception e) {
