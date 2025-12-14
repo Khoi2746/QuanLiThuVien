@@ -68,6 +68,7 @@ com\fpoly\ui\QuenMatKhauJDialog$3$1.class
 com\fpoly\ui\ThemTheLoaiForm.class
 com\fpoly\ui\MuonSachForm$5.class
 com\fpoly\ui\QuanLyNguoiDungForm$5.class
+com\fpoly\ui\XemChiTietMuonSachForm$2.class
 com\fpoly\ui\LichSuMuonForm$1.class
 com\fpoly\ui\MainForm$4.class
 com\poly\DaoImpl\SoLuotMuonDAOImpl.class
@@ -89,6 +90,7 @@ com\fpoly\ui\MuonSachForm$1.class
 com\fpoly\ui\WelcomeForm_1.class
 com\fpoly\ui\LichSuMuonForm.class
 com\fpoly\ui\MuonSachForm$4.class
+com\fpoly\ui\XemChiTietMuonSachForm$3.class
 com\poly\DaoImpl\CategoryDAOImpl.class
 com\fpoly\ui\QuanLyThongBaoQuaHan$5.class
 com\fpoly\ui\ThongBaoQuanHanFrom$5.class
@@ -128,6 +130,7 @@ TestLombok.class
 com\fpoly\ui\LoginForm$1.class
 MasterMainRun\MainRun.class
 com\fpoly\ui\QuanLyKhoSachForm$10.class
+com\fpoly\ui\LichSuMuonForm$4.class
 com\fpoly\utils\XImage.class
 com\fpoly\ui\LoginForm$8.class
 com\fpoly\ui\MainForm$1.class

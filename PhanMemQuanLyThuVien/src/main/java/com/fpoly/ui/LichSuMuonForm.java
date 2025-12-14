@@ -74,6 +74,11 @@ public class LichSuMuonForm extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tblYeuCauMuon);
 
         btnXemChiTiet.setText("Xem Chi Tiết ");
+        btnXemChiTiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXemChiTietActionPerformed(evt);
+            }
+        });
 
         btnReloadBang.setText("Reload bảng");
         btnReloadBang.addActionListener(new java.awt.event.ActionListener() {
@@ -87,22 +92,20 @@ public class LichSuMuonForm extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(503, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(29, 29, 29)
-                                .addComponent(btnReloadBang)
-                                .addGap(353, 353, 353))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnXemChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24))))))
+                        .addComponent(jLabel1)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnReloadBang)
+                        .addGap(353, 353, 353))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnXemChiTiet, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,6 +141,11 @@ public class LichSuMuonForm extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         loadTable();
     }//GEN-LAST:event_btnReloadBangActionPerformed
+
+    private void btnXemChiTietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemChiTietActionPerformed
+        // TODO add your handling code here:
+        xemChiTiet();
+    }//GEN-LAST:event_btnXemChiTietActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,6 +254,40 @@ private void applyHoverEffect(JButton button, Color defaultColor, Color hoverCol
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         }
     });
+}
+private void xemChiTiet() {
+    int row = tblYeuCauMuon.getSelectedRow();
+
+    if (row < 0) {
+        JOptionPane.showMessageDialog(this,
+                "Vui lòng chọn một phiếu mượn!",
+                "Thông báo",
+                JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Cột 0 = RequestID
+    int requestID = Integer.parseInt(
+            tblYeuCauMuon.getValueAt(row, 0).toString()
+    );
+
+    try {
+        BorrowRequestDaoImpl dao = new BorrowRequestDaoImpl();
+        BorrowRequest br = dao.selectById(requestID);
+
+        if (br != null) {
+            XemChiTietMuonSachForm form = new XemChiTietMuonSachForm();
+            form.setForm(br);
+            form.setLocationRelativeTo(this);
+            form.setVisible(true);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this,
+                "Không thể xem chi tiết phiếu mượn!",
+                "Lỗi",
+                JOptionPane.ERROR_MESSAGE);
+    }
 }
 
 

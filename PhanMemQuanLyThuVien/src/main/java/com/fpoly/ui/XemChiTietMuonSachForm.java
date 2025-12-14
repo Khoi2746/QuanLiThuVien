@@ -4,6 +4,9 @@
  */
 package com.fpoly.ui;
 
+import com.fpoly.entity.BorrowRequest;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author X1 Carbon
@@ -26,21 +29,88 @@ public class XemChiTietMuonSachForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        txtMaYeuCau = new javax.swing.JTextField();
+        txtMSSV = new javax.swing.JTextField();
+        txtMaSach = new javax.swing.JTextField();
+        txtTrangThai = new javax.swing.JTextField();
+        txtNgayMuon = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        btnTroVe = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 137, 123));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Chi Tiết Nội Dung Phiếu Mượn");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 0, -1, -1));
+        getContentPane().add(txtMaYeuCau, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 77, 712, -1));
+        getContentPane().add(txtMSSV, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 134, 712, -1));
+
+        txtMaSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaSachActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtMaSach, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 194, 712, -1));
+        getContentPane().add(txtTrangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 313, 712, -1));
+        getContentPane().add(txtNgayMuon, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 251, 712, -1));
+
+        jLabel2.setText("Mã yêu cầu:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 55, -1, -1));
+
+        jLabel3.setText("Mã Sinh Viên:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 117, -1, -1));
+
+        jLabel4.setText("Mã Sách:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 172, -1, -1));
+
+        jLabel6.setText("Ngày Mượn:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 234, -1, -1));
+
+        jLabel7.setText("Trạng Thái:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 291, -1, -1));
+
+        btnTroVe.setText("Trở Về");
+        btnTroVe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTroVeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnTroVe, new org.netbeans.lib.awtextra.AbsoluteConstraints(668, 353, -1, -1));
+
+        jPanel1.setForeground(new java.awt.Color(153, 137, 123));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 770, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 390, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtMaSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaSachActionPerformed
+
+    private void btnTroVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTroVeActionPerformed
+        // TODO add your handling code here:
+        TroVe();
+    }//GEN-LAST:event_btnTroVeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +148,43 @@ public class XemChiTietMuonSachForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTroVe;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtMSSV;
+    private javax.swing.JTextField txtMaSach;
+    private javax.swing.JTextField txtMaYeuCau;
+    private javax.swing.JTextField txtNgayMuon;
+    private javax.swing.JTextField txtTrangThai;
     // End of variables declaration//GEN-END:variables
+
+public void setForm(BorrowRequest br) {
+    txtMaYeuCau.setText(String.valueOf(br.getRequestID()));
+    txtMSSV.setText(br.getMSSV());
+    txtMaSach.setText(String.valueOf(br.getMaSach()));
+    txtTrangThai.setText(br.getStatus());
+
+    // Format ngày
+    if (br.getRequestDate() != null) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        txtNgayMuon.setText(sdf.format(br.getRequestDate()));
+    } else {
+        txtNgayMuon.setText("");
+    }
+
+    // Chỉ xem
+    txtMaYeuCau.setEditable(false);
+    txtMSSV.setEditable(false);
+    txtMaSach.setEditable(false);
+    txtNgayMuon.setEditable(false);
+    txtTrangThai.setEditable(false);
+}
+public void TroVe() {
+    this.dispose();
+}
 }
