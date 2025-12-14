@@ -145,7 +145,7 @@ public class MainForm extends javax.swing.JFrame {
             .addGap(0, 575, Short.MAX_VALUE)
         );
 
-        tabMain.addTab("Trả Sách", tabTraSach);
+        tabMain.addTab("Lịch Sử Mượn", tabTraSach);
 
         jPanel5.setBackground(new java.awt.Color(153, 112, 76));
 
