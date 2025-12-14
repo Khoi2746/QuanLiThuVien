@@ -1,3 +1,4 @@
+com\fpoly\ui\ThemTheLoaiForm$1.class
 com\fpoly\ui\LoginForm$7.class
 com\fpoly\ui\DoiMatKhauForm$1.class
 com\fpoly\ui\LichSuMuonForm$3.class
@@ -29,6 +30,7 @@ com\fpoly\ui\QuanLyThongBaoQuaHan$6.class
 com\fpoly\ui\MainForm$3.class
 com\fpoly\ui\QuanLyThongBaoQuaHan$3.class
 com\fpoly\ui\QuenMatKhauJDialog$1.class
+com\fpoly\ui\QuanLyKhoSachForm$12.class
 com\fpoly\ui\QuanLyBaoCaoThongKe.class
 com\fpoly\DaoImpl\BorrowRequestDaoImpl.class
 com\fpoly\ui\DuyetYeuCauMuonSachForm$1.class
@@ -45,6 +47,7 @@ com\fpoly\ui\TaoPhieuForm.class
 com\fpoly\ui\QuanLyKhoSachForm$7.class
 com\fpoly\ui\QuanLyNguoiDungForm$6.class
 com\fpoly\ui\QuenMatKhauJDialog$3.class
+com\fpoly\ui\XemChiTietMuonSachForm$1.class
 com\fpoly\ui\MuonSachForm$6.class
 com\fpoly\ui\QuanLyNguoiDungForm$10.class
 com\fpoly\ui\ThongBaoQuanHanFrom$3.class
@@ -62,6 +65,7 @@ com\fpoly\entity\BorrowRequest.class
 com\fpoly\ui\ThongBaoQuanHanFrom.class
 com\fpoly\ui\DoiMatKhauForm$7.class
 com\fpoly\ui\QuenMatKhauJDialog$3$1.class
+com\fpoly\ui\ThemTheLoaiForm.class
 com\fpoly\ui\MuonSachForm$5.class
 com\fpoly\ui\QuanLyNguoiDungForm$5.class
 com\fpoly\ui\LichSuMuonForm$1.class
@@ -74,6 +78,7 @@ com\poly\DaoImpl\BookDAOImpl.class
 com\poly\DaoImpl\StatisticalDAOImpl.class
 MasterMainRun\MainRun$1.class
 com\fpoly\ui\DoiMatKhauForm$8.class
+com\fpoly\ui\QuanLyKhoSachForm$11.class
 com\fpoly\ui\QuanLyKhoSachForm$2.class
 com\fpoly\ui\QuanLyNguoiDungForm.class
 com\fpoly\ui\MainForm$2.class
@@ -106,10 +111,12 @@ com\poly\DaoImpl\OverdueDAOImpl.class
 com\fpoly\ui\LoginForm$10.class
 com\fpoly\ui\QuanLyKhoSachForm$5.class
 com\fpoly\ui\DoiMatKhauForm.class
+com\fpoly\ui\ThemTheLoaiForm$3.class
 com\fpoly\ui\MuonSachForm$3.class
 com\fpoly\ui\QuanLyNguoiDungForm$3.class
 com\fpoly\ui\LoginForm$2.class
 com\fpoly\ui\ThongBaoQuanHanFrom$6.class
+com\fpoly\ui\XemChiTietMuonSachForm.class
 com\fpoly\ui\MainForm.class
 com\fpoly\Dao\BorrowDAO.class
 com\fpoly\ui\QuanLyNguoiDungForm$7.class
@@ -124,6 +131,7 @@ com\fpoly\ui\QuanLyKhoSachForm$10.class
 com\fpoly\utils\XImage.class
 com\fpoly\ui\LoginForm$8.class
 com\fpoly\ui\MainForm$1.class
+com\fpoly\ui\ThemTheLoaiForm$2.class
 com\fpoly\ui\MuonSachForm$2.class
 com\fpoly\ui\QuanLyNguoiDungForm$2.class
 com\fpoly\Dao\CategoryDAO.class

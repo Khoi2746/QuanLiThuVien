@@ -14,8 +14,8 @@ public interface CategoryDAO {
      */
     List<Category> selectAll(); 
 
-    // Ku em có thể thêm các phương thức CRUD cơ bản khác nếu cần:
-    // void insert(Category entity);
+   
+     void insert(Category entity);
     // void update(Category entity);
     // void delete(Integer id);
     // Category selectById(Integer id);

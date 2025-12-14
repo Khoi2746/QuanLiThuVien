@@ -181,7 +181,7 @@ private void clearForm() {
         btnCapNhat = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         cboTheLoai = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btnThemTheLoai = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
         lblClock = new javax.swing.JLabel();
 
@@ -302,7 +302,12 @@ private void clearForm() {
             }
         });
 
-        jButton1.setText("Thêm Thể Loại");
+        btnThemTheLoai.setText("Thêm Thể Loại");
+        btnThemTheLoai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemTheLoaiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout btnLamMoiLayout = new javax.swing.GroupLayout(btnLamMoi);
         btnLamMoi.setLayout(btnLamMoiLayout);
@@ -337,7 +342,7 @@ private void clearForm() {
                             .addGroup(btnLamMoiLayout.createSequentialGroup()
                                 .addComponent(cboTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1))))
+                                .addComponent(btnThemTheLoai))))
                     .addGroup(btnLamMoiLayout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,7 +374,7 @@ private void clearForm() {
                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cboTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnThemTheLoai))
                 .addGap(18, 18, 18)
                 .addGroup(btnLamMoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
@@ -544,6 +549,11 @@ private void clearForm() {
     }
     }//GEN-LAST:event_btnXoaActionPerformed
 
+    private void btnThemTheLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemTheLoaiActionPerformed
+        // TODO add your handling code here:
+        openThemTheLoai();
+    }//GEN-LAST:event_btnThemTheLoaiActionPerformed
+
     
    
     
@@ -587,10 +597,10 @@ private void clearForm() {
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThemSach;
+    private javax.swing.JButton btnThemTheLoai;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<Category> cboTheLoai;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -708,6 +718,18 @@ private void applyHoverEffect(JButton button, Color defaultColor, Color hoverCol
             button.setBackground(defaultColor);
             button.setForeground(Color.BLACK);
             setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        }
+    });
+}
+public void openThemTheLoai() {
+    ThemTheLoaiForm form = new ThemTheLoaiForm();
+    form.setLocationRelativeTo(this);
+    form.setVisible(true);
+
+    form.addWindowListener(new java.awt.event.WindowAdapter() {
+        @Override
+        public void windowClosed(java.awt.event.WindowEvent e) {
+            loadDataToCboTheLoai();
         }
     });
 }

@@ -1,8 +1,8 @@
 package com.poly.DaoImpl;
 
 import com.fpoly.Dao.CategoryDAO;
-import com.fpoly.entity.Category; // Thay thế com.fpoly.model.Category bằng com.fpoly.entity.Category theo code mới nhất của ku em
-import com.fpoly.utils.XJDBC; // Lớp hỗ trợ JDBC
+import com.fpoly.entity.Category;
+import com.fpoly.utils.XJDBC;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,22 +10,23 @@ import java.util.List;
 
 public class CategoryDAOImpl implements CategoryDAO {
     
-    // Câu lệnh SQL để lấy tất cả Thể loại
-    private static final String SELECT_ALL_SQL = 
+    // Lấy tất cả thể loại
+    private static final String SELECT_ALL_SQL =
         "SELECT CategoryID, CategoryName FROM Categories ORDER BY CategoryName";
-    
+
+    // Thêm thể loại mới
+    private static final String INSERT_SQL =
+        "INSERT INTO Categories (CategoryName) VALUES (?)";
+
     /**
-     * Helper: Thực thi truy vấn SQL và ánh xạ kết quả sang List<Category>
+     * Helper: Thực thi truy vấn SQL
      */
     private List<Category> selectBySql(String sql, Object... args) {
         List<Category> list = new ArrayList<>();
-        ResultSet rs = null; 
+        ResultSet rs = null;
         try {
-            // Sử dụng XJDBC để thực thi truy vấn
             rs = XJDBC.query(sql, args);
-            
             while (rs.next()) {
-                // Tạo đối tượng Category từ dữ liệu trong ResultSet
                 Category cat = new Category(
                     rs.getInt("CategoryID"),
                     rs.getString("CategoryName")
@@ -33,22 +34,27 @@ public class CategoryDAOImpl implements CategoryDAO {
                 list.add(cat);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-            // Ném RuntimeException để Form xử lý và hiển thị thông báo lỗi
-            throw new RuntimeException("Lỗi truy vấn database Category: " + e.getMessage(), e);
+            throw new RuntimeException("Lỗi truy vấn Category", e);
         } finally {
-            XJDBC.close(rs); // Đảm bảo đóng ResultSet và Statement
+            XJDBC.close(rs);
         }
         return list;
     }
 
-    /**
-     * Triển khai phương thức từ CategoryDAO Interface.
-     * Lấy tất cả các Category có trong database.
-     * @return List<Category> danh sách các thể loại.
-     */
     @Override
     public List<Category> selectAll() {
         return selectBySql(SELECT_ALL_SQL);
+    }
+
+    // ===============================
+    // 👉 INSERT CATEGORY
+    // ===============================
+    @Override
+    public void insert(Category entity) {
+        try {
+            XJDBC.update(INSERT_SQL, entity.getCategoryName());
+        } catch (SQLException e) {
+            throw new RuntimeException("Lỗi thêm thể loại!", e);
+        }
     }
 }
