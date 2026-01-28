@@ -27,6 +27,36 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>com.akathist.maven.plugins.launch4j</groupId>
+        <artifactId>launch4j-maven-plugin</artifactId>
+        <version>2.5.0</version>
+        <executions>
+          <execution>
+            <id>l4j-cli</id>
+            <phase>package</phase>
+            <goals>
+              <goal>launch4j</goal>
+            </goals>
+            <configuration>
+              <headerType>gui</headerType>
+              <jar>target/PhanMemQuanLyThuVien-fat.jar</jar>
+              <outfile>target/PhanMemQuanLyThuVien.exe</outfile>
+              <jre>
+                <minVersion>17.0.0</minVersion>
+                <opts>
+                  <opt>-Xmx1024m</opt>
+                </opts>
+              </jre>
+              <version>1.0.0.0</version>
+              <internalName>PhanMemQuanLyThuVien</internalName>
+              <fileDescription>Ứng dụng Quản lý Thư viện</fileDescription>
+              <copyright>Copyright © 2025</copyright>
+              <companyName>MyCompany</companyName>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
@@ -35,6 +65,26 @@
       <artifactId>lombok</artifactId>
       <version>1.18.32</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.11.0</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>junit-jupiter-api</artifactId>
+          <groupId>org.junit.jupiter</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>junit-jupiter-params</artifactId>
+          <groupId>org.junit.jupiter</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>junit-jupiter-engine</artifactId>
+          <groupId>org.junit.jupiter</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
   <properties>

@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
 
     // Đọc dữ liệu từ ResultSet
     private User readFromResultSet(ResultSet rs) throws SQLException {
-    User user = new User(); 
+    User user = new User(99, "nguyenvana", "password123", "vana@gmail.com", "0987654321"); 
     
     // GÁN DỮ LIỆU BẰNG SETTER (Đảm bảo không nhầm lẫn)
     user.setUserID(rs.getInt("UserID"));

@@ -46,8 +46,33 @@
                <artifactId>jcalendar</artifactId>
                <version>1.4</version>
           </dependency>
-     </dependencies>
+          <!-- Junit5 -->
+          <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.11.0</version>
+            <scope>test</scope>
+        </dependency>
+        <!--Selenium -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.21.0</version>
+        </dependency>
 
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.8.0</version>
+        </dependency>
+          <dependency>
+               <groupId>org.junit.jupiter</groupId>
+               <artifactId>junit-jupiter-api</artifactId>
+               <version>5.11.0</version>
+               <type>jar</type>
+          </dependency>
+     </dependencies>
+     <!--========================-->
     <build>
         <plugins>
 <plugin>

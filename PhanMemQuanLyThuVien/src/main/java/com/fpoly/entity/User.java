@@ -11,12 +11,11 @@ public class User {
     private String roleName;
 
     // Constructor không tham số (bắt buộc phải có khi dùng new User())
-    public User() {
+    public User(int par, String nguyenvana, String password123, String vanagmailcom, String string) {
     }
 
     // Constructor đầy đủ tham số
-    public User(int userID, String username, String password, String fullName,
-                String email, int roleID, String roleName) {
+    public User(int userID, String username, String password, String fullName, String email, int roleID, String roleName) {
 
         this.userID = userID;
         this.username = username;
@@ -25,6 +24,10 @@ public class User {
         this.email = email;
         this.roleID = roleID;
         this.roleName = roleName;
+    }
+
+    public User() {
+       
     }
 
     // Getter & Setter

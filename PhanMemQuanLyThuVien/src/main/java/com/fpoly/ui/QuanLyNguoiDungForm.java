@@ -656,7 +656,7 @@ public class QuanLyNguoiDungForm extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn vai trò!");
             return null;
         }
-        User u = new User();
+        User u = new User(99, "nguyenvana", "password123", "vana@gmail.com", "0987654321");
         u.setUsername(username);
         u.setPassword(password);
         u.setFullName(fullName);
