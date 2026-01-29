@@ -6,10 +6,10 @@ package com.fpoly.ui;
 
 //import com.fpoly.entity.Borrow;
 
-import com.fpoly.Dao.BorrowDAO;
-import com.fpoly.Dao.OverallStatisticsDAO;
-import com.fpoly.Dao.SoLuotMuonDAO;
-import com.fpoly.Dao.StatisticalDAO;
+import com.poly.dao.BorrowDAO;
+import com.poly.dao.OverallStatisticsDAO;
+import com.poly.dao.SoLuotMuonDAO;
+import com.poly.dao.StatisticalDAO;
 import com.fpoly.entity.Borrow;
 import com.fpoly.entity.OverallStatistics;
 import com.fpoly.entity.SoLuotMuon;

@@ -1,6 +1,6 @@
 package com.poly.DaoImpl;
 
-import com.fpoly.Dao.OverdueDAO;
+import com.poly.dao.OverdueDAO;
 import com.fpoly.utils.XJDBC;
 import java.sql.*;
 import java.util.ArrayList;

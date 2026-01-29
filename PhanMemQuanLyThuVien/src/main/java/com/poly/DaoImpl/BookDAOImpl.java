@@ -1,6 +1,6 @@
 package com.poly.DaoImpl; // Đổi package thành com.poly.DaoImpl
 
-import com.fpoly.Dao.BookDAO; // Import Interface
+import com.poly.dao.BookDAO; // Import Interface
 import com.fpoly.utils.XJDBC;
 import java.sql.ResultSet;
 import java.sql.SQLException;

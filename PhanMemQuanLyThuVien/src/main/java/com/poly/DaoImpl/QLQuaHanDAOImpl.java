@@ -1,6 +1,6 @@
 package com.poly.DaoImpl;
 
-import com.fpoly.Dao.QLQuaHanDao;
+import com.poly.dao.QLQuaHanDao;
 import com.fpoly.entity.QLQuaHan;
 import com.fpoly.utils.XJDBC;
 

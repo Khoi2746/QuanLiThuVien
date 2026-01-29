@@ -4,7 +4,7 @@
  */
 package com.poly.DaoImpl;
 
-import com.fpoly.Dao.SoLuotMuonDAO;
+import com.poly.dao.SoLuotMuonDAO;
 import com.fpoly.entity.SoLuotMuon;
 import com.fpoly.utils.XJDBC;
 import java.sql.Connection;

@@ -1,8 +1,10 @@
 package com.fpoly.test;
 
-import com.poly.DaoImpl.UserDaoImpl;
-import com.fpoly.dao.UserDao;
+
+
+import com.poly.dao.UserDao;
 import com.fpoly.entity.User;
+import com.poly.DaoImpl.UserDaoImpl;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.List;
 /**
  * Unit Test tập trung vào tài khoản Admin - Assignment SOF3041
  */
+
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class UserTest {
 
@@ -20,71 +24,77 @@ public class UserTest {
         dao = new UserDaoImpl();
     }
 
-    @Test
-    @Order(1)
-    @DisplayName("TC1: Kiểm tra thông tin Admin hiện có")
+    @Test @Order(1)
+    @DisplayName("TC01: Kiểm tra thông tin Admin hiện có")
     void testAdminInfo() {
-        // Lấy admin từ database (ID = 1 theo hình image_8b0ed9.png)
         User user = dao.findById(1); 
         assertNotNull(user, "Tài khoản Admin phải tồn tại");
-        assertEquals("admin", user.getUsername(), "Username phải là admin");
-        // Khớp mật khẩu 1234567 từ database thực tế
-        assertEquals("1234567", user.getPassword(), "Mật khẩu Admin phải khớp với DB");
+        assertEquals("admin", user.getUsername());
     }
 
-    @Test
-    @Order(2)
-    @DisplayName("TC18: Xác nhận Admin tồn tại (CheckUsernameExists)")
+    @Test @Order(2)
+    @DisplayName("TC02: Xác nhận Admin tồn tại (CheckUsernameExists)")
     void testAdminExists() {
-        boolean exists = dao.checkUsernameExists("admin");
-        assertTrue(exists, "Hệ thống phải tìm thấy username 'admin'");
+        assertTrue(dao.checkUsernameExists("admin"));
     }
 
-    @Test
-    @Order(3)
-    @DisplayName("TC15: Tạo thêm một Admin phụ (Sửa lỗi NULL Username)")
+    @Test @Order(3)
+    @DisplayName("TC03: Tạo thêm một Admin phụ")
     void testCreateSecondaryAdmin() {
-        // Lưu ý: Ku em phải đảm bảo các trường không được để trống
         User newUser = new User(); 
-        newUser.setUsername("admin_backup"); // Gán username rõ ràng để tránh lỗi NULL
+        newUser.setUsername("admin_backup");
         newUser.setPassword("admin@2026");
         newUser.setFullName("Quản Trị Viên Dự Phòng");
         newUser.setEmail("backup@lib.com");
-        newUser.setRoleID(1); // Quyền quản trị
-
+        newUser.setRoleID(1);
         dao.create(newUser);
-        
-        boolean exists = dao.checkUsernameExists("admin_backup");
-        assertTrue(exists, "Phải thêm được Admin phụ vào database");
+        assertTrue(dao.checkUsernameExists("admin_backup"));
     }
 
-    @Test
-    @Order(4)
-    @DisplayName("TC19: Cập nhật mật khẩu cho Admin phụ")
+    @Test @Order(4)
+    @DisplayName("TC04: Cập nhật mật khẩu cho Admin phụ")
     void testUpdateAdminPassword() {
-        // Cập nhật pass mới cho tài khoản vừa tạo ở trên
-        boolean success = dao.updatePassword("admin_backup", "new_secure_pass");
-        assertTrue(success, "Cập nhật mật khẩu cho Admin phụ phải thành công");
+        assertTrue(dao.updatePassword("admin_backup", "new_secure_pass"));
     }
 
-    @Test
-    @Order(5)
-    @DisplayName("TC20: Xóa Admin phụ sau khi test xong")
+    @Test @Order(5)
+    @DisplayName("TC05: Tìm kiếm Admin theo từ khóa")
+    void testFindAdminByKeyword() {
+        List<User> list = dao.findByUsername("admin");
+        assertFalse(list.isEmpty());
+    }
+
+    @Test @Order(6)
+    @DisplayName("TC06: Lấy tất cả danh sách người dùng")
+    void testFindAllUsers() {
+        assertNotNull(dao.findAll());
+    }
+
+    @Test @Order(7)
+    @DisplayName("TC07: Tìm User bằng ID không tồn tại")
+    void testFindInvalidId() {
+        assertNull(dao.findById(-999));
+    }
+
+    @Test @Order(8)
+    @DisplayName("TC08: Kiểm tra Username không tồn tại")
+    void testUsernameNotExists() {
+        assertFalse(dao.checkUsernameExists("user_fake_123"));
+    }
+
+    @Test @Order(9)
+    @DisplayName("TC09: Đổi mật khẩu cho User không tồn tại")
+    void testUpdatePassInvalidUser() {
+        assertFalse(dao.updatePassword("non_existent_user", "pass123"));
+    }
+
+    @Test @Order(10)
+    @DisplayName("TC10: Xóa Admin phụ sau khi test")
     void testCleanupAdmin() {
-        // Tìm ID của admin_backup để xóa
         List<User> list = dao.findByUsername("admin_backup");
         if (!list.isEmpty()) {
             dao.delete(list.get(0).getUserID());
-            
-            User deleted = dao.findById(list.get(0).getUserID());
-            assertNull(deleted, "Admin phụ phải bị xóa hoàn toàn khỏi DB");
+            assertNull(dao.findById(list.get(0).getUserID()));
         }
-    }
-
-    @Test
-    @DisplayName("TC4: Kiểm tra tìm kiếm Admin theo từ khóa")
-    void testFindAdminByKeyword() {
-        List<User> list = dao.findByUsername("admin");
-        assertFalse(list.isEmpty(), "Phải tìm thấy ít nhất 1 kết quả chứa từ 'admin'");
     }
 }

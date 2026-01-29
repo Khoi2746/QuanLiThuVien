@@ -1,6 +1,6 @@
 package com.poly.DaoImpl;
 
-import com.fpoly.Dao.StatisticalDAO;
+import com.poly.dao.StatisticalDAO;
 import com.fpoly.entity.statistical;
 import com.fpoly.utils.XJDBC;
 import java.sql.Connection;

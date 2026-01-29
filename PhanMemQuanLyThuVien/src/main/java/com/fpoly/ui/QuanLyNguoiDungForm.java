@@ -4,7 +4,7 @@
  */
 package com.fpoly.ui;
 
-import com.fpoly.dao.UserDao;
+import com.poly.dao.UserDao;
 
 import com.fpoly.entity.User;
 import com.poly.DaoImpl.UserDaoImpl;

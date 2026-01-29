@@ -4,7 +4,7 @@
  */
 package com.fpoly.ui;
 
-import com.fpoly.Dao.CategoryDAO;
+import com.poly.dao.CategoryDAO;
 import com.fpoly.entity.Category;
 import com.fpoly.utils.MsgBox;
 import com.poly.DaoImpl.CategoryDAOImpl;

@@ -1,6 +1,6 @@
 package com.poly.DaoImpl;
 
-import com.fpoly.dao.UserDao;
+import com.poly.dao.UserDao;
 import com.fpoly.entity.User;
 import com.fpoly.utils.XJDBC;
 

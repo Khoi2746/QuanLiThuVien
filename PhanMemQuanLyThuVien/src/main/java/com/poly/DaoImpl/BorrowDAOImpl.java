@@ -1,6 +1,6 @@
 package com.poly.DaoImpl;
 
-import com.fpoly.Dao.BorrowDAO;
+import com.poly.dao.BorrowDAO;
 // Giả định lớp com.fpoly.entity.Borrow đã được cập nhật hoặc tạo để chứa đủ thông tin
 // Nếu lớp Borrow cũ chỉ có các cột cũ, ku em cần cập nhật lớp entity đó hoặc tạo lớp DTO mới.
 import com.fpoly.entity.Borrow; 

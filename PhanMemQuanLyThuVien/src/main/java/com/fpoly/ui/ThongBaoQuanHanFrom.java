@@ -4,7 +4,7 @@
  */
 package com.fpoly.ui;
 
-import com.fpoly.Dao.OverdueDAO;
+import com.poly.dao.OverdueDAO;
 import com.fpoly.utils.MsgBox;
 import com.poly.DaoImpl.OverdueDAOImpl;
 import java.awt.Color;

@@ -13,7 +13,7 @@ import com.fpoly.entity.Category;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
-import com.fpoly.Dao.BookDAO;
+import com.poly.dao.BookDAO;
 import com.poly.DaoImpl.BookDAOImpl;
 import com.poly.DaoImpl.CategoryDAOImpl;
 import java.awt.Color;

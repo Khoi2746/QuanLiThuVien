@@ -1,1 +1,7 @@
 com\fpoly\test\UserTest.class
+com\fpoly\test\AllTestsSuite.class
+com\fpoly\test\EdgeTest.class
+com\fpoly\test\BookDAOTest.class
+com\fpoly\test\AutomationTest.class
+com\fpoly\test\WebAutomationTest.class
+com\fpoly\test\ChromeTest.class

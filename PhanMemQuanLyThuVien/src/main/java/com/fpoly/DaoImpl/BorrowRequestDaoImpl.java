@@ -1,6 +1,6 @@
 package com.fpoly.DaoImpl;
 
-import com.fpoly.dao.BorrowRequestDao;
+import com.poly.dao.BorrowRequestDao;
 import com.fpoly.entity.BorrowRequest;
 import com.fpoly.utils.XJDBC;
 

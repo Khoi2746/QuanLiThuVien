@@ -5,7 +5,7 @@
 package com.fpoly.ui;
 
 
-import com.fpoly.Dao.QLQuaHanDao;
+import com.poly.dao.QLQuaHanDao;
 import com.poly.DaoImpl.QLQuaHanDAOImpl;
 import com.fpoly.entity.QLQuaHan;
 import java.awt.Color;
