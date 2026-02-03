@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  *
- * @author LENOVO
+ * @author 
  */
 public class BorrowDAOImpl implements BorrowDAO{
     
