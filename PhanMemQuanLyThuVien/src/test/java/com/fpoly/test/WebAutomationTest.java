@@ -33,7 +33,7 @@ public class WebAutomationTest {
 
         // 4. Tìm ô Email và điền dữ liệu
         WebElement emailField = driver.findElement(By.id("email"));
-        emailField.sendKeys("khoi_poly@fpoly.edu.vn");
+        emailField.sendKeys("phuong_poly@fpoly.edu.vn");
 
         // 5. Tìm ô Password và điền dữ liệu
         WebElement passwordField = driver.findElement(By.id("passwd"));

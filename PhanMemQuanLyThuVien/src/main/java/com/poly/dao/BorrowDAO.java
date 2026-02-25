@@ -13,4 +13,8 @@ public interface BorrowDAO {
     List<Borrow> getAllOverdueBooks();
     List<Borrow> getOverdueBooksByFilter(Integer month, Integer year);
     List<Borrow> searchOverdueByBookName(String keyword);
+
+    public Object insertBorrow(int i, int i0);
+
+    public Object returnBook(int i);
 }

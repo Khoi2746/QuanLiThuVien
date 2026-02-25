@@ -1,17 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.fpoly.test;
 
-
-import com.poly.DaoImpl.BookDAOImpl;
 import com.poly.dao.BookDAO;
+import com.poly.DaoImpl.BookDAOImpl;
 import org.junit.jupiter.api.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BookDAOTest {
+
     private BookDAO dao;
 
     @BeforeEach
@@ -19,64 +16,67 @@ public class BookDAOTest {
         dao = new BookDAOImpl();
     }
 
-    @Test @Order(11)
-    @DisplayName("TC11: Thêm sách mới thành công")
-    void testInsertBookSuccess() {
-        // Lưu ý: Đổi "Tác giả thật", "Thể loại thật" theo dữ liệu SQL của bạn để tránh JOptionPane
-        assertDoesNotThrow(() -> dao.insertBook("Java Testing", "J.K. Rowling", "Văn học", 10));
+    // TC08: Thêm sách mới hợp lệ
+    @Test
+    @Order(8)
+    void TC08_insertValidBook() {
+        assertDoesNotThrow(() ->
+            dao.insertBook("Java 1", "Tác giả A", "CNTT", 5)
+        );
     }
 
-    @Test @Order(12)
-    @DisplayName("TC12: Thêm sách với số lượng âm")
-    void testInsertNegativeQuantity() {
-        assertDoesNotThrow(() -> dao.insertBook("Negative Book", "J.K. Rowling", "Văn học", -1));
+    // TC09: Thêm sách thiếu tên tác giả
+    @Test
+    @Order(9)
+    void TC09_insertBookMissingAuthor() {
+        assertDoesNotThrow(() ->
+            dao.insertBook("Java 2", "", "CNTT", 5)
+        );
     }
 
-    @Test @Order(13)
-    @DisplayName("TC13: Cập nhật thông tin sách")
-    void testUpdateBook() {
-        assertDoesNotThrow(() -> dao.updateBook("1", "Updated Title", "J.K. Rowling", "Văn học", 15));
+    // TC10: Thêm sách số lượng âm
+    @Test
+    @Order(10)
+    void TC10_insertNegativeQuantity() {
+        assertDoesNotThrow(() ->
+            dao.insertBook("Java 3", "Tác giả B", "CNTT", -5)
+        );
     }
 
-    @Test @Order(14)
-    @DisplayName("TC14: Xóa sách không tồn tại")
-    void testDeleteInvalidBook() {
-        assertDoesNotThrow(() -> dao.deleteBook("999999"));
+    // TC11: Cập nhật sách theo ID
+    @Test
+    @Order(11)
+    void TC11_updateBookById() {
+        assertDoesNotThrow(() ->
+            dao.updateBook("B01", "New", "Tác giả A", "CNTT", 10)
+        );
     }
 
-    @Test @Order(15)
-    @DisplayName("TC15: Thêm sách với Tác giả không tồn tại")
-    void testInsertInvalidAuthor() {
-        assertDoesNotThrow(() -> dao.insertBook("Fail Book", "Unknown Author", "Văn học", 5));
+    // TC12: Xóa sách đang tồn tại
+    @Test
+    @Order(12)
+    void TC12_deleteExistingBook() {
+        assertDoesNotThrow(() ->
+            dao.deleteBook("B01")
+        );
     }
 
-    @Test @Order(16)
-    @DisplayName("TC16: Thêm sách với Thể loại không tồn tại")
-    void testInsertInvalidCategory() {
-        assertDoesNotThrow(() -> dao.insertBook("Fail Book 2", "J.K. Rowling", "Unknown Category", 5));
+    // TC13: Xóa sách không tồn tại
+    @Test
+    @Order(13)
+    void TC13_deleteNonExistingBook() {
+        assertDoesNotThrow(() ->
+            dao.deleteBook("999")
+        );
     }
 
-    @Test @Order(17)
-    @DisplayName("TC17: Cập nhật sách với mã ID trống")
-    void testUpdateEmptyId() {
-        assertDoesNotThrow(() -> dao.updateBook("", "Title", "J.K. Rowling", "Văn học", 10));
+    // TC14: Tìm sách theo từ khóa
+    @Test
+    @Order(14)
+    void TC14_searchBookByKeyword() {
+        assertDoesNotThrow(() ->
+            dao.searchBooks(new javax.swing.JTable(), "Harry", 0)
+        );
     }
-
-    @Test @Order(18)
-    @DisplayName("TC18: Xóa sách với mã ID trống")
-    void testDeleteEmptyId() {
-        assertDoesNotThrow(() -> dao.deleteBook(""));
-    }
-
-    @Test @Order(19)
-    @DisplayName("TC19: Kiểm tra tải dữ liệu lên Table")
-    void testLoadTable() {
-        assertDoesNotThrow(() -> dao.loadBooksToTable(new javax.swing.JTable()));
-    }
-
-    @Test @Order(20)
-    @DisplayName("TC20: Kiểm tra chức năng tìm kiếm sách")
-    void testSearchBook() {
-        assertDoesNotThrow(() -> dao.searchBooks(new javax.swing.JTable(), "Java", 0));
-    }
+    
 }

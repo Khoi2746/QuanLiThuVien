@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.fpoly.test.AutomationTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.128 s <<< FAILURE! -- in com.fpoly.test.AutomationTest
-com.fpoly.test.AutomationTest.testLoginWeb -- Time elapsed: 0.092 s <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.124 s <<< FAILURE! -- in com.fpoly.test.AutomationTest
+com.fpoly.test.AutomationTest.testLoginWeb -- Time elapsed: 0.090 s <<< ERROR!
 org.openqa.selenium.remote.NoSuchDriverException: 
 Unable to obtain: chromedriver, error chromedriver must exist: C:\chromedriver.exe
 For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location/

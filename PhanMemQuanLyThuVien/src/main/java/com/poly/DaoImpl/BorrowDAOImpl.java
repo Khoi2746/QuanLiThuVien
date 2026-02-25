@@ -111,4 +111,14 @@ public class BorrowDAOImpl implements BorrowDAO{
         // Cần triển khai phương thức này dựa trên cấu trúc SQL đã sửa ở trên
         return new ArrayList<>();
     }
+
+    @Override
+    public Object insertBorrow(int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Object returnBook(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
