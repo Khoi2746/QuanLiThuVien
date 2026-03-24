@@ -39,7 +39,7 @@ public class UserTest {
     @Test
     @Order(3)
     void TC03_checkUsernameExists() {
-        assertTrue(dao.checkUsernameExists("ad"));
+        assertTrue(dao.checkUsernameExists("admin"));
     }
 
     // TC04: Kiểm tra Username chưa tồn tại
